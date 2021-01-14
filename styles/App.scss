@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap");
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+// --header: #333333;
+//   --subhead: #1f2c35;
+//   --text: #889ab4;
+//   --background: #fafafb;
+
+$softgrey: rgba(32, 33, 36, 0.28);
+//boxshadow
+$box: 0 1px 6px 0;
+$lightblue: #cbd8f9;
+$deepblue: #2D2D2D;
+// $deepblue: #02247a;
+// $text: #1f2c35;
+$text: #333333;
+$softblue: #fafafb;
+$shinyblue: #2D2D2D;
+// .haircare {
+//     -ms-grid-row-span: 1;
+//     grid-row: 1 span;
+//     -ms-grid-column-span: 1;
+//     grid-column: 1 span;
+//     background-color: #f5f5f5;
+//     background-image: url(https://static.beautytocare.com/media/wysiwyg/home/haircare-bg.jpg);
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     background-position: center center;
+// }
+
+p {
+    color: $text;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+button:focus {
+    outline: 0.6px solid $softgrey !important;
+}
+
+body {
+    // font-family: 'Poppins', sans-serif !important;
+    font-family: "Quicksand", sans-serif !important;
+
+}
+
+form label {
+    color: $text;
+}
+
+li,
+a {
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+// An helper to center notifications 
+.indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+//just space, incase there's a network error and data isn't loaded
+
+.space {
+    padding: 200px 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+//CONTACT FORM
+
+.contact {
+    padding: 40px 0;
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: bolder;
+        color: $shinyblue;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    form {
+        margin: auto;
+        width: 90%;
+
+        label {
+            font-size: 0.9rem
+        }
+
+        div {
+            margin: 10px 0;
+
+            textarea {
+                height: 200px;
+            }
+        }
+
+
+    }
+
+    @media only screen and (min-width:700px) {
+        form {
+            width: 60%
+        }
+    }
+
+    @media only screen and (min-width:1000px) {
+        form {
+            width: 50%;
+
+            label {
+                font-size: 1rem
+            }
+        }
+    }
+
+    @media only screen and (min-width:1200px) {
+        form {
+            width: 40%
+        }
+    }
+
+    @media only screen and (min-width:1800px) {
+        form {
+            width: 30%
+        }
+    }
+}
+
+/* Note - ALL Imported styles represent each page and are named accordingly. 
+Class names accross components can be the same but they are wrapped by a unique class, usually named after the page or component */
+
+@import "./home";
+@import "./store_new-item";
+@import "./product";
+@import "./cart";
+@import "./store";
+@import "./dashboard";
+@import "./checkout";
+@import "./become_a_vendor";
+@import "./header";
+@import "./category";
+@import "./customer";

@@ -1,0 +1,143 @@
+.header-component {
+    background: white;
+    width: 100%;
+
+    header {
+        box-shadow: var(--box) var(--softgrey);
+        padding: 8px 0;
+    }
+
+
+
+    .header-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: auto;
+        width: 95%;
+    }
+
+    .header-wrap img {
+        width: 40px;
+        height: 35px;
+    }
+
+    .header-wrap_left,
+    .header-wrap_right {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        color: var(--deepblue);
+        margin-left: 10px;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .profile-icon {
+        font-size: 0.9rem;
+    }
+
+    .cart-icon {
+        color: var(--deepblue);
+        margin-left: 10px;
+        font-size: 0.8rem;
+        text-align: center;
+        font-weight: bold;
+        position: relative;
+    }
+
+    .cart-icon img {
+        width: 30px;
+        height: 25px;
+    }
+
+    .cart-icon a aside {
+        position: absolute;
+        top: 0;
+        margin-left: 20px;
+        margin-top: -12px;
+        color: var(--deepblue);
+        font-weight: bolder;
+    }
+
+    .large-bar {
+        display: none;
+    }
+
+    @media only screen and (min-width: 700px) {
+        .header-wrap {
+            justify-content: space-around;
+        }
+
+        .large-bar {
+            display: block;
+        }
+
+        .large-bar {
+            width: 60%;
+        }
+
+        .search-bar {
+            display: none;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+        }
+
+        .profile-icon {
+            font-size: 1rem;
+        }
+
+        .cart-icon {
+            font-size: 1rem;
+        }
+
+        .cart-icon img {
+            width: 35px;
+            height: 30px;
+        }
+    }
+
+
+    @media only screen and (min-width: 1200px) {
+        header {
+            padding: 25px 0;
+        }
+    }
+
+    @media only screen and (min-width: 1800px) {
+
+        .header-wrap {
+            width: 60%;
+        }
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+
+    .pop-over-body-rest p {
+        padding: 0 20px;
+    }
+}
+
+
+.pop-over-body {
+    padding: 0 2px;
+}
+
+.pop-over-body-rest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pop-over-body-rest p {
+    font-weight: bold;
+    padding: 8px 0;
+    text-align: center;
+}
