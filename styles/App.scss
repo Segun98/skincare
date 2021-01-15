@@ -9,6 +9,9 @@
     box-sizing: border-box;
 }
 
+$primary: #2D2D2D;
+$soft: #fafafb;
+
 // --header: #333333;
 //   --subhead: #1f2c35;
 //   --text: #889ab4;
@@ -24,17 +27,7 @@ $deepblue: #2D2D2D;
 $text: #333333;
 $softblue: #fafafb;
 $shinyblue: #2D2D2D;
-// .haircare {
-//     -ms-grid-row-span: 1;
-//     grid-row: 1 span;
-//     -ms-grid-column-span: 1;
-//     grid-column: 1 span;
-//     background-color: #f5f5f5;
-//     background-image: url(https://static.beautytocare.com/media/wysiwyg/home/haircare-bg.jpg);
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     background-position: center center;
-// }
+
 
 p {
     color: $text;

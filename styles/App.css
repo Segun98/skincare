@@ -156,13 +156,13 @@ Class names accross components can be the same but they are wrapped by a unique 
   .home-page .main-carousel .carousel-caption h3 {
     font-size: 1.5rem;
     font-weight: bold;
-    background: #2D2D2D;
     margin-bottom: 50px;
     padding: 5px;
     border-radius: 2px;
   }
   .home-page .main-carousel .carousel-caption a {
     background: #2D2D2D;
+    color: white;
     padding: 10px;
     margin-top: 15px;
     border-radius: 2px;
@@ -2302,7 +2302,9 @@ Class names accross components can be the same but they are wrapped by a unique 
 }
 
 .header-component .profile-icon {
-  font-size: 0.9rem;
+  height: 20px;
+  width: 25px;
+  padding-top: 5px;
 }
 
 .header-component .cart-icon {
@@ -2334,8 +2336,10 @@ Class names accross components can be the same but they are wrapped by a unique 
 
 @media only screen and (min-width: 700px) {
   .header-component .header-wrap {
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 75%;
   }
   .header-component .large-bar {
     display: block;
@@ -2363,13 +2367,13 @@ Class names accross components can be the same but they are wrapped by a unique 
 
 @media only screen and (min-width: 1200px) {
   .header-component header {
-    padding: 25px 0;
+    padding: 15px 0;
   }
 }
 
 @media only screen and (min-width: 1800px) {
   .header-component .header-wrap {
-    width: 60%;
+    width: 65%;
   }
 }
 

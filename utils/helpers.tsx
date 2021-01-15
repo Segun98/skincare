@@ -1,6 +1,6 @@
 import { differenceInDays, formatDistance } from "date-fns";
 
-export const companyName = "LaceCare";
+export const companyName = "Tadlace";
 
 //Adds commas to numbers
 export function Commas(x: string | number) {

@@ -7,8 +7,6 @@
         padding: 8px 0;
     }
 
-
-
     .header-wrap {
         display: flex;
         justify-content: space-between;
@@ -36,8 +34,11 @@
         font-size: 1.1rem;
     }
 
+
     .profile-icon {
-        font-size: 0.9rem;
+        height: 20px;
+        width: 25px;
+        padding-top: 5px;
     }
 
     .cart-icon {
@@ -69,7 +70,8 @@
 
     @media only screen and (min-width: 700px) {
         .header-wrap {
-            justify-content: space-around;
+            justify-content: space-between;
+            width: 75%;
         }
 
         .large-bar {
@@ -105,14 +107,14 @@
 
     @media only screen and (min-width: 1200px) {
         header {
-            padding: 25px 0;
+            padding: 15px 0;
         }
     }
 
     @media only screen and (min-width: 1800px) {
 
         .header-wrap {
-            width: 60%;
+            width: 65%;
         }
     }
 }

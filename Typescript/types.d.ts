@@ -16,6 +16,7 @@ export type Query = {
   users?: Maybe<Array<Maybe<UsersRes>>>;
   user?: Maybe<UsersRes>;
   getStores?: Maybe<Array<Maybe<UsersRes>>>;
+  homeStores?: Maybe<Array<Maybe<UsersRes>>>;
   getUser?: Maybe<UsersRes>;
   customerProfile?: Maybe<UsersRes>;
   editUserPage?: Maybe<UsersRes>;
@@ -130,6 +131,7 @@ export type UsersRes = {
   jwt_user_id?: Maybe<Scalars['String']>;
   usersProducts?: Maybe<Array<Maybe<ProductsRes>>>;
   customerOrders?: Maybe<Array<Maybe<Orders>>>;
+  homeProducts?: Maybe<Array<Maybe<ProductsRes>>>;
 };
 
 export type ProductsRes = {
@@ -312,6 +314,11 @@ export type MutationAddToCartArgs = {
 
 export type MutationDeleteFromCartArgs = {
   id?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteAllFromCartArgs = {
+  customer_id: Scalars['ID'];
 };
 
 

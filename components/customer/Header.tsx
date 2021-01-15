@@ -108,12 +108,6 @@ export const Header = () => {
         <header>
           <div className="header-wrap">
             <div className="header-wrap_left">
-              {/* <Button
-                aria-label="menu"
-                aria-roledescription="menu"
-                onClick={onOpen}
-              >
-                </Button> */}
               <button
                 aria-label="menu"
                 aria-roledescription="menu"
@@ -134,7 +128,7 @@ export const Header = () => {
             </div>
 
             {/* SEARCH BAR FOR DESKTOP */}
-
+            {/* 
             <div className="large-bar">
               <form onSubmit={handleSearch}>
                 <InputGroup size="md">
@@ -158,13 +152,14 @@ export const Header = () => {
                   />
                 </InputGroup>
               </form>
-            </div>
+            </div> */}
 
             <div className="header-wrap_right">
               <div>
                 <Popover usePortal>
                   <PopoverTrigger>
                     <button
+                      className="profile-icon"
                       aria-label="open account popover"
                       aria-roledescription="open account popover"
                     >
@@ -274,7 +269,7 @@ export const Header = () => {
 
         {/* MOBILE SEARCH BAR dont show in these routes  */}
 
-        {router.pathname !== "/customer/login" &&
+        {/* {router.pathname !== "/customer/login" &&
           router.pathname !== "/customer/register" && (
             <div className="search-bar">
               <form onSubmit={handleSearch}>
@@ -300,7 +295,7 @@ export const Header = () => {
                 </InputGroup>
               </form>
             </div>
-          )}
+          )} */}
       </div>
 
       {/* MENU SECTION */}
