@@ -1,19 +1,17 @@
-import React, { useRef } from "react";
-import { Icon, Spinner } from "@chakra-ui/core";
-import { featuredProducts } from "@/graphql/vendor";
-import { ProductsRes } from "@/Typescript/types";
-import Link from "next/link";
-import { Layout } from "@/components/Layout";
-import Carousel from "react-bootstrap/Carousel";
-import { Commas } from "@/utils/helpers";
 import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
+import { Categories } from "@/components/HomeComponents/Categories";
+import { MainHome } from "@/components/HomeComponents/Main";
+import { StoresHome } from "@/components/HomeComponents/Stores";
+import { Layout } from "@/components/Layout";
+import { featuredProducts } from "@/graphql/vendor";
 import { graphQLClient } from "@/utils/client";
-import { Parties } from "@/components/Parties";
-import { StoresHome } from "@/components/StoresHome";
+import Link from "next/link";
+import { Icon } from "@chakra-ui/core";
 
 export async function getServerSideProps() {
   try {
-    const data = await graphQLClient.request(featuredProducts, { limit: 10 });
+    const res = await graphQLClient.request(featuredProducts, { limit: 10 });
+    const data = res.featuredProducts;
     return {
       props: {
         data,
@@ -29,277 +27,23 @@ export async function getServerSideProps() {
 }
 
 const Home = ({ data }) => {
-  //Featured Products Section Scroll
-  const scrollRef = useRef(null);
-
   return (
     <Layout>
-      <div className="home-page">
-        <section className="main-carousel">
-          <Carousel indicators={false} interval={7000}>
-            <Carousel.Item>
-              <img
-                src="https://images.unsplash.com/photo-1591019479261-1a103585c559?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fHNraW4lMjBjYXJlJTIwcHJvZHVjdHxlbnwwfDB8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                alt="slider"
-              />
-
-              <Carousel.Caption>
-                <h3>We Have All You Need To Enoy Your Time At The Beach</h3>
-                <Link href="/party?category=Beach Party">
-                  <a>Shop Now</a>
-                </Link>
-              </Carousel.Caption>
-              <div className="mobile-caption">
-                <h5>Beach Parties</h5>
-                <Link href="party?category=Beach Party">
-                  <a>Shop Now</a>
-                </Link>
-              </div>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                src="https://images.unsplash.com/photo-1531895861208-8504b98fe814?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80"
-                alt="slider"
-              />
-
-              <Carousel.Caption>
-                <h3>Your House Parties Are About to get Real Lit</h3>
-                <Link href="party?category=House Party">
-                  <a>Shop Now</a>
-                </Link>
-              </Carousel.Caption>
-              <div className="mobile-caption">
-                <h5>House Parties</h5>
-                <Link href="party?category=House Party">
-                  <a>Shop Now</a>
-                </Link>
-              </div>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                src="https://images.unsplash.com/photo-1602037299890-c593f4c81d47?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-                alt="slider"
-              />
-
-              <Carousel.Caption>
-                <h3>
-                  We Have Just The Perfect Items For Birthday Celebrations
-                </h3>
-                <Link href="party?category=Birthday Party">
-                  <a>Shop Now</a>
-                </Link>
-              </Carousel.Caption>
-              <div className="mobile-caption">
-                <h5>Birthdays</h5>
-                <Link href="party?category=Birthday Party">
-                  <a>Shop Now</a>
-                </Link>
-              </div>
-            </Carousel.Item>
-
-            <Carousel.Item>
-              <img
-                src="https://images.unsplash.com/photo-1591019479261-1a103585c559?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fHNraW4lMjBjYXJlJTIwcHJvZHVjdHxlbnwwfDB8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                alt="slider"
-              />
-
-              <Carousel.Caption>
-                <h3>
-                  Games Come Through When Things Get Dull, and You Want No Dull
-                  Moments
-                </h3>
-                <Link href="party?category=Social Clubs">
-                  <a>Shop Now</a>
-                </Link>
-              </Carousel.Caption>
-              <div className="mobile-caption">
-                <h5>Social Clubs</h5>
-                <Link href="party?category=Social Clubs">
-                  <a>Shop Now</a>
-                </Link>
-              </div>
-            </Carousel.Item>
-
-            <Carousel.Item>
-              <img
-                src="https://images.unsplash.com/photo-1606874576257-5400d9711ce1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80"
-                alt="slider"
-              />
-
-              <Carousel.Caption>
-                <h3>Whats A Party Without Lights?</h3>
-                <Link href="party?category=Outdoors">
-                  <a>Shop Now</a>
-                </Link>
-              </Carousel.Caption>
-              <div className="mobile-caption">
-                <h5>Outdoor Parties</h5>
-                <Link href="party?category=Outdoors">
-                  <a>Shop Now</a>
-                </Link>
-              </div>
-            </Carousel.Item>
-
-            <Carousel.Item>
-              <img
-                src="https://images.unsplash.com/photo-1599847872487-55351feaf63d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=416&q=80"
-                alt="slider"
-              />
-
-              <Carousel.Caption>
-                <h3>Whats An Indoor Party Without Lights?</h3>
-                <Link href="party?category=Indoors">
-                  <a>Shop Now</a>
-                </Link>
-              </Carousel.Caption>
-              <div className="mobile-caption">
-                <h5>Indoor Parties</h5>
-                <Link href="party?category=Indoors">
-                  <a>Shop Now</a>
-                </Link>
-              </div>
-            </Carousel.Item>
-          </Carousel>
-        </section>
-
-        {/* FEATURED PRODUCTS SECTION */}
-
-        <main className="main-section">
-          <section className="featured">
-            <h1>Top Picks For You</h1>
-            <div className="scroll-direction">
-              <button
-                title="scroll left"
-                aria-label="scroll left"
-                onClick={() => {
-                  if (scrollRef.current) {
-                    scrollRef.current.scrollLeft -= 30;
-                  }
-                }}
-              >
-                <Icon name="chevron-left" size="32px" />
-              </button>
-
-              <button
-                title="scroll right"
-                aria-label="scroll right"
-                onClick={() => {
-                  if (scrollRef.current) {
-                    scrollRef.current.scrollLeft += 30;
-                  }
-                }}
-              >
-                <Icon name="chevron-right" size="32px" />
-              </button>
-            </div>
-            {!data && (
-              <div style={{ textAlign: "center" }}>
-                <Spinner speed="1s"></Spinner>
-              </div>
-            )}
-            <div className="featured-wrap" ref={scrollRef}>
-              {data &&
-                data.featuredProducts.map((p: ProductsRes) => (
-                  <div className="featured-item" key={p.id}>
-                    <Link href={`/product/${p.name_slug}`}>
-                      <a>
-                        <img src={p.images[0]} alt={`${p.name}`} />
-                        <hr />
-                        <div className="featured-desc">
-                          <h2>{p.name}</h2>
-                          <p>&#8358; {Commas(p.price)}</p>
-                        </div>
-                      </a>
-                    </Link>
-                  </div>
-                ))}
-            </div>
-          </section>
-        </main>
-
-        {/* BANNER SECTION */}
-
-        <section className="sale-banner">
-          <Link href="/">
+      <MainHome />
+      <Categories data={data} />
+      <StoresHome />
+      <PurchaseSteps />
+      <section className="home-vendor-onboarding">
+        <h1>Sell On Tadlace</h1>
+        <div>
+          <Link href="/become-a-vendor">
             <a>
-              <img src="/sale.png" alt="sales-banner" />
+              Learn More
+              <Icon name="external-link" />
             </a>
           </Link>
-        </section>
-
-        <section className="categories">
-          <h1>Shop By Categories</h1>
-          <div className="categories-wrap">
-            <Link href="/category?category=Cakes">
-              <a>
-                <div className="category-item category-item-1">
-                  <p>CAKES</p>
-                </div>
-              </a>
-            </Link>
-            <Link href="/category?category=Gifts">
-              <a>
-                <div className="category-item category-item-2">
-                  <p>GIFTS</p>
-                </div>
-              </a>
-            </Link>
-            <Link href="/category?category=Games">
-              <a>
-                <div className="category-item category-item-3">
-                  <p>GAMES</p>
-                </div>
-              </a>
-            </Link>
-            <Link href="/category?category=Drinks">
-              <a>
-                <div className="category-item category-item-4">
-                  <p>DRINKS</p>
-                </div>
-              </a>
-            </Link>
-            <Link href="/category?category=Decorations">
-              <a>
-                <div className="category-item category-item-5">
-                  <p>DECORATIONS</p>
-                </div>
-              </a>
-            </Link>
-            <Link href="/category?category=Props">
-              <a>
-                <div className="category-item category-item-6">
-                  <p>PARTY PROPS</p>
-                </div>
-              </a>
-            </Link>
-          </div>
-        </section>
-
-        <section>
-          <StoresHome />
-        </section>
-
-        <section className="home-party-categories">
-          <Parties title="For Your Birthday Parties" party="Birthday Party" />
-          <Parties title="For Your House Parties" party="House Party" />
-          <Parties title="For Outdoor Parties" party="Outdoors" />
-        </section>
-        {/* IMPORTED . PURCHASE STEPS SECTION */}
-
-        <PurchaseSteps />
-
-        <section className="home-vendor-onboarding">
-          <h1>Become a vendor today</h1>
-          <div>
-            <Link href="/become-a-vendor">
-              <a>
-                Learn More
-                <Icon name="external-link" />
-              </a>
-            </Link>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
       <style jsx>{`
         .home-vendor-onboarding {
           height: 200px;

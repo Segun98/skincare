@@ -8,6 +8,7 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
+  InputLeftElement,
   Spinner,
   useToast,
 } from "@chakra-ui/core";
@@ -109,6 +110,7 @@ const Stores = () => {
             </Link>
           </div>
         </section>
+        <img src="/wave.svg" alt="" />
       </header>
 
       <main className="stores-wrap">
@@ -120,7 +122,8 @@ const Stores = () => {
             }}
           >
             <InputGroup>
-              <InputLeftAddon
+              <InputLeftElement
+                pointerEvents="none"
                 onClick={(e) => {
                   e.preventDefault();
                   handleSearch(search);
@@ -171,10 +174,7 @@ const Stores = () => {
                     </div>
 
                     <div className="store-desc">
-                      <h4 className="bio">
-                        {truncate(s.business_bio, 60) ||
-                          `We Are A Customer First Business`}
-                      </h4>
+                      <h4 className="bio">{truncate(s.business_bio, 60)}</h4>
                     </div>
                   </a>
                 </Link>
@@ -222,6 +222,58 @@ const Stores = () => {
       </main>
 
       <style jsx>{`
+        /* //heading */
+
+        header img {
+          margin-top: -40px;
+        }
+        .home-vendor-onboarding {
+          height: 180px;
+          background: var(--primary);
+          color: white;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .home-vendor-onboarding h1 {
+          font-weight: bolder;
+          font-size: 1.1rem;
+          font-style: normal;
+        }
+        .home-vendor-onboarding div {
+          margin-top: 10px;
+          z-index: 99;
+        }
+
+        @media only screen and (min-width: 700px) {
+          .home-vendor-onboarding h1 {
+            font-size: 3rem;
+          }
+        }
+
+        @media only screen and (min-width: 1200px) {
+          header img {
+            margin-top: -30px;
+          }
+          .home-vendor-onboarding {
+            height: 150px;
+            padding-top: 72px;
+          }
+        }
+
+        @media only screen and (min-width: 1200px) {
+          header img {
+            margin-top: -10px;
+          }
+          .home-vendor-onboarding {
+            height: 150px;
+            padding-top: 100px;
+          }
+        }
+
         .stores-wrap {
           margin: auto;
           width: 95%;
@@ -257,10 +309,13 @@ const Stores = () => {
         }
         .store-img h3 {
           color: white;
-          background: rgba(2, 36, 122, 0.6);
           font-weight: bold;
           font-size: 0.9rem;
           padding: 5px;
+        }
+
+        .store-img:hover h3 {
+          background: var(--primary);
         }
         .store-desc {
           color: var(--deepblue);
@@ -312,6 +367,7 @@ const Stores = () => {
           }
           .stores-wrap {
             width: 90%;
+            margin-top: -60px;
           }
           .paginate {
             width: 65%;
@@ -324,38 +380,10 @@ const Stores = () => {
           }
           .stores-wrap {
             width: 60%;
+            margin-top: -90px;
           }
           .paginate {
             width: 40%;
-          }
-        }
-
-        /* //heading */
-        .home-vendor-onboarding {
-          height: 200px;
-          background: var(--deepblue);
-          color: white;
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-        }
-        .home-vendor-onboarding h1 {
-          font-weight: bolder;
-          font-size: 1.1rem;
-          font-style: normal;
-        }
-        .home-vendor-onboarding div {
-          margin-top: 10px;
-        }
-
-        @media only screen and (min-width: 700px) {
-          .home-vendor-onboarding {
-            height: 250px;
-          }
-          .home-vendor-onboarding h1 {
-            font-size: 3rem;
           }
         }
       `}</style>

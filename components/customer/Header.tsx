@@ -2,18 +2,11 @@ import {
   Icon,
   Input,
   InputGroup,
-  InputLeftAddon,
   Button,
   Popover,
   PopoverTrigger,
   PopoverContent,
   Divider,
-  Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
   useDisclosure,
   InputLeftElement,
 } from "@chakra-ui/core";
@@ -22,12 +15,14 @@ import React, { useEffect, useState } from "react";
 import { useToken } from "@/Context/TokenProvider";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import { useUser } from "@/Context/UserProvider";
 // import axios from "axios";
+
 import { useSelector, useDispatch } from "react-redux";
 import { cartItems } from "@/redux/features/cart/fetchCart";
+
 // import { logoutLink } from "./../../utils/client";
-import { companyName, screenWidth } from "@/utils/helpers";
+import { companyName } from "@/utils/helpers";
+import { HeaderDrawer } from "./HeaderDrawer";
 
 interface DefaultRootState {
   cart: any;
@@ -41,11 +36,11 @@ export const Header = () => {
   const { Token } = useToken();
   const router = useRouter();
   const role = Cookies && Cookies.get("role");
-  const { User } = useUser();
 
   //search input state
   const [search, setSearch] = useState("");
 
+  //chakraui stuff for drawer
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
@@ -108,6 +103,7 @@ export const Header = () => {
         <header>
           <div className="header-wrap">
             <div className="header-wrap_left">
+              {/* open menu button  */}
               <button
                 aria-label="menu"
                 aria-roledescription="menu"
@@ -128,31 +124,32 @@ export const Header = () => {
             </div>
 
             {/* SEARCH BAR FOR DESKTOP */}
-            {/* 
-            <div className="large-bar">
-              <form onSubmit={handleSearch}>
-                <InputGroup size="md">
-                  <InputLeftElement
-                    cursor="pointer"
-                    onClick={handleSearch}
-                    pointerEvents="none"
-                    children={<Icon name="search" color="var(--deepblue)" />}
-                  />
+            {router.pathname !== "/" && (
+              <div className="large-bar">
+                <form onSubmit={handleSearch}>
+                  <InputGroup size="md">
+                    <InputLeftElement
+                      cursor="pointer"
+                      onClick={handleSearch}
+                      pointerEvents="none"
+                      children={<Icon name="search" color="var(--deepblue)" />}
+                    />
 
-                  <Input
-                    aria-label="search"
-                    title="search"
-                    type="search"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    name="search"
-                    id="search"
-                    placeholder="Search our 1000+ products"
-                    borderRadius="12px"
-                  />
-                </InputGroup>
-              </form>
-            </div> */}
+                    <Input
+                      aria-label="search"
+                      title="search"
+                      type="search"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      name="search"
+                      id="search"
+                      placeholder="Search our 1000+ products"
+                      borderRadius="12px"
+                    />
+                  </InputGroup>
+                </form>
+              </div>
+            )}
 
             <div className="header-wrap_right">
               <div>
@@ -269,8 +266,9 @@ export const Header = () => {
 
         {/* MOBILE SEARCH BAR dont show in these routes  */}
 
-        {/* {router.pathname !== "/customer/login" &&
-          router.pathname !== "/customer/register" && (
+        {router.pathname !== "/customer/login" &&
+          router.pathname !== "/customer/register" &&
+          router.pathname !== "/" && (
             <div className="search-bar">
               <form onSubmit={handleSearch}>
                 <InputGroup size="md">
@@ -295,151 +293,11 @@ export const Header = () => {
                 </InputGroup>
               </form>
             </div>
-          )} */}
+          )}
       </div>
 
-      {/* MENU SECTION */}
-
-      <Drawer
-        placement={"left"}
-        onClose={onClose}
-        isOpen={isOpen}
-        scrollBehavior={"inside"}
-        size={screenWidth() > 800 ? "sm" : "xs"}
-      >
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader borderBottomWidth="1px">
-              {role ? (
-                <div style={{ cursor: "pointer" }}>
-                  <div>Hi, {Token && User && User.first_name}</div>
-                </div>
-              ) : (
-                <Link href="/customer/login">
-                  <a>Hello, Login</a>
-                </Link>
-              )}
-            </DrawerHeader>
-            <DrawerBody background="var(--softblue)">
-              <nav className="navigation">
-                <h1>PROFILE</h1>
-                <ul>
-                  <Link href="/">
-                    <a>
-                      <li>Home</li>
-                    </a>
-                  </Link>
-                  <Link href="/customer/account">
-                    <a>
-                      <li>Account</li>
-                    </a>
-                  </Link>
-                  <Link href="/customer/cart">
-                    <a>
-                      <li>Cart</li>
-                    </a>
-                  </Link>
-                  <Link href="/customer/orders">
-                    <a>
-                      <li>Orders</li>
-                    </a>
-                  </Link>
-                  <Link href="/customer#contact">
-                    <a>
-                      <li>Help</li>
-                    </a>
-                  </Link>
-                  <Link href="/stores">
-                    <a>
-                      <li>Stores</li>
-                    </a>
-                  </Link>
-                </ul>
-                <h1>SHOP BY CATEGORY</h1>
-                <ul>
-                  <Link href="/category?category=Gifts">
-                    <a>
-                      <li>Gifts</li>
-                    </a>
-                  </Link>
-
-                  <Link href="/category?category=Decorations">
-                    <a>
-                      <li>Decorations</li>
-                    </a>
-                  </Link>
-                  <Link href="/category?category=Games">
-                    <a>
-                      <li>Games</li>
-                    </a>
-                  </Link>
-                  <Link href="/category?category=Drinks">
-                    <a>
-                      <li>Drinks</li>
-                    </a>
-                  </Link>
-                  <Link href="/category?category=Props">
-                    <a>
-                      <li>Party Props</li>
-                    </a>
-                  </Link>
-                  <Link href="/category?category=Cakes">
-                    <a>
-                      <li>Cakes</li>
-                    </a>
-                  </Link>
-                </ul>
-
-                <h1>SHOP BY PARTY</h1>
-                <ul>
-                  <Link href="/party?category=House Party">
-                    <a>
-                      <li>House Party</li>
-                    </a>
-                  </Link>
-                  <Link href="/party?category=Beach Party">
-                    <a>
-                      <li>Beach Party</li>
-                    </a>
-                  </Link>
-                  <Link href="/party?category=Birthday Party">
-                    <a>
-                      <li>Birthdays</li>
-                    </a>
-                  </Link>
-                  <Link href="/party?category=Outdoors">
-                    <a>
-                      <li>Outdoors</li>
-                    </a>
-                  </Link>
-                  <Link href="/party?category=Indoors">
-                    <a>
-                      <li>Indoors</li>
-                    </a>
-                  </Link>
-                </ul>
-              </nav>
-            </DrawerBody>
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
-      <style jsx>{`
-        .navigation {
-          /* background: var(--softblue); */
-        }
-        .navigation ul li {
-          padding: 10px;
-          border-bottom: 1px solid var(--lightblue);
-        }
-
-        .navigation h1 {
-          color: $text;
-          font-weight: bold;
-          padding: 8px;
-          text-align: center;
-        }
-      `}</style>
+      {/* MENU */}
+      <HeaderDrawer isOpen={isOpen} onClose={onClose} />
     </div>
   );
 };

@@ -131,10 +131,9 @@ export const Navigation = () => {
                 style={{ color: "white", background: "var(--deepblue)" }}
                 width="100%"
                 borderRadius="none"
+                onClick={() => router.push(`/vendor/login`)}
               >
-                <Link href="/vendor/login">
-                  <a>Vendor Login</a>
-                </Link>
+                Vendor Login
               </Button>
             </div>
           </ul>

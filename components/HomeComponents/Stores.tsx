@@ -1,6 +1,6 @@
 import React from "react";
 import { UsersRes } from "@/Typescript/types";
-import { nairaSign, truncate } from "@/utils/helpers";
+import { Commas, nairaSign, truncate } from "@/utils/helpers";
 import { gql } from "graphql-request";
 import { useEffect, useState } from "react";
 import { useQuery } from "../useQuery";
@@ -63,7 +63,11 @@ export const StoresHome = () => {
                   tabIndex={0}
                   role="button"
                   aria-label="visit store"
-                  onClick={() => router.push(`/store/${s.business_name_slug}`)}
+                  onClick={() =>
+                    router
+                      .push(`/store/${s.business_name_slug}`)
+                      .then(() => window.scrollTo(0, 0))
+                  }
                 >
                   <img
                     src={s.business_image || images[i]}
@@ -88,7 +92,7 @@ export const StoresHome = () => {
                       <div className="content">
                         <h4>{p.name}</h4>
                         <h5>
-                          {nairaSign} {p.price}
+                          {nairaSign} {Commas(p.price)}
                         </h5>
                       </div>
                     </div>
@@ -102,7 +106,7 @@ export const StoresHome = () => {
       {stores && (
         <div className="more-stores">
           <Link href="/stores">
-            <a>More</a>
+            <a>More Stores</a>
           </Link>
         </div>
       )}
@@ -153,7 +157,7 @@ export const StoresHome = () => {
         .products {
           overflow-x: scroll;
           display: flex;
-          margin: auto;
+          margin: 10px auto;
           width: 99%;
         }
 
@@ -165,8 +169,8 @@ export const StoresHome = () => {
         .product img {
           height: 200px;
           min-width: 200px;
-          border-radius: 8px;
-          object-fit: contain;
+          border-radius: 10px;
+          object-fit: cover;
         }
 
         .content {
@@ -179,6 +183,15 @@ export const StoresHome = () => {
           font-weight: bold;
         }
 
+        .more-stores {
+          text-align: center;
+          margin-top: 5px;
+        }
+
+        .more-stores a {
+          border-bottom: 3px solid var(--primary);
+        }
+
         @media only screen and (min-width: 400px) {
           .store {
             width: 380px;
@@ -186,6 +199,45 @@ export const StoresHome = () => {
         }
 
         @media only screen and (min-width: 700px) {
+          .store {
+            width: 700px;
+          }
+        }
+
+        @media only screen and (min-width: 1000px) {
+          .stores-wrap {
+            grid-template-columns: 1fr 1fr;
+          }
+
+          .store {
+            width: 450px;
+          }
+        }
+
+        @media only screen and (min-width: 1200px) {
+          h1 {
+            font-weight: bold;
+            font-size: 1.5rem;
+          }
+          .stores-wrap {
+            width: 90%;
+          }
+
+          .store {
+            width: 550px;
+          }
+        }
+
+        @media only screen and (min-width: 1400px) {
+          .stores-wrap {
+            width: 80%;
+          }
+        }
+
+        @media only screen and (min-width: 1800px) {
+          .stores-wrap {
+            width: 60%;
+          }
           .store {
             width: 700px;
           }

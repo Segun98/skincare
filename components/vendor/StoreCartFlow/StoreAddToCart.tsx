@@ -52,8 +52,9 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
         title: "Item Added to Cart!",
         description: `Your Item has been added to cart, proceed to checkout`,
         status: "success",
-        duration: 5000,
+        duration: 3000,
         position: "top",
+        isClosable: true,
       });
       onOpen();
     }
@@ -63,6 +64,7 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
         toast({
           title: "Item Is Already In Cart",
           isClosable: true,
+          duration: 3000,
           status: "info",
         });
         onOpen();
@@ -141,7 +143,7 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
         onOpen();
       }}
     >
-      <Icon name="small-add" color="black" size="22px" />
+      <Icon name="small-add" color="var(--primary)" size="22px" />
     </button>
   );
 };

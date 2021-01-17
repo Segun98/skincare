@@ -3,12 +3,13 @@ import { Layout } from "@/components/Layout";
 import Link from "next/link";
 import { Text } from "@chakra-ui/core";
 import { ContactForm } from "@/components/ContactForm";
+import { companyName } from "@/utils/helpers";
 
 const BecomeAVendor = () => {
   return (
     <Layout>
       <Head>
-        <title>Become a Vendor | PartyStore</title>
+        <title>Become a Vendor | {companyName}</title>
       </Head>
       <div className="become-a-vendor">
         <header>
@@ -16,9 +17,9 @@ const BecomeAVendor = () => {
             <div className="left">
               <h1>Partner With Us, Grow Your Business The Right Way!</h1>
               <p>
-                Start selling today on PartyStore, we handle everything, from
+                Start selling today on {companyName}, we handle everything, from
                 delivery to order management. All you have to do is make your
-                product available and accept orders, that easy!
+                products available as orders roll in, that easy!
               </p>
               <Link href="/vendor/register">
                 <a>Get Started</a>

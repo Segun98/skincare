@@ -66,9 +66,9 @@ export const AddToCart: React.FC<Iprops> = ({
         title: "Item Added to Cart!",
         description: `Your Item has been added to cart, proceed to checkout`,
         status: "success",
+        isClosable: true,
         duration: 7000,
       });
-      router.push("/customer/cart").then(() => window.scrollTo(0, 0));
     }
     if (error) {
       setLoading(false);
