@@ -157,7 +157,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
                 >
                   Your Store is empty, Add a new product,{" "}
                   <Link href="/store/new-item">
-                    <a style={{ color: "var(--deepblue)" }}>Click Here</a>
+                    <a style={{ color: "var(--pink)" }}>Click Here</a>
                   </Link>
                 </div>
               ) : (

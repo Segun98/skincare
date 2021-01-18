@@ -58,7 +58,7 @@ export const Categories: React.FC<props> = ({ data }) => {
           font-weight: bold;
         }
         a {
-          border-bottom: 3px solid var(--primary);
+          border-bottom: 2px solid var(--primary);
         }
 
         @media only screen and (min-width: 700px) {

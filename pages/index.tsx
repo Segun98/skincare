@@ -1,8 +1,11 @@
+import { Layout } from "@/components/Layout";
+
 import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
 import { Categories } from "@/components/HomeComponents/Categories";
 import { MainHome } from "@/components/HomeComponents/Main";
 import { StoresHome } from "@/components/HomeComponents/Stores";
-import { Layout } from "@/components/Layout";
+import { Featured } from "@/components/HomeComponents/Featured";
+
 import { featuredProducts } from "@/graphql/vendor";
 import { graphQLClient } from "@/utils/client";
 import Link from "next/link";
@@ -32,6 +35,7 @@ const Home = ({ data }) => {
       <MainHome />
       <Categories data={data} />
       <StoresHome />
+      <Featured />
       <PurchaseSteps />
       <section className="home-vendor-onboarding">
         <h1>Sell On Tadlace</h1>

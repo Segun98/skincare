@@ -37,6 +37,8 @@ export const GlobalLayout = ({ children }) => {
           --text: #1f2c35;
           --softblue: #fafafb;
           --soft: #fafafb;
+          --pink: #f082ac;
+          --green: #2cc096;
         }
       `}</style>
     </div>

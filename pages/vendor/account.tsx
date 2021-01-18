@@ -192,7 +192,7 @@ export const Account = () => {
                   <h2>About Store </h2>
                   <p>
                     {(User && User.business_bio) ||
-                      "We seek to provide quality product and service to our customers. At " +
+                      "Example : We seek to provide quality product and service to our customers. At " +
                         User.business_name +
                         ", customers come first"}
                   </p>

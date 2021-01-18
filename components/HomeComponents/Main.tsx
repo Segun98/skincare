@@ -19,7 +19,7 @@ export const MainHome = () => {
       <main>
         <div className="main_content">
           <h1>
-            Welcome to the online marketplace for quality body and cosmetics
+            Welcome to the #1 online marketplace for quality skin and hair
             products
           </h1>
           <form onSubmit={handleSearch}>

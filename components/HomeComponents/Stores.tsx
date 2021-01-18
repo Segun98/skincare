@@ -29,16 +29,7 @@ export const StoresHome = () => {
   // check for error after fetching data then pass as a dependency to the custom useQuery hook
   const [checkError, setCheckError] = useState(false);
 
-  const [data, loading, error] = useQuery(
-    homeStores,
-    {
-      query: null,
-      limit: 10,
-      offset: 0,
-    },
-    null,
-    checkError
-  );
+  const [data, loading, error] = useQuery(homeStores, {}, null, checkError);
 
   useEffect(() => {
     if (error) {
@@ -70,7 +61,7 @@ export const StoresHome = () => {
                   }
                 >
                   <img
-                    src={s.business_image || images[i]}
+                    src={s.business_image || i > 1 ? images[0] : images[i]}
                     alt={s.business_name}
                   />
                   <div className="about">
@@ -78,6 +69,12 @@ export const StoresHome = () => {
                     <h3>{truncate(s.business_bio, 60)}</h3>
                   </div>
                 </div>
+                {!s.homeProducts ||
+                  (s.homeProducts.length === 0 && (
+                    <p style={{ color: "var(--primary)", padding: "20px 0" }}>
+                      No products in store...
+                    </p>
+                  ))}
                 <section className="products">
                   {s.homeProducts.map((p, i) => (
                     <div
@@ -167,8 +164,8 @@ export const StoresHome = () => {
         }
 
         .product img {
-          height: 200px;
-          min-width: 200px;
+          height: 150px;
+          min-width: 150px;
           border-radius: 10px;
           object-fit: cover;
         }

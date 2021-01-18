@@ -131,7 +131,7 @@ export const Header = () => {
                     <InputLeftElement
                       cursor="pointer"
                       onClick={handleSearch}
-                      pointerEvents="none"
+                      pointerEvents="all"
                       children={<Icon name="search" color="var(--deepblue)" />}
                     />
 
@@ -278,6 +278,7 @@ export const Header = () => {
                     children={<Icon name="search" color="var(--deepblue)" />}
                     borderTop="none"
                     color="var(--deepblue)"
+                    pointerEvents="all"
                   />
                   <Input
                     aria-label="search"

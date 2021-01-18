@@ -4,6 +4,7 @@ import { Button, Icon } from "@chakra-ui/core";
 import Cookies from "js-cookie";
 import { useUser } from "../../Context/UserProvider";
 import { useRouter } from "next/router";
+import { companyName } from "@/utils/helpers";
 // import axios from "axios";
 // import { logoutLink } from "./../../utils/client";
 
@@ -36,7 +37,7 @@ export const Navigation = () => {
   return (
     <div className={isOpen ? "vendor-menu open" : "vendor-menu"}>
       <header>
-        <span>PartyStore</span>
+        <span>{companyName}</span>
         <button onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <Icon name="close" /> : <img src="/album.svg" alt="menu" />}
         </button>
@@ -149,7 +150,6 @@ export const Navigation = () => {
       </button>
       <style jsx>{`
         .vendor-menu {
-          /* background: #062863; */
           background: var(--deepblue);
           width: 300px;
           height: 100%;
@@ -160,7 +160,6 @@ export const Navigation = () => {
           z-index: 2;
           transition: 0.5s ease;
           min-height: 100vh;
-          /* border-radius: 17px; */
         }
 
         .vendor-menu.open {

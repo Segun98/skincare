@@ -59,7 +59,6 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
       onOpen();
     }
     if (error) {
-      //handled this error cos chakra ui "status" should be "info"
       if (error.response?.errors[0].message === "Item is already in Cart") {
         toast({
           title: "Item Is Already In Cart",
@@ -139,8 +138,6 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
         }
 
         addCart(product.id, product.creator_id, 1);
-
-        onOpen();
       }}
     >
       <Icon name="small-add" color="var(--primary)" size="22px" />

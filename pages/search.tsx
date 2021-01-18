@@ -16,7 +16,7 @@ import { Layout } from "@/components/Layout";
 import { SEARCH } from "@/graphql/customer";
 import { ProductsRes } from "@/Typescript/types";
 import { graphQLClient } from "@/utils/client";
-import { Commas } from "@/utils/helpers";
+import { Commas, companyName } from "@/utils/helpers";
 
 interface Iprops {
   products: ProductsRes[];
@@ -68,7 +68,7 @@ const Search = ({ products, error }: Iprops) => {
   return (
     <Layout>
       <Head>
-        <title>Search | PartyStore</title>
+        <title>Search | {companyName}</title>
       </Head>
       <div>
         <>

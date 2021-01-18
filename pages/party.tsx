@@ -5,7 +5,7 @@ import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
 import { Layout } from "@/components/Layout";
 import { ProductsRes } from "@/Typescript/types";
 import { graphQLClient } from "@/utils/client";
-import { Commas } from "@/utils/helpers";
+import { Commas, companyName } from "@/utils/helpers";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { gql } from "graphql-request";
@@ -74,7 +74,9 @@ const Category = ({ products, error }: Iprops) => {
   return (
     <Layout>
       <Head>
-        <title>{router.query.category || "Category"} | PartyStore</title>
+        <title>
+          {router.query.category || "Category"} | {companyName}
+        </title>
       </Head>
       <div>
         <>

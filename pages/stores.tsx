@@ -13,7 +13,7 @@ import {
   useToast,
 } from "@chakra-ui/core";
 import Link from "next/link";
-import { truncate } from "@/utils/helpers";
+import { companyName, truncate } from "@/utils/helpers";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { gql } from "graphql-request";
@@ -82,12 +82,15 @@ const Stores = () => {
   }
 
   function handleSearch(query) {
+    if (!query) {
+      return;
+    }
     fetchStores(query);
   }
   return (
     <Layout>
       <Head>
-        <title>Stores | PartyStore</title>
+        <title>Stores | {companyName}</title>
       </Head>
       <>
         {error &&
@@ -123,7 +126,7 @@ const Stores = () => {
           >
             <InputGroup>
               <InputLeftElement
-                pointerEvents="none"
+                pointerEvents="all"
                 onClick={(e) => {
                   e.preventDefault();
                   handleSearch(search);
