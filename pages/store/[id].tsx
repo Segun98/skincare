@@ -63,7 +63,7 @@ const Store = ({ user, error }: Iprops) => {
   return (
     <div className="store-page">
       <Head>
-        <title>{user ? user.business_name : "Error"} | PartyStore</title>
+        <title>{user ? user.business_name : "Error"} | Tadlace</title>
         <meta name="description" content={user ? user.business_bio : ""} />
         <script
           async

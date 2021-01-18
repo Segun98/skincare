@@ -39,7 +39,7 @@ export const CustomerCart = () => {
   return (
     <Layout>
       <Head>
-        <title>Cart | PartyStore</title>
+        <title>Cart | Tadlace</title>
       </Head>
       <>
         {error &&

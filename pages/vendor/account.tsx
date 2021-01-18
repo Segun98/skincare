@@ -127,7 +127,7 @@ export const Account = () => {
   return (
     <div>
       <Head>
-        <title>{User && User.business_name} Account | PartyStore</title>
+        <title>{User && User.business_name} Account | Tadlace</title>
       </Head>
       <div className="account-layout">
         <div>

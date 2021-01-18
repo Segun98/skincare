@@ -40,7 +40,7 @@ export const CustomerOrders = () => {
   return (
     <Layout>
       <Head>
-        <title>Orders | Customer | PartyStore</title>
+        <title>Orders | Customer | Tadlace</title>
       </Head>
       <main className="customer-orders">
         <div className="order-status">

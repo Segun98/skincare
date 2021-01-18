@@ -201,7 +201,7 @@ export const Register = () => {
   return (
     <Layout>
       <Head>
-        <title>Customer Register | PartyStore</title>
+        <title>Customer Register | Tadlace</title>
       </Head>
       <div className="register-page-wrap">
         <img

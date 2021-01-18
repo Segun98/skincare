@@ -8,7 +8,7 @@ const Index = () => {
   return (
     <Layout>
       <Head>
-        <title>Customer | PartyStore</title>
+        <title>Customer | Tadlace</title>
       </Head>
       <div className="customer">
         <header>

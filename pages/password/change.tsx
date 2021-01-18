@@ -19,7 +19,7 @@ export const Change = () => {
   return (
     <Layout>
       <Head>
-        <title>Password Reset | PartyStore</title>
+        <title>Password Reset | Tadlace</title>
       </Head>
       <div className="indicator">
         <div className="change-pass-wrap">

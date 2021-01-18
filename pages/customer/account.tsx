@@ -174,7 +174,7 @@ export const Account = () => {
   return (
     <Layout>
       <Head>
-        <title>Account | PartyStore</title>
+        <title>Account | Tadlace</title>
       </Head>
       {!Token && !role && (
         <div className="indicator">

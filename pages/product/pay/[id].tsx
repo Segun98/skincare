@@ -34,7 +34,7 @@ const Pay = ({ variables }) => {
   return (
     <Layout>
       <Head>
-        <title>Payment | Secure | PartyStore</title>
+        <title>Payment | Secure | Tadlace</title>
       </Head>
       {error &&
         toast({

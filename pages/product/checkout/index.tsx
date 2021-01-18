@@ -50,7 +50,7 @@ const Checkout = () => {
   return (
     <Layout>
       <Head>
-        <title>Checkout | PartyStore</title>
+        <title>Checkout | Tadlace</title>
       </Head>
       <div className="checkout-page">
         {!cart && (

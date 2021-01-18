@@ -131,7 +131,7 @@ export const Newitem = () => {
   return (
     <div>
       <Head>
-        <title>New Product | Vendor | PartyStore</title>
+        <title>New Product | Vendor | Tadlace</title>
       </Head>
       <div className="new-item-layout">
         <div>

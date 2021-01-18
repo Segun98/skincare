@@ -197,7 +197,7 @@ export const Login = () => {
   return (
     <Layout>
       <Head>
-        <title>Customer LogIn | PartyStore</title>
+        <title>Customer LogIn | Tadlace</title>
       </Head>
       <div className="login-page-wrap">
         <img src="/login.png" alt="login vector" className="login-vector" />

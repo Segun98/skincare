@@ -22,8 +22,8 @@ export const Orders = () => {
                 has cancelled the order.
               </ListItem>
               <ListItem>
-                * <strong>Delivered</strong>
-                signifies that your item has been delivered to your customer
+                * <strong>Delivered</strong> signifies that your item has been
+                delivered to your customer
               </ListItem>
               <ListItem>
                 * <strong>Contact Us </strong> for more information

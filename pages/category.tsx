@@ -72,7 +72,7 @@ export const Category = ({ products, error }: Iprops) => {
     <Layout>
       <Head>
         <title>
-          {`${router.query.category} | Category` || "Category"} | PartyStore
+          {`${router.query.category} | Category` || "Category"} | Tadlace
         </title>
       </Head>
       <div>

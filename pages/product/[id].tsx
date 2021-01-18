@@ -59,7 +59,7 @@ const Product = ({ product, error }: response) => {
   return (
     <Layout>
       <Head>
-        <title>{product ? product.name : "Error"} | PartyStore</title>
+        <title>{product ? product.name : "Error"} | Tadlace</title>
         <meta name="keywords" content={product.name} />
         <meta name="description" content={`${product.description}`} />
         <meta name="author" content={product.creator.business_name} />

@@ -72,7 +72,7 @@ export const Dashboard: React.FC = () => {
   return (
     <div className="dashboard">
       <Head>
-        <title>Dashboard | Vendor | PartyStore</title>
+        <title>Dashboard | Vendor | Tadlace</title>
       </Head>
       <>
         {error &&
