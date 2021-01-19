@@ -89,7 +89,7 @@ export const StoresHome = () => {
                           .then(() => window.scrollTo(0, 0))
                       }
                     >
-                      <img src={p.images[0]} alt={p.name} />
+                      <img src={p.images[0]} alt={p.name} loading="lazy" />
                       <div className="content">
                         <h4>{p.name}</h4>
                         <h5>
@@ -113,7 +113,7 @@ export const StoresHome = () => {
       )}
       <style jsx>{`
         .find-stores {
-          margin: 20px 0;
+          margin: 30px 0;
         }
         h1 {
           text-align: center;
@@ -232,7 +232,7 @@ export const StoresHome = () => {
             grid-template-columns: 1fr 1fr;
           }
           .products::-webkit-scrollbar {
-            height: 18px;
+            height: 15px;
           }
           .store {
             width: 450px;

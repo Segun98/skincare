@@ -296,7 +296,7 @@ export const Login = () => {
                     fromCheckout ? `?redirect=checkout` : ""
                   }`}
                 >
-                  <a>Sign Up</a>
+                  <a style={{ color: "blue" }}>Sign Up</a>
                 </Link>{" "}
               </small>
             </div>

@@ -24,7 +24,7 @@ export type Query = {
   product?: Maybe<ProductsRes>;
   search?: Maybe<Array<Maybe<ProductsRes>>>;
   byCategory?: Maybe<Array<Maybe<ProductsRes>>>;
-  partyCategory?: Maybe<Array<Maybe<ProductsRes>>>;
+  mainCategory?: Maybe<Array<Maybe<ProductsRes>>>;
   editProductPage?: Maybe<ProductsRes>;
   getCartItems?: Maybe<Array<Maybe<Cart>>>;
   getCustomerOrders?: Maybe<Array<Maybe<Orders>>>;
@@ -78,8 +78,8 @@ export type QueryByCategoryArgs = {
 };
 
 
-export type QueryPartyCategoryArgs = {
-  party_category?: Maybe<Scalars['String']>;
+export type QueryMainCategoryArgs = {
+  main_category?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
@@ -142,7 +142,7 @@ export type ProductsRes = {
   description?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['Int']>;
   category?: Maybe<Scalars['String']>;
-  party_category?: Maybe<Scalars['String']>;
+  main_category?: Maybe<Scalars['String']>;
   images?: Maybe<Array<Maybe<Scalars['String']>>>;
   in_stock?: Maybe<Scalars['String']>;
   creator_id?: Maybe<Scalars['String']>;
@@ -272,7 +272,7 @@ export type MutationAddProductArgs = {
   description?: Maybe<Scalars['String']>;
   price: Scalars['Int'];
   category?: Maybe<Scalars['String']>;
-  party_category?: Maybe<Scalars['String']>;
+  main_category?: Maybe<Scalars['String']>;
   images?: Maybe<Array<Maybe<Scalars['String']>>>;
   available_qty: Scalars['Int'];
 };
@@ -284,7 +284,7 @@ export type MutationUpdateProductArgs = {
   description?: Maybe<Scalars['String']>;
   price: Scalars['Int'];
   category?: Maybe<Scalars['String']>;
-  party_category?: Maybe<Scalars['String']>;
+  main_category?: Maybe<Scalars['String']>;
   images?: Maybe<Array<Maybe<Scalars['String']>>>;
   available_qty?: Maybe<Scalars['Int']>;
   in_stock?: Maybe<Scalars['String']>;
@@ -446,7 +446,7 @@ export type Products = {
   description?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['Int']>;
   category?: Maybe<Scalars['String']>;
-  party_category?: Maybe<Scalars['String']>;
+  main_category?: Maybe<Scalars['String']>;
   images?: Maybe<Array<Maybe<Scalars['String']>>>;
   in_stock?: Maybe<Scalars['String']>;
   creator_id?: Maybe<Scalars['String']>;

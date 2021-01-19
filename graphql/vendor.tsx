@@ -7,7 +7,7 @@ export const ADD_PRODUCT = gql`
     $description: String!
     $price: Int!
     $category: String!
-    $party_category: String
+    $main_category: String
     $images: [String]
     $available_qty: Int!
   ) {
@@ -17,7 +17,7 @@ export const ADD_PRODUCT = gql`
       description: $description
       price: $price
       category: $category
-      party_category: $party_category
+      main_category: $main_category
       images: $images
       available_qty: $available_qty
     ) {
@@ -72,7 +72,7 @@ export const PRODUCT = gql`
       description
       price
       category
-      party_category
+      main_category
       images
       in_stock
       available_qty
@@ -101,7 +101,7 @@ export const editProductPage = gql`
       description
       price
       category
-      party_category
+      main_category
       images
       in_stock
       available_qty
@@ -117,7 +117,7 @@ export const updateProduct = gql`
     $description: String
     $price: Int!
     $category: String
-    $party_category: String
+    $main_category: String
     $images: [String]
     $available_qty: Int
     $in_stock: String
@@ -129,7 +129,7 @@ export const updateProduct = gql`
       description: $description
       price: $price
       category: $category
-      party_category: $party_category
+      main_category: $main_category
       images: $images
       available_qty: $available_qty
       in_stock: $in_stock
