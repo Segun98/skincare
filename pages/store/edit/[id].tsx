@@ -23,6 +23,7 @@ import { graphQLClient } from "@/utils/client";
 import { ProtectRouteV } from "@/utils/ProtectedRouteV";
 import { useMutation } from "@/utils/useMutation";
 import { ImageUpload } from "@/components/vendor/ImageUpload";
+import { categoriesList, mainCategoriesList } from "@/utils/helpers";
 
 interface Iprops {
   product: ProductsRes;
@@ -79,7 +80,7 @@ const Edit = ({ product, error }: Iprops) => {
       setPrice(product.price || "");
       setAvailableQty(product.available_qty || "");
       setCategory(product.category || "");
-      setmainCategory(product.party_category || "");
+      setmainCategory(product.main_category || "");
       setInStock(product.in_stock || "");
       setImages(product.images || []);
     }
@@ -122,7 +123,7 @@ const Edit = ({ product, error }: Iprops) => {
       description,
       price: parseInt(price),
       category,
-      party_category: mainCategory,
+      main_category: mainCategory,
       images,
       in_stock: inStock,
       available_qty: parseInt(available_qty),
@@ -251,22 +252,12 @@ const Edit = ({ product, error }: Iprops) => {
                             <option defaultValue={`${category}`}>
                               {category}
                             </option>
-                            <option defaultValue="">--select--</option>
-                            <option defaultValue="Moisturizer">
-                              Moisturizer
-                            </option>
-                            <option defaultValue="Exfoilators">
-                              Exfoilators
-                            </option>
-                            <option defaultValue="Hair">Hair</option>
-                            <option defaultValue="Face Cosmetics">
-                              Face Cosmetics
-                            </option>
-                            <option defaultValue="Sunscreens">
-                              Sunscreens
-                            </option>
-                            <option defaultValue="Toners">Toners</option>
-                            <option defaultValue="Cleansers">Cleansers</option>
+
+                            {categoriesList.map((c, i) => (
+                              <option key={i} defaultValue={c}>
+                                {c}
+                              </option>
+                            ))}
                           </Select>
                         </div>
 
@@ -283,12 +274,12 @@ const Edit = ({ product, error }: Iprops) => {
                             <option defaultValue={`${mainCategory}`}>
                               {mainCategory}
                             </option>
-                            <option defaultValue="Body">Body</option>
-                            <option defaultValue="Skin">Skin</option>
-                            <option defaultValue="Hair">Hair</option>
-                            <option defaultValue="Face">Face</option>
-                            <option defaultValue="Treatment">Treatment</option>
-                            <option defaultValue="Make UP">Make UP</option>
+
+                            {mainCategoriesList.map((c, i) => (
+                              <option key={i} defaultValue={c}>
+                                {c}
+                              </option>
+                            ))}
                           </Select>
                         </div>
 

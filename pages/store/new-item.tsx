@@ -23,6 +23,7 @@ import Head from "next/head";
 import { useUser } from "@/Context/UserProvider";
 import { ImageUpload } from "@/components/vendor/ImageUpload";
 import { useRouter } from "next/router";
+import { categoriesList, mainCategoriesList } from "@/utils/helpers";
 
 export const Newitem = () => {
   const router = useRouter();
@@ -93,7 +94,7 @@ export const Newitem = () => {
       description,
       price: parseInt(price),
       category: category,
-      party_category: mainCategory,
+      main_category: mainCategory,
       images,
       available_qty: parseInt(available_qty),
     };
@@ -222,19 +223,11 @@ export const Newitem = () => {
                           }}
                         >
                           <option defaultValue="">--select--</option>
-                          <option defaultValue="Moisturizer">
-                            Moisturizer
-                          </option>
-                          <option defaultValue="Exfoilators">
-                            Exfoilators
-                          </option>
-                          <option defaultValue="Hair">Hair</option>
-                          <option defaultValue="Face Cosmetics">
-                            Face Cosmetics
-                          </option>
-                          <option defaultValue="Sunscreens">Sunscreens</option>
-                          <option defaultValue="Toners">Toners</option>
-                          <option defaultValue="Cleansers">Cleansers</option>
+                          {categoriesList.map((c, i) => (
+                            <option key={i} defaultValue={c}>
+                              {c}
+                            </option>
+                          ))}
                         </Select>
                       </div>
 
@@ -247,12 +240,11 @@ export const Newitem = () => {
                           }}
                         >
                           <option defaultValue="">--select--</option>
-                          <option defaultValue="Body">Body</option>
-                          <option defaultValue="Skin">Skin</option>
-                          <option defaultValue="Hair">Hair</option>
-                          <option defaultValue="Face">Face</option>
-                          <option defaultValue="Treatment">Treatment</option>
-                          <option defaultValue="Make UP">Make UP</option>
+                          {mainCategoriesList.map((c, i) => (
+                            <option key={i} defaultValue={c}>
+                              {c}
+                            </option>
+                          ))}
                         </Select>
                       </div>
 
