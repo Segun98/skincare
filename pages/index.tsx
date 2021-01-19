@@ -6,34 +6,14 @@ import { MainHome } from "@/components/HomeComponents/Main";
 import { StoresHome } from "@/components/HomeComponents/Stores";
 import { Featured } from "@/components/HomeComponents/Featured";
 
-import { featuredProducts } from "@/graphql/vendor";
-import { graphQLClient } from "@/utils/client";
 import Link from "next/link";
 import { Icon } from "@chakra-ui/core";
 
-export async function getServerSideProps() {
-  try {
-    const res = await graphQLClient.request(featuredProducts, { limit: 10 });
-    const data = res.featuredProducts;
-    return {
-      props: {
-        data,
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        error: err?.response?.errors[0].message || err.message,
-      },
-    };
-  }
-}
-
-const Home = ({ data }) => {
+const Home = () => {
   return (
     <Layout>
       <MainHome />
-      <Categories data={data} />
+      <Categories />
       <StoresHome />
       <Featured />
       <PurchaseSteps />
