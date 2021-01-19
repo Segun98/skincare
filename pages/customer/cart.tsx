@@ -21,6 +21,9 @@ export const CustomerCart = () => {
   const role = Cookies.get("role");
 
   useEffect(() => {
+    if (!Cookies.get("customer_id")) {
+      return;
+    }
     dispatch(
       cartItems({
         customer_id: Cookies.get("customer_id"),
@@ -92,7 +95,7 @@ export const CustomerCart = () => {
         )}
 
         {/* EMPTY CART  */}
-        {!loading && role !== "vendor" && cart.length === 0 && (
+        {role !== "vendor" && cart.length === 0 && (
           <div
             style={{
               textAlign: "center",
