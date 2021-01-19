@@ -49,3 +49,26 @@ export function screenWidth(): number | 600 {
 
   return width;
 }
+
+export const categoriesList = [
+  "Cleansers",
+
+  "Toners",
+
+  "Sunscreens",
+
+  "Face Cosmetics",
+
+  "Hair Products",
+
+  "Serum",
+];
+
+export const mainCategoriesList = [
+  "Exfoilators",
+  "Treatment",
+  "Moisturizers",
+  "Face",
+  "Skin",
+  "Hair",
+];

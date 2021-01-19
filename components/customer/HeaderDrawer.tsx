@@ -9,7 +9,11 @@ import {
 } from "@chakra-ui/core";
 import { useUser } from "@/Context/UserProvider";
 import Link from "next/link";
-import { screenWidth } from "@/utils/helpers";
+import {
+  categoriesList,
+  mainCategoriesList,
+  screenWidth,
+} from "@/utils/helpers";
 import Cookies from "js-cookie";
 import { useToken } from "@/Context/TokenProvider";
 
@@ -81,53 +85,26 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
                 </Link>
               </ul>
               <h1>Categories</h1>
-              <ul>
-                <Link href="/category?category=Decorations">
-                  <a>
-                    <li>Cleansers</li>
-                  </a>
-                </Link>
-                <Link href="/category?category=Games">
-                  <a>
-                    <li>Toners</li>
-                  </a>
-                </Link>
-                <Link href="/category?category=Drinks">
-                  <a>
-                    <li>Sunscreens</li>
-                  </a>
-                </Link>
-                <Link href="/category?category=Props">
-                  <a>
-                    <li>Face Cosmetics</li>
-                  </a>
-                </Link>
-                <Link href="/category?category=Cakes">
-                  <a>
-                    <li>Hair Products</li>
-                  </a>
-                </Link>
-                <Link href="/party?category=Beach Party">
-                  <a>
-                    <li>Exfoilators</li>
-                  </a>
-                </Link>
-                <Link href="/party?category=Birthday Party">
-                  <a>
-                    <li>Treatment</li>
-                  </a>
-                </Link>
-                <Link href="/party?category=Outdoors">
-                  <a>
-                    <li>Serum</li>
-                  </a>
-                </Link>
-                <Link href="/party?category=Indoors">
-                  <a>
-                    <li>Moisturizers</li>
-                  </a>
-                </Link>
-              </ul>
+
+              {categoriesList.map((c, i) => (
+                <ul key={i}>
+                  <Link href={`/category?category=${c}`}>
+                    <a>
+                      <li>{c}</li>
+                    </a>
+                  </Link>
+                </ul>
+              ))}
+
+              {mainCategoriesList.map((m, i) => (
+                <ul key={i}>
+                  <Link href={`/main?category=${m}`}>
+                    <a>
+                      <li>{m}</li>
+                    </a>
+                  </Link>
+                </ul>
+              ))}
             </nav>
           </DrawerBody>
         </DrawerContent>
