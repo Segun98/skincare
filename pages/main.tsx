@@ -14,10 +14,10 @@ interface Iprops {
   products: ProductsRes[];
   error: any;
 }
-export const partyCategory = gql`
-  query partyCategory($party_category: String, $limit: Int, $offset: Int) {
-    partyCategory(
-      party_category: $party_category
+export const mainCategory = gql`
+  query mainCategory($main_category: String, $limit: Int, $offset: Int) {
+    mainCategory(
+      main_category: $main_category
       limit: $limit
       offset: $offset
     ) {
@@ -26,7 +26,7 @@ export const partyCategory = gql`
       name_slug
       price
       images
-      party_category
+      main_category
     }
   }
 `;
@@ -34,14 +34,14 @@ export async function getServerSideProps({ query }) {
   //page -1 * limit
   let pageCalc = (parseInt(query.p) - 1) * 30;
   const variables = {
-    party_category: query.category,
+    main_category: query.category,
     limit: 30,
     offset: pageCalc || 0,
   };
 
   try {
-    const res = await graphQLClient.request(partyCategory, variables);
-    const products = await res.partyCategory;
+    const res = await graphQLClient.request(mainCategory, variables);
+    const products = await res.mainCategory;
     return {
       props: {
         products,
@@ -56,7 +56,7 @@ export async function getServerSideProps({ query }) {
   }
 }
 
-const Category = ({ products, error }: Iprops) => {
+const Main = ({ products, error }: Iprops) => {
   const toast = useToast();
   const router: any = useRouter();
 
@@ -68,7 +68,7 @@ const Category = ({ products, error }: Iprops) => {
     if (firstRender.current === 0) {
       return;
     }
-    router.push(`/party?category=${router.query.category}&p=${page}`);
+    router.push(`/main?category=${router.query.category}&p=${page}`);
   }, [page]);
 
   return (
@@ -175,4 +175,4 @@ const Category = ({ products, error }: Iprops) => {
   );
 };
 
-export default Category;
+export default Main;
