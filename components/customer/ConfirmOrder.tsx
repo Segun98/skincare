@@ -8,8 +8,9 @@ import { useToken } from "@/Context/TokenProvider";
 import { deleteAllFromCart, updateOrder } from "@/graphql/customer";
 import { MutationUpdateOrderArgs, Orders } from "@/Typescript/types";
 import { useMutation } from "@/utils/useMutation";
-import { graphQLClient } from "@/utils/client";
+import { graphQLClient, restEndpoint } from "@/utils/client";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 //update available quantity in stock for ordered product
 const updateQuantity = gql`
@@ -94,6 +95,27 @@ export const ConfirmOrder: React.FC<Iprops> = ({
     }
   }
 
+  //confirmation email
+
+  async function confirmationEmail() {
+    const customer = {
+      to: order[0].customer_email,
+      name: User.first_name,
+      body: order,
+    };
+
+    const vendor = {
+      to: order[0].vendor_email,
+      body: order,
+    };
+    try {
+      await axios.post(`${restEndpoint}/order_vendor`, { vendor });
+      await axios.post(`${restEndpoint}/order_customer`, { customer });
+    } catch (error) {
+      //eyahh
+    }
+  }
+
   let paystackAmount = delivery + subtotal;
 
   //PAYSTACK TEST PAYMENT
@@ -111,6 +133,7 @@ export const ConfirmOrder: React.FC<Iprops> = ({
     ...config,
     onSuccess: (res) => {
       updateOrderFn(res.transaction);
+      confirmationEmail();
     },
     onClose: () => {
       toast({
