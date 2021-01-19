@@ -1,56 +1,32 @@
-import { useState, useEffect } from "react";
-import { Products } from "@/Typescript/types";
 import Link from "next/link";
-import { useQuery } from "@/components/useQuery";
-import { featuredProducts } from "@/graphql/vendor";
+import { mainCategoriesList } from "@/utils/helpers";
 
 export const Categories = () => {
-  const categories = [
-    "Body",
-    "Hair",
-    "Sunscreen",
-    "Face Cosmetics",
-    "Soap",
-    "Make Up",
+  const images = [
+    "https://images.unsplash.com/photo-1602037299890-c593f4c81d47?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+    "https://images.unsplash.com/photo-1531895861208-8504b98fe814?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80",
+    "https://images.unsplash.com/photo-1591019479261-1a103585c559?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fHNraW4lMjBjYXJlJTIwcHJvZHVjdHxlbnwwfDB8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1505944270255-72b8c68c6a70?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+    "https://images.unsplash.com/photo-1565357419076-6acd4a10094e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+    "https://images.unsplash.com/photo-1571937544778-3ad68aa84a36?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
   ];
 
-  // check for error after fetching data then pass as a dependency to the custom useQuery hook
-  const [checkError, setCheckError] = useState(false);
-
-  const [data, loading, error] = useQuery(
-    featuredProducts,
-    { limit: 10 },
-    null,
-    checkError
-  );
-  const products: Products[] = data ? data.featuredProducts : [];
-
-  useEffect(() => {
-    if (error) {
-      setCheckError(!checkError);
-    }
-  }, [error]);
-
   return (
-    <div>
-      {data && (
-        <div className="categories">
-          <h1>Shop By Categories</h1>
-          <div className="wrap">
-            {products.map((c, i) => (
-              <div className="item" key={c.id}>
-                <img src={c.images[0]} alt={c.name} />
-                <div className="content">
-                  <h2>{categories[i]}</h2>
-                  <Link href={`/product/${c.name_slug}`}>
-                    <a>Shop Now</a>
-                  </Link>
-                </div>
-              </div>
-            ))}
+    <div className="categories">
+      <h1>Shop By Categories</h1>
+      <div className="wrap">
+        {mainCategoriesList.map((c, i) => (
+          <div className="item" key={i}>
+            <img src={images[i]} alt={c} loading="lazy" />
+            <div className="content">
+              <h2>{c}</h2>
+              <Link href={`/main?category=${c}`}>
+                <a>Shop Now</a>
+              </Link>
+            </div>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
       <style jsx>{`
         .wrap {
           margin: auto;
@@ -59,9 +35,10 @@ export const Categories = () => {
 
         h1 {
           text-align: center;
+          font-weight: bold;
         }
         .item {
-          margin: 15px 0;
+          margin: 20px 0;
         }
         img {
           height: 200px;
@@ -73,6 +50,7 @@ export const Categories = () => {
         .content {
           text-align: center;
           z-index: 999;
+          margin: 5px 0 10px 0;
         }
         h2 {
           font-weight: bold;
@@ -98,9 +76,6 @@ export const Categories = () => {
           .categories {
             margin-top: -20px;
           }
-          img {
-            border-radius: 5px;
-          }
         }
 
         @media only screen and (min-width: 1200px) {
@@ -108,7 +83,7 @@ export const Categories = () => {
             margin-top: -70px;
           }
           img {
-            border-radius: 8px;
+            border-radius: 7px;
             height: 220px;
           }
 
