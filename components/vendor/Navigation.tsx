@@ -77,7 +77,7 @@ export const Navigation = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/">
+                <Link href="/vendor/payment">
                   <a>Payment</a>
                 </Link>
               </li>
