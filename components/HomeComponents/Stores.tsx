@@ -35,7 +35,7 @@ export const StoresHome = () => {
     if (error) {
       setCheckError(!checkError);
     }
-  }, []);
+  }, [error]);
 
   const stores: UsersRes[] = data ? data.homeStores : null;
 
@@ -83,7 +83,11 @@ export const StoresHome = () => {
                       tabIndex={0}
                       role="button"
                       aria-label="link to product"
-                      onClick={() => router.push(`/product/${p.name_slug}`)}
+                      onClick={() =>
+                        router
+                          .push(`/product/${p.name_slug}`)
+                          .then(() => window.scrollTo(0, 0))
+                      }
                     >
                       <img src={p.images[0]} alt={p.name} />
                       <div className="content">
@@ -158,6 +162,28 @@ export const StoresHome = () => {
           width: 99%;
         }
 
+        /* scroll bar styling  */
+        .products::-webkit-scrollbar {
+          height: 10px;
+        }
+
+        /* Track */
+        .products::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 5px grey;
+          border-radius: 8px;
+        }
+
+        /* Handle */
+        .products::-webkit-scrollbar-thumb {
+          background: var(--primary);
+          border-radius: 8px;
+        }
+
+        /* Handle on hover */
+        .products::-webkit-scrollbar-thumb:hover {
+          background: #b30000;
+        }
+
         .product {
           box-shadow: var(--box) var(--softgrey);
           margin: 5px 5px;
@@ -205,7 +231,9 @@ export const StoresHome = () => {
           .stores-wrap {
             grid-template-columns: 1fr 1fr;
           }
-
+          .products::-webkit-scrollbar {
+            height: 18px;
+          }
           .store {
             width: 450px;
           }
