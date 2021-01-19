@@ -8,6 +8,7 @@ import { useMutation } from "@/utils/useMutation";
 import { addToCart } from "@/graphql/customer";
 import { cartItems } from "@/redux/features/cart/fetchCart";
 import { v4 as uuidv4 } from "uuid";
+import { useLocalStorage } from "@/components/useLocalStorage";
 
 interface Iprops {
   onOpen: any;
@@ -79,35 +80,18 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
     }
   }
 
-  //save item to local storage for unauthorised customers
-  const [savedItem, setSavedItem] = useState(storeItem);
-  useEffect(() => {
-    if (typeof window === "object") {
-      localStorage.setItem("savedItem", JSON.stringify(savedItem));
-    }
-  }, [savedItem]);
+  //save item to local storage
+  const [_, addToSavedItems] = useLocalStorage();
 
-  function storeItem() {
-    if (typeof window === "object") {
-      const SavedItem = JSON.parse(localStorage.getItem("savedItem"));
-      return SavedItem || [];
-    }
-  }
-
-  function addToSavedItems() {
-    const newItem = {
-      images: product.images[0],
-      name: product.name,
-      price: product.price,
-      product_id: product.id,
-      prod_creator_id: product.creator_id,
-      name_slug: product.name_slug,
-    };
-    // prevent duplicates
-    let exists = savedItem.filter((s) => s.product_id === product.id);
-    if (exists.length === 0) {
-      setSavedItem([...savedItem, newItem]);
-    }
+  function addToLocalStorage() {
+    addToSavedItems(
+      product.images[0],
+      product.name,
+      product.price,
+      product.id,
+      product.creator_id,
+      product.name_slug
+    );
   }
 
   return (
@@ -115,7 +99,7 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
       aria-label="add to cart"
       onClick={() => {
         if (role === "vendor") {
-          addToSavedItems();
+          addToLocalStorage();
           toast({
             title: "Please login as a customer to use cart",
             status: "info",
@@ -124,7 +108,7 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
         }
 
         if (product.in_stock === "false") {
-          addToSavedItems();
+          addToLocalStorage();
           toast({
             title: "This Product is Currently Out of Stock!",
             description:

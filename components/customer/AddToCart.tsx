@@ -11,6 +11,7 @@ import { addToCart } from "@/graphql/customer";
 import { cartItems } from "@/redux/features/cart/fetchCart";
 import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
+import { useLocalStorage } from "../useLocalStorage";
 
 interface Iprops {
   product: ProductsRes;
@@ -94,35 +95,18 @@ export const AddToCart: React.FC<Iprops> = ({
     }
   }
 
-  //save item to local storage for unauthorised customers
-  const [savedItem, setSavedItem] = useState(storeItem);
-  useEffect(() => {
-    if (typeof window === "object") {
-      localStorage.setItem("savedItem", JSON.stringify(savedItem));
-    }
-  }, [savedItem]);
-
-  function storeItem() {
-    if (typeof window === "object") {
-      const SavedItem = JSON.parse(localStorage.getItem("savedItem"));
-      return SavedItem || [];
-    }
-  }
-
-  function addToSavedItems() {
-    const newItem = {
-      images: product.images[0],
-      name: product.name,
-      price: product.price,
-      product_id: product.id,
-      prod_creator_id: product.creator_id,
-      name_slug: product.name_slug,
-    };
-    // prevent duplicates
-    let exists = savedItem.filter((s) => s.product_id === product.id);
-    if (exists.length === 0) {
-      setSavedItem([...savedItem, newItem]);
-    }
+  //save item to local storage
+  const [savedItem, addToSavedItems] = useLocalStorage();
+  function addToLocalStorage() {
+    //@ts-ignore
+    addToSavedItems(
+      product.images[0],
+      product.name,
+      product.price,
+      product.id,
+      product.creator_id,
+      product.name_slug
+    );
   }
 
   return (
@@ -133,7 +117,7 @@ export const AddToCart: React.FC<Iprops> = ({
       style={{ backgroundColor: "var(--deepblue" }}
       onClick={() => {
         if (role === "vendor") {
-          addToSavedItems();
+          addToLocalStorage();
           toast({
             title: "Please login as a customer to use cart",
             status: "info",
@@ -142,7 +126,7 @@ export const AddToCart: React.FC<Iprops> = ({
         }
 
         if (product.in_stock === "false") {
-          addToSavedItems();
+          addToLocalStorage();
           toast({
             title: "This Product is Currently Out of Stock!",
             description:
@@ -155,7 +139,7 @@ export const AddToCart: React.FC<Iprops> = ({
           return;
         }
         if (product.creator.online === "false") {
-          addToSavedItems();
+          addToLocalStorage();
           toast({
             title: "The Vendor is Currently OFFLINE",
             description:
