@@ -1,7 +1,7 @@
 import { graphQLClient } from "@/utils/client";
 import { Button, useToast } from "@chakra-ui/core";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { useToken } from "@/Context/TokenProvider";
 import { createOrder } from "@/graphql/customer";
 import { Cart, MutationCreateOrderArgs } from "@/Typescript/types";
@@ -26,6 +26,9 @@ export const NextStep: React.FC<Iprops> = ({
   const router = useRouter();
   const { User } = useUser();
   const role = Cookies.get("role");
+
+  //disable pay button
+  const [disable, setDisable] = useState(false);
 
   async function handleOrder() {
     // 1st check
@@ -76,6 +79,7 @@ export const NextStep: React.FC<Iprops> = ({
       }
     }
 
+    setDisable(true);
     //very important!
     let orderId = Date.now();
 
@@ -115,6 +119,7 @@ export const NextStep: React.FC<Iprops> = ({
         });
         return;
       }
+      setDisable(false);
     }
 
     //Route to payment page after loop
@@ -145,6 +150,7 @@ export const NextStep: React.FC<Iprops> = ({
       variantColor="blue"
       rightIcon="arrow-forward"
       variant="outline"
+      isDisabled={disable}
     >
       Pay
     </Button>
