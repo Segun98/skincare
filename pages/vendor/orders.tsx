@@ -10,7 +10,7 @@ export const Orders = () => {
   return (
     <div className="orders-page">
       <Head>
-        <title>Orders | Vendor | PartyStore</title>
+        <title>Orders | Vendor | Tadlace</title>
       </Head>
       <div className="orders-layout">
         <Navigation />
