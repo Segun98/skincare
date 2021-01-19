@@ -8,8 +8,7 @@ export const GlobalLayout = ({ children }) => {
       {/* GLOBAL HEAD TAGS  */}
       <Head>
         <title>
-          {companyName} | Shop Your Favourite Products For Your Parties In
-          Nigeria
+          {companyName} | The number one #1 market place for Skin care products
         </title>
         <meta
           name="description"
