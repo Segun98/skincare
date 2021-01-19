@@ -15,6 +15,7 @@ import Link from "next/link";
 import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
 import Head from "next/head";
 import { AddToCart } from "@/components/customer/AddToCart";
+import { useLocalStorage } from "@/components/useLocalStorage";
 
 interface response {
   product: ProductsRes;
@@ -43,6 +44,8 @@ export async function getServerSideProps({ params }) {
 }
 
 const Product = ({ product, error }: response) => {
+  const [_, addToSavedItems] = useLocalStorage();
+
   const toast = useToast();
 
   //Cart Qunatity
@@ -120,8 +123,8 @@ const Product = ({ product, error }: response) => {
                 </BreadcrumbItem>
 
                 <BreadcrumbItem>
-                  <Link href={`/party?category=${product.party_category}`}>
-                    <a>{product.party_category}</a>
+                  <Link href={`/main?category=${product.main_category}`}>
+                    <a>{product.main_category}</a>
                   </Link>
                 </BreadcrumbItem>
 
@@ -168,34 +171,69 @@ const Product = ({ product, error }: response) => {
                   <hr />
                   <h1>Share</h1>
                   <div className="share-icons">
-                    <ul>
-                      <li role="button">
-                        <a
-                          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-                          className="twitter-share-button"
-                          data-size="small"
-                          data-show-count="false"
-                        >
-                          <img src="/twitter.svg" alt="Twitter Icon" />
-                        </a>
-                      </li>
-                      <li role="button">
-                        <div
-                          className="fb-share-button"
-                          data-href="https://developers.facebook.com/docs/plugins/"
-                          data-layout="button"
-                          data-size="small"
-                        >
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "baseline",
+                      }}
+                    >
+                      <ul>
+                        <li role="button">
                           <a
-                            target="_blank"
-                            href={`https://www.facebook.com/sharer/sharer.php?u=https://partystore.vercel.app/product/${product.name_slug}`}
-                            className="fb-xfbml-parse-ignore"
+                            href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                            className="twitter-share-button"
+                            data-size="small"
+                            data-show-count="false"
                           >
-                            <img src="/facebook.svg" alt="Facebook Icon" />
+                            <img src="/twitter.svg" alt="Twitter Icon" />
                           </a>
-                        </div>
-                      </li>
-                    </ul>
+                        </li>
+                        <li role="button">
+                          <div
+                            className="fb-share-button"
+                            data-href="https://developers.facebook.com/docs/plugins/"
+                            data-layout="button"
+                            data-size="small"
+                          >
+                            <a
+                              target="_blank"
+                              href={`https://www.facebook.com/sharer/sharer.php?u=https://partystore.vercel.app/product/${product.name_slug}`}
+                              className="fb-xfbml-parse-ignore"
+                            >
+                              <img src="/facebook.svg" alt="Facebook Icon" />
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                      <button
+                        aria-label="add product to wishlist"
+                        onClick={() => {
+                          addToSavedItems(
+                            product.images[0],
+                            product.name,
+                            product.price,
+                            product.id,
+                            product.creator_id,
+                            product.name_slug
+                          );
+                          toast({
+                            title: "Added to Saved Items",
+                            description: "Find it in your Account page",
+                            status: "info",
+                            duration: 5000,
+                            position: "bottom",
+                            isClosable: true,
+                          });
+                        }}
+                      >
+                        <img
+                          className="hearts"
+                          src="/heart.svg"
+                          alt="add to wishlist"
+                        />
+                      </button>
+                    </div>
                     <hr />
                     <p>
                       <Link
