@@ -100,29 +100,33 @@ export const Footer = () => {
           </ul>
         </section>
         <section className="footer-item">
-          <ul>
+          <ul style={{ display: "flex", alignItems: "center" }}>
             <li>
               <Link href="https://twitter.com/segun_os">
                 <a target="_blank" rel="noopener noreferrer">
-                  Twitter
+                  <img src="/twitter.svg" alt="twitter icon" />
                 </a>
               </Link>{" "}
             </li>
             <li>
               <Link href="/">
-                <a>Instagram</a>
+                <a>
+                  <img src="linkedin.svg" alt="linkedin icon" />
+                </a>
               </Link>{" "}
             </li>
             <li>
               <Link href="/">
-                <a>Facebook</a>
+                <a>
+                  <img src="facebook.svg" alt="facebook icon" />
+                </a>
               </Link>{" "}
             </li>
-            <li>
+            {/* <li>
               <Link href="/">
-                <a>Youtube</a>
+                <a>YT</a>
               </Link>{" "}
-            </li>
+            </li> */}
           </ul>
         </section>
       </div>
@@ -153,6 +157,14 @@ export const Footer = () => {
         }
         .footer-item {
           margin: 10px 0;
+        }
+
+        .footer-item:last-child li {
+          margin: 0 8px;
+        }
+        .footer-item:last-child img {
+          height: 25px;
+          width: 25px;
         }
         .footer-wrap h1 {
           margin-bottom: 15px;
