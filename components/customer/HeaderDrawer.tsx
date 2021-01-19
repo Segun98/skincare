@@ -82,25 +82,19 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
               </ul>
               <h1>Categories</h1>
               <ul>
-                <Link href="/category?category=Gifts">
-                  <a>
-                    <li>Body</li>
-                  </a>
-                </Link>
-
                 <Link href="/category?category=Decorations">
                   <a>
-                    <li>Cleanser</li>
+                    <li>Cleansers</li>
                   </a>
                 </Link>
                 <Link href="/category?category=Games">
                   <a>
-                    <li>Toner</li>
+                    <li>Toners</li>
                   </a>
                 </Link>
                 <Link href="/category?category=Drinks">
                   <a>
-                    <li>Sunscreen</li>
+                    <li>Sunscreens</li>
                   </a>
                 </Link>
                 <Link href="/category?category=Props">
@@ -110,12 +104,7 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
                 </Link>
                 <Link href="/category?category=Cakes">
                   <a>
-                    <li>Hair</li>
-                  </a>
-                </Link>
-                <Link href="/party?category=House Party">
-                  <a>
-                    <li>Cleansers</li>
+                    <li>Hair Products</li>
                   </a>
                 </Link>
                 <Link href="/party?category=Beach Party">
@@ -135,7 +124,7 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
                 </Link>
                 <Link href="/party?category=Indoors">
                   <a>
-                    <li>Moisturizer</li>
+                    <li>Moisturizers</li>
                   </a>
                 </Link>
               </ul>
