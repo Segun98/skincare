@@ -1,10 +1,10 @@
+import { useState, useEffect } from "react";
 import { Products } from "@/Typescript/types";
 import Link from "next/link";
+import { useQuery } from "@/components/useQuery";
+import { featuredProducts } from "@/graphql/vendor";
 
-interface props {
-  data: Products[];
-}
-export const Categories: React.FC<props> = ({ data }) => {
+export const Categories = () => {
   const categories = [
     "Body",
     "Hair",
@@ -14,23 +14,43 @@ export const Categories: React.FC<props> = ({ data }) => {
     "Make Up",
   ];
 
-  return (
-    <div className="categories">
-      <h1>Shop By Categories</h1>
-      <div className="wrap">
-        {data.map((c, i) => (
-          <div className="item" key={c.id}>
-            <img src={c.images[0]} alt={c.name} />
-            <div className="content">
-              <h2>{categories[i]}</h2>
-              <Link href={`/product/${c.name_slug}`}>
-                <a>Shop Now</a>
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
+  // check for error after fetching data then pass as a dependency to the custom useQuery hook
+  const [checkError, setCheckError] = useState(false);
 
+  const [data, loading, error] = useQuery(
+    featuredProducts,
+    { limit: 10 },
+    null,
+    checkError
+  );
+  const products: Products[] = data ? data.featuredProducts : [];
+
+  useEffect(() => {
+    if (error) {
+      setCheckError(!checkError);
+    }
+  }, [error]);
+
+  return (
+    <div>
+      {data && (
+        <div className="categories">
+          <h1>Shop By Categories</h1>
+          <div className="wrap">
+            {products.map((c, i) => (
+              <div className="item" key={c.id}>
+                <img src={c.images[0]} alt={c.name} />
+                <div className="content">
+                  <h2>{categories[i]}</h2>
+                  <Link href={`/product/${c.name_slug}`}>
+                    <a>Shop Now</a>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       <style jsx>{`
         .wrap {
           margin: auto;
