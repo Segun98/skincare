@@ -38,7 +38,7 @@ export const Newitem = () => {
   //input states
   const { handleSubmit, register, errors, watch } = useForm();
   const [category, setCategory] = useState("");
-  const [partyCategory, setPartyCategory] = useState("");
+  const [mainCategory, setmainCategory] = useState("");
   const [images, setImages] = useState([]);
   const [imageLoad, setImageLoad] = useState(false);
 
@@ -78,7 +78,7 @@ export const Newitem = () => {
       });
       return;
     }
-    if (!category || !partyCategory) {
+    if (!category || !mainCategory) {
       toast({
         title: "Category  Must Be Selected",
         status: "info",
@@ -93,7 +93,7 @@ export const Newitem = () => {
       description,
       price: parseInt(price),
       category: category,
-      party_category: partyCategory,
+      party_category: mainCategory,
       images,
       available_qty: parseInt(available_qty),
     };
@@ -222,39 +222,37 @@ export const Newitem = () => {
                           }}
                         >
                           <option defaultValue="">--select--</option>
-                          <option defaultValue="Cakes">Cakes</option>
-                          <option defaultValue="Games">Games</option>
-                          <option defaultValue="Drinks">Drinks</option>
-                          <option defaultValue="Drinks">Decorations</option>
-                          <option defaultValue="Food">Gifts</option>
-                          <option defaultValue="Props">Props</option>
-                          <option defaultValue="Other">Other</option>
+                          <option defaultValue="Moisturizer">
+                            Moisturizer
+                          </option>
+                          <option defaultValue="Exfoilators">
+                            Exfoilators
+                          </option>
+                          <option defaultValue="Hair">Hair</option>
+                          <option defaultValue="Face Cosmetics">
+                            Face Cosmetics
+                          </option>
+                          <option defaultValue="Sunscreens">Sunscreens</option>
+                          <option defaultValue="Toners">Toners</option>
+                          <option defaultValue="Cleansers">Cleansers</option>
                         </Select>
                       </div>
 
                       <div className="form-item">
-                        <FormLabel htmlFor="category">Party Category</FormLabel>
+                        <FormLabel htmlFor="category">Main Category</FormLabel>
                         <Select
-                          defaultValue={partyCategory}
+                          defaultValue={mainCategory}
                           onChange={(e) => {
-                            setPartyCategory(e.target.value);
+                            setmainCategory(e.target.value);
                           }}
                         >
                           <option defaultValue="">--select--</option>
-                          <option defaultValue="Birthday Party">
-                            Birthday Party
-                          </option>
-                          <option defaultValue="Beach Party">
-                            Beach Party
-                          </option>
-                          <option defaultValue="House Party">
-                            House Party
-                          </option>
-                          <option defaultValue="Social Clubs">
-                            Social Clubs
-                          </option>
-                          <option defaultValue="Outdoors">Outdoors</option>
-                          <option defaultValue="Indoors">Indoors</option>
+                          <option defaultValue="Body">Body</option>
+                          <option defaultValue="Skin">Skin</option>
+                          <option defaultValue="Hair">Hair</option>
+                          <option defaultValue="Face">Face</option>
+                          <option defaultValue="Treatment">Treatment</option>
+                          <option defaultValue="Make UP">Make UP</option>
                         </Select>
                       </div>
 

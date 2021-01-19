@@ -62,7 +62,7 @@ const Edit = ({ product, error }: Iprops) => {
   const [Loading, setLoading] = useState(false);
 
   const [category, setCategory] = useState("");
-  const [partyCategory, setPartyCategory] = useState("");
+  const [mainCategory, setmainCategory] = useState("");
   const [inStock, setInStock] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -79,7 +79,7 @@ const Edit = ({ product, error }: Iprops) => {
       setPrice(product.price || "");
       setAvailableQty(product.available_qty || "");
       setCategory(product.category || "");
-      setPartyCategory(product.party_category || "");
+      setmainCategory(product.party_category || "");
       setInStock(product.in_stock || "");
       setImages(product.images || []);
     }
@@ -97,7 +97,7 @@ const Edit = ({ product, error }: Iprops) => {
       });
       return;
     }
-    if (!category || !partyCategory) {
+    if (!category || !mainCategory) {
       toast({
         title: "Category  Must Be Selected",
         status: "info",
@@ -122,7 +122,7 @@ const Edit = ({ product, error }: Iprops) => {
       description,
       price: parseInt(price),
       category,
-      party_category: partyCategory,
+      party_category: mainCategory,
       images,
       in_stock: inStock,
       available_qty: parseInt(available_qty),
@@ -251,43 +251,44 @@ const Edit = ({ product, error }: Iprops) => {
                             <option defaultValue={`${category}`}>
                               {category}
                             </option>
-                            <option defaultValue="Cakes">Cakes</option>
-                            <option defaultValue="Games">Games</option>
-                            <option defaultValue="Drinks">Drinks</option>
-                            <option defaultValue="Drinks">Decorations</option>
-                            <option defaultValue="Food">Gifts</option>
-                            <option defaultValue="Props">Props</option>
-                            <option defaultValue="Other">Other</option>
+                            <option defaultValue="">--select--</option>
+                            <option defaultValue="Moisturizer">
+                              Moisturizer
+                            </option>
+                            <option defaultValue="Exfoilators">
+                              Exfoilators
+                            </option>
+                            <option defaultValue="Hair">Hair</option>
+                            <option defaultValue="Face Cosmetics">
+                              Face Cosmetics
+                            </option>
+                            <option defaultValue="Sunscreens">
+                              Sunscreens
+                            </option>
+                            <option defaultValue="Toners">Toners</option>
+                            <option defaultValue="Cleansers">Cleansers</option>
                           </Select>
                         </div>
 
                         <div className="form-item">
                           <FormLabel htmlFor="category">
-                            Party Category
+                            Main Category
                           </FormLabel>
                           <Select
-                            defaultValue={partyCategory}
+                            defaultValue={mainCategory}
                             onChange={(e) => {
-                              setPartyCategory(e.target.value);
+                              setmainCategory(e.target.value);
                             }}
                           >
-                            <option defaultValue={`${partyCategory}`}>
-                              {partyCategory}
+                            <option defaultValue={`${mainCategory}`}>
+                              {mainCategory}
                             </option>
-                            <option defaultValue="Birthday Party">
-                              Birthday Party
-                            </option>
-                            <option defaultValue="Beach Party">
-                              Beach Party
-                            </option>
-                            <option defaultValue="House Party">
-                              House Party
-                            </option>
-                            <option defaultValue="Social Clubs">
-                              Social Clubs
-                            </option>
-                            <option defaultValue="Outdoors">Outdoors</option>
-                            <option defaultValue="Indoors">Indoors</option>
+                            <option defaultValue="Body">Body</option>
+                            <option defaultValue="Skin">Skin</option>
+                            <option defaultValue="Hair">Hair</option>
+                            <option defaultValue="Face">Face</option>
+                            <option defaultValue="Treatment">Treatment</option>
+                            <option defaultValue="Make UP">Make UP</option>
                           </Select>
                         </div>
 
