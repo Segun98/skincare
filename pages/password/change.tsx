@@ -1,19 +1,47 @@
-import { Button, FormLabel, Input, InputGroup, Text } from "@chakra-ui/core";
+import {
+  Button,
+  FormLabel,
+  Input,
+  InputGroup,
+  Text,
+  useToast,
+} from "@chakra-ui/core";
 import React, { useState } from "react";
 import Head from "next/head";
 import { Layout } from "@/components/Layout";
+import { restEndpoint } from "@/utils/client";
+import axios from "axios";
 
 export const Change = () => {
   const [email, setEmail] = useState("");
   const [success, setSuccess] = useState(false);
+  const [disable, setDisable] = useState(false);
+  const toast = useToast();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(email);
+      setDisable(true);
+      const res = await axios.post(`${restEndpoint}/password_reset`, {
+        email,
+      });
+      toast({
+        title: res.data,
+        status: "info",
+        isClosable: true,
+        duration: 7000,
+        position: "top",
+      });
       setSuccess(true);
+      setDisable(false);
     } catch (err) {
+      toast({
+        title: "An error occured",
+        status: "error",
+        isClosable: true,
+      });
       setSuccess(false);
+      setDisable(false);
     }
   };
   return (
@@ -45,7 +73,12 @@ export const Change = () => {
               />
             </InputGroup>
             <br />
-            <Button type="submit" background="var(--deepblue)" color="white">
+            <Button
+              type="submit"
+              background="var(--deepblue)"
+              color="white"
+              isDisabled={disable}
+            >
               Submit
             </Button>
             <br />

@@ -6,41 +6,109 @@ import {
   InputGroup,
   InputRightElement,
   Text,
+  useToast,
 } from "@chakra-ui/core";
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { Layout } from "@/components/Layout";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { restEndpoint } from "@/utils/client";
 
 export const Reset = () => {
+  const toast = useToast();
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [success, setSuccess] = useState(false);
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
+  //fetch user email
   useEffect(() => {
-    setEmail("");
-  }, []);
+    async function getEmail() {
+      try {
+        const res = await axios.post(`${restEndpoint}/get_email`, {
+          id: router.query.id,
+        });
+        setEmail(res.data.email);
+      } catch (error) {
+        toast({
+          title: "I don't think you should be here",
+          status: "error",
+          isClosable: true,
+        });
+      }
+    }
+    if (router.query.id) {
+      getEmail();
+    }
+  }, [router]);
 
-  //Enforce stricter password
-  const handleSubmit = (e) => {
+  //change password
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!newPassword.trim() || !confirmPassword.trim()) {
       return;
     }
-    if (newPassword !== confirmPassword) {
-      console.log("Passwords Do Not Match");
+
+    if (newPassword.length < 8) {
+      toast({
+        title: "password is weak",
+        status: "info",
+        isClosable: true,
+      });
       return;
     }
+
+    if (newPassword !== confirmPassword) {
+      toast({
+        title: "passwords do not match",
+        status: "info",
+        isClosable: true,
+      });
+      return;
+    }
+    const data = {
+      email,
+      id: router.query.id,
+      newpassword: newPassword,
+    };
     try {
-      console.log(newPassword);
-      console.log(confirmPassword);
-      setSuccess(true);
+      setLoading(true);
+      const res = await axios.post(`${restEndpoint}/change_password`, {
+        data,
+      });
+      setLoading(false);
+
+      if ((res.data = "password successfully changed!")) {
+        toast({
+          title: res.data,
+          status: "info",
+          isClosable: true,
+          duration: 7000,
+          position: "top",
+        });
+        setSuccess(true);
+        return;
+      }
+
+      toast({
+        title: "An error occured",
+        status: "error",
+        isClosable: true,
+      });
     } catch (err) {
       setSuccess(false);
+      setLoading(false);
+      toast({
+        title: "An error occured",
+        status: "error",
+        isClosable: true,
+      });
     }
   };
   return (
@@ -50,7 +118,6 @@ export const Reset = () => {
       </Head>
       <div className="indicator">
         <div className="change-pass-wrap">
-          {router.query.id}
           <Text
             as="h1"
             mb="10px"
@@ -60,14 +127,8 @@ export const Reset = () => {
           >
             Password Reset
           </Text>
-          <Text
-            as="h1"
-            mb="10px"
-            color="var(--deepblue)"
-            fontSize="1.2rem"
-            fontWeight="bold"
-          >
-            {email}
+          <Text mb="10px" color="var(--deepblue)" fontSize="1.2rem">
+            For: {email}
           </Text>
           <form onSubmit={handleSubmit}>
             <FormLabel htmlFor="password">Enter Your New Password</FormLabel>
@@ -116,7 +177,13 @@ export const Reset = () => {
               </InputRightElement>
             </InputGroup>
             <br />
-            <Button type="submit" background="var(--deepblue)" color="white">
+            <Button
+              type="submit"
+              background="var(--deepblue)"
+              color="white"
+              isDisabled={email ? false : true}
+              isLoading={loading}
+            >
               Submit
             </Button>
             <br />
