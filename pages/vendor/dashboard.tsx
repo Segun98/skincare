@@ -69,6 +69,20 @@ export const Dashboard: React.FC = () => {
     }
   }, [orders]);
 
+  useEffect(() => {
+    if (User["pending"] && User.pending === "true") {
+      toast({
+        title: "You Profile is currently under review",
+        description:
+          "Please complete your profile information in your Account page for a quick review",
+        status: "info",
+        duration: 7000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  }, [User]);
+
   return (
     <div className="dashboard">
       <Head>

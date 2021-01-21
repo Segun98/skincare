@@ -246,7 +246,7 @@ export const Account = () => {
                   </span>
                   <br />
                   <h2>Phone</h2>
-                  <p>{User.phone || `090 3000 4000 55`}</p>
+                  <p>{User.phone || `090 0000000000`}</p>
                   <br />
                   <span style={{ display: editMode ? "block" : "none" }}>
                     <Input

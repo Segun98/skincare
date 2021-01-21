@@ -46,7 +46,7 @@ export const DashboardOrders = () => {
   }
 
   return (
-    <div className="orders-table">
+    <div className="orders-table" style={{ overflowX: "auto" }}>
       {!data && !error && (
         <Text as="div" className="skeleton">
           <Skeleton height="40px" my="10px" />
@@ -70,7 +70,7 @@ export const DashboardOrders = () => {
       ) : null}
 
       {data && (
-        <table style={{ width: "100%", overflow: "auto" }}>
+        <table style={{ width: "100%" }}>
           <thead>
             <tr>
               <th>Name</th>

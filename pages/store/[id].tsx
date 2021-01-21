@@ -106,7 +106,7 @@ const Store = ({ user, error }: Iprops) => {
             <div className="status">
               {/* Display different messages to the public and store owner  */}
               {user && user.jwt_user_id === user.id
-                ? "Your Profile Is Currently Under Review. Please, Fill Out Your Profile Information In Your ACCOUNT PAGE for a Quick Review"
+                ? "Your profile is currently under review. Please, fill out your profile information in your Account page for a quick review"
                 : "This Store Is Currently Under Review"}
             </div>
           </div>

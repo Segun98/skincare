@@ -20,10 +20,15 @@
         height: 35px;
     }
 
-    .header-wrap_left,
-    .header-wrap_right {
+    .header-wrap_left {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-wrap_right {
+        display: flex;
+        justify-content: center;
         align-items: center;
     }
 
@@ -36,7 +41,7 @@
 
 
     .profile-icon {
-        height: 20px;
+        height: 25px;
         width: 25px;
     }
 
@@ -73,11 +78,12 @@
             width: 75%;
         }
 
-        .large-bar {
-            display: block;
+        .header-wrap_right {
+            align-items: baseline;
         }
 
         .large-bar {
+            display: block;
             width: 60%;
         }
 
@@ -87,10 +93,6 @@
 
         .logo {
             font-size: 1.2rem;
-        }
-
-        .profile-icon {
-            font-size: 1rem;
         }
 
         .cart-icon {

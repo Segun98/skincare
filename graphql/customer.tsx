@@ -78,12 +78,14 @@ export const addToCart = gql`
     $product_id: ID!
     $prod_creator_id: ID!
     $quantity: Int
+    $user_id: ID
   ) {
     addToCart(
       customer_id: $customer_id
       product_id: $product_id
       prod_creator_id: $prod_creator_id
       quantity: $quantity
+      user_id: $user_id
     ) {
       message
     }
@@ -107,8 +109,8 @@ export const deleteFromCart = gql`
 `;
 
 export const deleteAllFromCart = gql`
-  mutation deleteAllFromCart($customer_id: ID!) {
-    deleteAllFromCart(customer_id: $customer_id) {
+  mutation deleteAllFromCart($customer_id: ID!, $user_id: ID) {
+    deleteAllFromCart(customer_id: $customer_id, user_id: $user_id) {
       message
     }
   }

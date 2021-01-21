@@ -8,6 +8,7 @@ import { Orders } from "@/Typescript/types";
 import { Commas, nairaSign } from "@/utils/helpers";
 import { useToast } from "@chakra-ui/core";
 import Head from "next/head";
+import { ProtectRouteC } from "@/utils/ProtectedRouteC";
 
 export async function getServerSideProps({ params }) {
   const variables = {
@@ -159,4 +160,4 @@ const Pay = ({ variables }) => {
   );
 };
 
-export default Pay;
+export default ProtectRouteC(Pay);
