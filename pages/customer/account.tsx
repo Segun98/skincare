@@ -131,6 +131,7 @@ export const Account = () => {
       product_id,
       prod_creator_id,
       quantity,
+      user_id: User["id"] ? User.id : null,
     };
     const { data, error } = await useMutation(addToCart, variables, Token);
 

@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { cartItems } from "@/redux/features/cart/fetchCart";
 import Cookies from "js-cookie";
 import { StoreAddToCart } from "./StoreCartFlow/StoreAddToCart";
+import { useUser } from "@/Context/UserProvider";
 
 interface StoreProps {
   user: UsersRes;
@@ -27,7 +28,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
   const router = useRouter();
   //from context
   const { Token } = useToken();
-
+  const { User } = useUser();
   const toast = useToast();
 
   //fetch cart items
@@ -35,7 +36,12 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
     if (!Cookies.get("customer_id")) {
       return;
     }
-    dispatch(cartItems({ customer_id: Cookies.get("customer_id") }));
+    dispatch(
+      cartItems({
+        customer_id: Cookies.get("customer_id"),
+        user_id: User["id"] ? User.id : null,
+      })
+    );
   }, [cartLength]);
 
   // Delete Product
@@ -92,10 +98,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
           </div>
           <div className="store-bio">
             <img src="/notes.svg" alt="profile" />{" "}
-            {user.business_bio ||
-              "We seek to provide quality products and services to our customers. At " +
-                user.business_name +
-                ", customers come first"}
+            {user.business_bio || "This is " + user.business_name + " bio"}
           </div>
           <div className="store-location">
             <Icon name="phone" mr="10px" />

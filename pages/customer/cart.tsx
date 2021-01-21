@@ -9,6 +9,7 @@ import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
 import { useSelector, useDispatch } from "react-redux";
 import { cartItems, IinitialState } from "@/redux/features/cart/fetchCart";
 import { MainCart } from "@/components/customer/MainCart";
+import { useUser } from "@/Context/UserProvider";
 
 interface DefaultRootState {
   cart: IinitialState;
@@ -19,6 +20,7 @@ export const CustomerCart = () => {
   const toast = useToast();
   const { Token } = useToken();
   const role = Cookies.get("role");
+  const { User } = useUser();
 
   useEffect(() => {
     if (!Cookies.get("customer_id")) {
@@ -27,6 +29,7 @@ export const CustomerCart = () => {
     dispatch(
       cartItems({
         customer_id: Cookies.get("customer_id"),
+        user_id: User["id"] ? User.id : null,
       })
     );
   }, [Token]);
