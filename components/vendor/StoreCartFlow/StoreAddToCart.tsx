@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MutationAddToCartArgs, ProductsRes } from "@/Typescript/types";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
@@ -9,6 +9,7 @@ import { addToCart } from "@/graphql/customer";
 import { cartItems } from "@/redux/features/cart/fetchCart";
 import { v4 as uuidv4 } from "uuid";
 import { useLocalStorage } from "@/components/useLocalStorage";
+import { useUser } from "@/Context/UserProvider";
 
 interface Iprops {
   onOpen: any;
@@ -19,6 +20,7 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
   const { Token } = useToken();
   const role = Cookies.get("role");
   const dispatch = useDispatch();
+  const { User } = useUser();
 
   //add to cart
   async function addCart(
@@ -44,6 +46,7 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
       product_id,
       prod_creator_id,
       quantity,
+      user_id: User["id"] ? User.id : null,
     };
 
     const { data, error } = await useMutation(addToCart, variables, Token);

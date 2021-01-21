@@ -35,6 +35,7 @@ export const UserProvider = ({ children }) => {
   const getUser = gql`
     query getUser {
       getUser {
+        id
         first_name
         last_name
         email

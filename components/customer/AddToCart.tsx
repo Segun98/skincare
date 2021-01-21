@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MutationAddToCartArgs, ProductsRes } from "@/Typescript/types";
 import { Dispatch } from "react";
 import { SetStateAction } from "react";
@@ -12,6 +12,7 @@ import { cartItems } from "@/redux/features/cart/fetchCart";
 import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
 import { useLocalStorage } from "../useLocalStorage";
+import { useUser } from "@/Context/UserProvider";
 
 interface Iprops {
   product: ProductsRes;
@@ -28,6 +29,7 @@ export const AddToCart: React.FC<Iprops> = ({
   const router = useRouter();
   const toast = useToast();
   const { Token } = useToken();
+  const { User } = useUser();
   const role = Cookies.get("role");
   const dispatch = useDispatch();
 
@@ -57,6 +59,7 @@ export const AddToCart: React.FC<Iprops> = ({
       product_id,
       prod_creator_id,
       quantity,
+      user_id: User["id"] ? User.id : null,
     };
 
     const { data, error } = await useMutation(addToCart, variables, Token);
