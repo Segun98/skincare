@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { graphQLClient } from "../utils/client";
 
+// : [data: any, loading: boolean, error: string]
+
 //custom react hook
 export const useQuery = (
   Query: string,

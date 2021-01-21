@@ -1,5 +1,16 @@
 import { useEffect, useState } from "react";
 
+// : [
+//   savedItem: any,
+//   addToSavedItems: (
+//     images: string,
+//     name: string,
+//     price: number,
+//     product_id: string,
+//     prod_creator_id: string,
+//     name_slug: string
+//   ) => void
+// ]
 export const useLocalStorage = () => {
   //save item to local storage for unauthorised customers
   const [savedItem, setSavedItem] = useState(storeItem);
