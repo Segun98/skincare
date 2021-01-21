@@ -60,6 +60,7 @@ export const ConfirmOrder: React.FC<Iprops> = ({
       //clear cart
       await useMutation(deleteAllFromCart, {
         customer_id: Cookies.get("customer_id"),
+        user_id: User["id"] ? User.id : null,
       });
       toast({
         title: "You are being redirected...",
@@ -101,12 +102,14 @@ export const ConfirmOrder: React.FC<Iprops> = ({
     const customer = {
       to: order[0].customer_email,
       name: User.first_name,
+      orderId: order[0].order_id,
       body: order,
     };
 
     const vendor = {
       to: order[0].vendor_email,
       body: order,
+      orderId: order[0].order_id,
     };
     try {
       await axios.post(`${restEndpoint}/order_vendor`, { vendor });
