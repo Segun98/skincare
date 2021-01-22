@@ -56,6 +56,14 @@ export const ConfirmOrder: React.FC<Iprops> = ({
       position: "top",
     });
 
+    //email to customer
+    confirmationEmail();
+
+    //email to vendor
+    for await (const o of order) {
+      confirmationEmailVendor(o);
+    }
+
     if (data) {
       //clear cart
       await useMutation(deleteAllFromCart, {
@@ -96,24 +104,30 @@ export const ConfirmOrder: React.FC<Iprops> = ({
     }
   }
 
-  //confirmation email
+  //confirmation emails
 
   async function confirmationEmail() {
-    const customer = {
-      to: order[0].customer_email,
-      name: User.first_name,
-      orderId: order[0].order_id,
-      body: order,
-    };
-
-    const vendor = {
-      to: order[0].vendor_email,
-      body: order,
-      orderId: order[0].order_id,
-    };
     try {
-      await axios.post(`${restEndpoint}/order_vendor`, { vendor });
-      await axios.post(`${restEndpoint}/order_customer`, { customer });
+      //customer endpoint
+      await axios.post(`${restEndpoint}/order_customer`, {
+        to: order[0].customer_email,
+        name: User.first_name,
+        orderId: order[0].order_id,
+        body: "order",
+      });
+    } catch (error) {
+      //eyahh
+    }
+  }
+
+  async function confirmationEmailVendor(o: Orders) {
+    try {
+      //vendor endpoint
+      await axios.post(`${restEndpoint}/order_vendor`, {
+        to: o.vendor_email,
+        body: "order",
+        orderId: o.order_id,
+      });
     } catch (error) {
       //eyahh
     }
@@ -136,7 +150,6 @@ export const ConfirmOrder: React.FC<Iprops> = ({
     ...config,
     onSuccess: (res) => {
       updateOrderFn(res.transaction);
-      confirmationEmail();
     },
     onClose: () => {
       toast({
