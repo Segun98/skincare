@@ -125,6 +125,12 @@ export const Navigation = () => {
                 <a>Stores</a>
               </Link>
             </li>
+            <li>
+              <Link href="/customer#contact">
+                <a>Help</a>
+              </Link>
+            </li>
+
             <br />
 
             <div className="login-btn">
