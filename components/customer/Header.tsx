@@ -225,11 +225,13 @@ export const Header = () => {
                             <a>Cart</a>
                           </Link>
                         </p>
-                        <p>
-                          <Link href="/customer/orders">
-                            <a>Orders</a>
-                          </Link>
-                        </p>
+                        {Token && role && (
+                          <p>
+                            <Link href="/customer/orders">
+                              <a>Orders</a>
+                            </Link>
+                          </p>
+                        )}
                         <p>
                           <Link href="/customer#contact">
                             <a>Help</a>
