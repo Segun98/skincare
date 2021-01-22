@@ -210,7 +210,7 @@ export const DashboardOrders = () => {
         }
         td {
           font-size: 0.8rem;
-          padding: 5px 0;
+          padding: 5px;
           text-align: center;
         }
         .name {

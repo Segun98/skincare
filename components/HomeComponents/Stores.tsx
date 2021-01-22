@@ -197,7 +197,7 @@ export const StoresHome = () => {
         }
 
         .content {
-          font-size: 0.9rem;
+          font-size: 0.8rem;
           text-align: center;
           margin-top: 5px;
         }
@@ -236,6 +236,9 @@ export const StoresHome = () => {
           }
           .store {
             width: 450px;
+          }
+          .content {
+            font-size: 0.9rem;
           }
         }
 
