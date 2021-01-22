@@ -211,6 +211,7 @@ export const getCustomerOrders = gql`
       quantity
       subtotal
       request
+      vendor_email
       created_at
       orderStatus {
         order_id
