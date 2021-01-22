@@ -6,6 +6,12 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  Accordion,
+  Box,
+  AccordionItem,
+  AccordionHeader,
+  AccordionIcon,
+  AccordionPanel,
 } from "@chakra-ui/core";
 import { useUser } from "@/Context/UserProvider";
 import Link from "next/link";
@@ -44,14 +50,16 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
                 <div>Hi, {Token && User && User.first_name}</div>
               </div>
             ) : (
-              <Link href="/customer/login">
-                <a>Hello, Login</a>
-              </Link>
+              <div style={{ display: "flex" }}>
+                <img src="/profile.svg" alt="" className="mr-1" />
+                <Link href="/customer/login">
+                  <a>Hello, Login</a>
+                </Link>
+              </div>
             )}
           </DrawerHeader>
-          <DrawerBody background="var(--softblue)">
+          <DrawerBody>
             <nav className="navigation">
-              <h1>PROFILE</h1>
               <ul>
                 <Link href="/">
                   <a>
@@ -68,23 +76,81 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
                     <li>Cart</li>
                   </a>
                 </Link>
-                <Link href="/customer/orders">
-                  <a>
-                    <li>Orders</li>
-                  </a>
-                </Link>
-                <Link href="/customer#contact">
+                {Token && role && (
+                  <Link href="/customer/orders">
+                    <a>
+                      <li>Orders</li>
+                    </a>
+                  </Link>
+                )}
+                {/* <Link href="/customer#contact">
                   <a>
                     <li>Help</li>
                   </a>
-                </Link>
+                </Link> */}
                 <Link href="/stores">
                   <a>
                     <li>Stores</li>
                   </a>
                 </Link>
               </ul>
-              <h1>Categories</h1>
+
+              <div>
+                <Accordion allowToggle>
+                  <AccordionItem>
+                    <AccordionHeader>
+                      <Box flex="1" textAlign="left">
+                        <h1>Main Categories</h1>
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionHeader>
+                    <AccordionPanel pb={4}>
+                      {mainCategoriesList.map((m, i) => (
+                        <ul key={i}>
+                          <Link href={`/main?category=${m}`}>
+                            <a>
+                              <li>{m}</li>
+                            </a>
+                          </Link>
+                        </ul>
+                      ))}
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                  <AccordionItem>
+                    <AccordionHeader>
+                      <Box flex="1" textAlign="left">
+                        <h1>Other Categories</h1>
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionHeader>
+                    <AccordionPanel pb={4}>
+                      {categoriesList.map((c, i) => (
+                        <ul key={i}>
+                          <Link href={`/category?category=${c}`}>
+                            <a>
+                              <li>{c}</li>
+                            </a>
+                          </Link>
+                        </ul>
+                      ))}
+                    </AccordionPanel>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+
+              {/* <h1>Categories</h1>
+              {mainCategoriesList.map((m, i) => (
+                <ul key={i}>
+                  <Link href={`/main?category=${m}`}>
+                    <a>
+                      <li>{m}</li>
+                    </a>
+                  </Link>
+                </ul>
+              ))} */}
+
+              {/* <h1>Sub Categories</h1>
 
               {categoriesList.map((c, i) => (
                 <ul key={i}>
@@ -94,17 +160,7 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
                     </a>
                   </Link>
                 </ul>
-              ))}
-
-              {mainCategoriesList.map((m, i) => (
-                <ul key={i}>
-                  <Link href={`/main?category=${m}`}>
-                    <a>
-                      <li>{m}</li>
-                    </a>
-                  </Link>
-                </ul>
-              ))}
+              ))} */}
             </nav>
           </DrawerBody>
         </DrawerContent>
@@ -112,14 +168,23 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
       <style jsx>{`
         .navigation ul li {
           padding: 10px;
-          border-bottom: 1px solid var(--lightblue);
+          /* border-bottom: 1px solid var(--lightblue); */
+          font-size: 0.9rem;
+          font-weight: 400;
         }
 
         .navigation h1 {
-          color: var(--text);
-          font-weight: bold;
+          /* color: var(--text); */
+          font-weight: 600;
           padding: 8px;
           text-align: center;
+          font-size: 1.1rem;
+        }
+
+        @media only screen and (min-width: 700px) {
+          .navigation ul li {
+            font-size: 1rem;
+          }
         }
       `}</style>
     </Drawer>
