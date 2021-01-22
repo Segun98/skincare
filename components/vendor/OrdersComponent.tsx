@@ -171,7 +171,7 @@ export const OrdersComponent: React.FC<Iprops> = ({ limit }) => {
                     <span>{o.order_id}</span>
                   </td>
                   <td>{o.name}</td>
-                  <td>{o.price}</td>
+                  <td>{Commas(o.price)}</td>
                   <td>{o.quantity}</td>
                   <td>{Commas(o.price * o.quantity)}</td>
                   <td>{o.request || "none"}</td>
