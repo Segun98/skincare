@@ -23,6 +23,9 @@ import {
 } from "@chakra-ui/core";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
+import axios from "axios";
+import { restEndpoint } from "@/utils/client";
+import { useUser } from "@/Context/UserProvider";
 
 interface Props {
   lookup: any;
@@ -32,9 +35,10 @@ interface Props {
 export const OrderPage: React.FC<Props> = ({ lookup, Token }) => {
   const toast = useToast();
   const router = useRouter();
+  const { User } = useUser();
 
   //cancel order
-  async function handleOrderCancel(order_id: string) {
+  async function handleOrderCancel(order_id: string, orders: Orders[]) {
     const cancelOrder = gql`
       mutation cancelOrder($order_id: ID!, $canceled_reason: String) {
         cancelOrder(order_id: $order_id, canceled_reason: $canceled_reason) {
@@ -55,11 +59,19 @@ export const OrderPage: React.FC<Props> = ({ lookup, Token }) => {
 
       if (data) {
         mutate(`getCustomerOrders`);
+
         toast({
           title: "Order Has Been Cancelled",
           status: "info",
           position: "top",
         });
+
+        //emails
+        toCustomer(order_id);
+        //incase multiple vendors
+        for await (const o of orders) {
+          toVendors(order_id, o.vendor_email);
+        }
       }
       if (error) {
         let msg = error.response.errors[0].message || error.message;
@@ -70,6 +82,30 @@ export const OrderPage: React.FC<Props> = ({ lookup, Token }) => {
           position: "top",
         });
       }
+    }
+  }
+
+  //canceled orders emails
+  async function toCustomer(orderId: string) {
+    try {
+      await axios.post(`${restEndpoint}/cancel_customer`, {
+        to: User.email,
+        name: User.first_name,
+        orderId,
+      });
+    } catch (error) {
+      //eyahh. Make dem check their orders page
+    }
+  }
+
+  async function toVendors(orderId: string, email: string) {
+    try {
+      await axios.post(`${restEndpoint}/cancel_vendor`, {
+        to: email,
+        orderId,
+      });
+    } catch (error) {
+      //eyahh. make dem check their dashboard
     }
   }
 
@@ -217,7 +253,7 @@ export const OrderPage: React.FC<Props> = ({ lookup, Token }) => {
                             ? true
                             : false
                         }
-                        onClick={() => handleOrderCancel(o)}
+                        onClick={() => handleOrderCancel(o, lookup[o])}
                       >
                         Cancel
                       </Button>
