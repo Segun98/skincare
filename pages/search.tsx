@@ -86,7 +86,7 @@ const Search = ({ products, error }: Iprops) => {
         <section className="search-results">
           <h1>Search Results... ({products && products.length} items)</h1>
           <Text as="div" mb="2" textAlign="center">
-            <Menu>
+            <Menu autoSelect={false}>
               <MenuButton
                 as={Button}
                 size="sm"

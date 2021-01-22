@@ -51,7 +51,7 @@ export function screenWidth(): number | 600 {
 }
 
 export const categoriesList = [
-  "Treatment ",
+  "Treatment",
   "Growth Enhancers",
   "Moisturizers",
   "Growth Oils",

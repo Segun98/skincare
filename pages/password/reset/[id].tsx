@@ -93,6 +93,7 @@ export const Reset = () => {
           position: "top",
         });
         setSuccess(true);
+        router.push("/");
         return;
       }
 

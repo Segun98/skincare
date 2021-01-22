@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/core";
 import { ProductsRes } from "@/Typescript/types";
 import { Layout } from "@/components/Layout";
-import { Commas } from "@/utils/helpers";
+import { Commas, mainCategoriesList } from "@/utils/helpers";
 import Link from "next/link";
 import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
 import Head from "next/head";
@@ -340,7 +340,7 @@ const Product = ({ product, error }: response) => {
                         color: "var(--deepblue)",
                       }}
                     >
-                      <Link href="/category?category=Props">
+                      <Link href={`/main?category=${mainCategoriesList[0]}`}>
                         <a>
                           suggested category <Icon name="external-link" />
                         </a>
