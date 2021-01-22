@@ -5,7 +5,7 @@ import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
 import { Layout } from "@/components/Layout";
 import { ProductsRes } from "@/Typescript/types";
 import { graphQLClient } from "@/utils/client";
-import { Commas, companyName } from "@/utils/helpers";
+import { Commas, companyName, categoriesLookup } from "@/utils/helpers";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { gql } from "graphql-request";
@@ -60,6 +60,24 @@ const Main = ({ products, error }: Iprops) => {
   const toast = useToast();
   const router: any = useRouter();
 
+  const [subCategory, setSubCategory] = useState([]);
+
+  function loookupCategory() {
+    let lookup = categoriesLookup[router.query.category] || [];
+
+    if (lookup.length === 0) {
+      let defaultCategory = categoriesLookup["Default List"];
+      setSubCategory(defaultCategory);
+      return;
+    }
+
+    setSubCategory(lookup);
+  }
+
+  useEffect(() => {
+    loookupCategory();
+  }, [router]);
+
   //pagination
   const [page, setpage] = useState(parseInt(router.query.p) || 1);
   //prevent useEffect from running on firts render
@@ -90,6 +108,16 @@ const Main = ({ products, error }: Iprops) => {
               position: "top",
             })}
         </>
+
+        <section className="sub-category">
+          {subCategory.map((s, i) => (
+            <div key={i}>
+              <Link href={`/category?category=${s}`}>
+                <a>{s}</a>
+              </Link>
+            </div>
+          ))}
+        </section>
 
         <section className="category-results">
           <h1>
@@ -170,7 +198,52 @@ const Main = ({ products, error }: Iprops) => {
         {error && <div className="space"></div>}
         <PurchaseSteps />
       </div>
-      <style jsx>{``}</style>
+      <style jsx>{`
+        .sub-category {
+          overflow: auto;
+          display: flex;
+          margin: 10px auto;
+          width: 99%;
+          text-align: center;
+        }
+
+        .sub-category div {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        /* scroll bar styling  */
+        .sub-category::-webkit-scrollbar {
+          height: 5px;
+        }
+
+        /* Track */
+        .sub-category::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 5px grey;
+          border-radius: 8px;
+        }
+
+        /* Handle */
+        .sub-category::-webkit-scrollbar-thumb {
+          background: var(--primary);
+          border-radius: 8px;
+        }
+
+        /* Handle on hover */
+        .sub-category::-webkit-scrollbar-thumb:hover {
+          background: #b30000;
+        }
+
+        @media only screen and (min-width: 700px) {
+          .sub-category {
+            width: 90%;
+          }
+          .sub-category div {
+            margin: 0 12px;
+            font-size: 0.9rem;
+          }
+        }
+      `}</style>
     </Layout>
   );
 };
