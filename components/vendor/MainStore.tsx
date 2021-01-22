@@ -178,7 +178,10 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
               <div className="store-item" key={p.id}>
                 {/* Inventory status , visible only to store owner (user.id === user.jwt_user_id) */}
                 {user && user.id === user.jwt_user_id ? (
-                  <div className="product-status pl-3">
+                  <div
+                    className="product-status pl-3"
+                    style={{ color: "var(--primary)" }}
+                  >
                     {p.available_qty === 0 || p.in_stock === "false" ? (
                       <span style={{ color: "red", fontWeight: "bold" }}>
                         Out of stock!!
