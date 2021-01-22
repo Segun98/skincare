@@ -102,21 +102,21 @@ export const Footer = () => {
         <section className="footer-item">
           <ul style={{ display: "flex", alignItems: "center" }}>
             <li>
-              <Link href="https://twitter.com/tadlace_">
+              <Link href="https://twitter.com/tadlaceStore">
                 <a target="_blank" rel="noopener noreferrer">
                   <img src="/twitter.svg" alt="twitter icon" />
                 </a>
               </Link>{" "}
             </li>
             <li>
-              <Link href="https://twitter.com/tadlace_">
+              <Link href="https://twitter.com/tadlaceStore">
                 <a>
                   <img src="/linkedin.svg" alt="linkedin icon" />
                 </a>
               </Link>{" "}
             </li>
             <li>
-              <Link href="https://twitter.com/tadlace_">
+              <Link href="https://twitter.com/tadlaceStore">
                 <a>
                   <img src="/facebook.svg" alt="facebook icon" />
                 </a>
