@@ -20,7 +20,7 @@ const Home = () => {
       <section className="home-vendor-onboarding">
         <h1>Sell On Tadlace</h1>
         <div>
-          <Link href="/become-a-vendor">
+          <Link href="/sell">
             <a>
               Learn More
               <Icon name="external-link" />
