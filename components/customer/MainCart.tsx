@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteFromCart, updateCart } from "@/graphql/customer";
 import { cartItems } from "@/redux/features/cart/fetchCart";
-import { Cart } from "@/Typescript/types";
+import { Cart, UsersRes } from "@/Typescript/types";
 import { Commas, nairaSign } from "@/utils/helpers";
 import { useMutation } from "@/utils/useMutation";
 import { useRouter } from "next/router";
@@ -13,8 +13,9 @@ import { useToken } from "@/Context/TokenProvider";
 interface IProps {
   cart: Cart[];
   setLoadingCart: (boolean) => void;
+  User: UsersRes;
 }
-export const MainCart: React.FC<IProps> = ({ cart, setLoadingCart }) => {
+export const MainCart: React.FC<IProps> = ({ cart, setLoadingCart, User }) => {
   const toast = useToast();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -32,7 +33,12 @@ export const MainCart: React.FC<IProps> = ({ cart, setLoadingCart }) => {
       quantity,
     });
     if (data) {
-      dispatch(cartItems({ customer_id: Cookies.get("customer_id") }));
+      dispatch(
+        cartItems({
+          customer_id: Cookies.get("customer_id"),
+          user_id: User["id"] ? User.id : null,
+        })
+      );
       setLoadingCart(false);
       toast({
         title: "Quantity Updated",
@@ -62,7 +68,12 @@ export const MainCart: React.FC<IProps> = ({ cart, setLoadingCart }) => {
       id,
     });
     if (data.deleteFromCart) {
-      dispatch(cartItems({ customer_id: Cookies.get("customer_id") }));
+      dispatch(
+        cartItems({
+          customer_id: Cookies.get("customer_id"),
+          user_id: User["id"] ? User.id : null,
+        })
+      );
       setLoadingCart(false);
       toast({
         title: "Item Removed From Cart",

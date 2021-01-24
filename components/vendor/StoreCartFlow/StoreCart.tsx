@@ -9,6 +9,7 @@ import { useMutation } from "@/utils/useMutation";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { useToken } from "@/Context/TokenProvider";
+import { useUser } from "@/Context/UserProvider";
 
 interface IProps {
   cart: Cart[];
@@ -19,6 +20,7 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
   const router = useRouter();
   const { Token } = useToken();
   const role = Cookies.get("role");
+  const { User } = useUser();
 
   //cart items subtotal
   const subTotal = cart.reduce((a, c) => a + c.product.price * c.quantity, 0);
@@ -30,7 +32,12 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
       quantity,
     });
     if (data) {
-      dispatch(cartItems({ customer_id: Cookies.get("customer_id") }));
+      dispatch(
+        cartItems({
+          customer_id: Cookies.get("customer_id"),
+          user_id: User["id"] ? User.id : null,
+        })
+      );
       toast({
         title: "Quantity Updated",
         status: "info",
@@ -55,7 +62,12 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
       id,
     });
     if (data.deleteFromCart) {
-      dispatch(cartItems({ customer_id: Cookies.get("customer_id") }));
+      dispatch(
+        cartItems({
+          customer_id: Cookies.get("customer_id"),
+          user_id: User["id"] ? User.id : null,
+        })
+      );
       toast({
         title: "Item Removed From Cart",
         status: "info",

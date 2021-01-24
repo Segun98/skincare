@@ -33,7 +33,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
 
   //fetch cart items
   useEffect(() => {
-    if (!Cookies.get("customer_id")) {
+    if (!Cookies.get("customer_id") && !User["id"]) {
       return;
     }
     dispatch(
@@ -42,7 +42,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
         user_id: User["id"] ? User.id : null,
       })
     );
-  }, [cartLength]);
+  }, [cartLength, User]);
 
   // Delete Product
   const handleDelete = async (id, creator_id, name) => {

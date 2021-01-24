@@ -65,10 +65,15 @@ export const AddToCart: React.FC<Iprops> = ({
     const { data, error } = await useMutation(addToCart, variables, Token);
     if (data) {
       setLoading(false);
-      dispatch(cartItems({ customer_id: Cookies.get("customer_id") }));
+      dispatch(
+        cartItems({
+          customer_id: Cookies.get("customer_id"),
+          user_id: User["id"] ? User.id : null,
+        })
+      );
       toast({
         title: "Item Added to Cart!",
-        description: `Your Item has been added to cart, proceed to checkout`,
+        description: `Proceed to checkout`,
         status: "success",
         isClosable: true,
         duration: 7000,
@@ -83,6 +88,7 @@ export const AddToCart: React.FC<Iprops> = ({
           description: "Redirecting to cart...",
           isClosable: true,
           status: "info",
+          duration: 3000,
         });
         router.push("/customer/cart").then(() => window.scrollTo(0, 0));
 
@@ -119,14 +125,14 @@ export const AddToCart: React.FC<Iprops> = ({
       isLoading={loading ? true : false}
       style={{ backgroundColor: "var(--deepblue" }}
       onClick={() => {
-        if (role === "vendor") {
-          addToLocalStorage();
-          toast({
-            title: "Please login as a customer to use cart",
-            status: "info",
-          });
-          return;
-        }
+        // if (role === "vendor") {
+        //   addToLocalStorage();
+        //   toast({
+        //     title: "Please login as a customer to use cart",
+        //     status: "info",
+        //   });
+        //   return;
+        // }
 
         if (product.in_stock === "false") {
           addToLocalStorage();

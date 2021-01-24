@@ -18,7 +18,6 @@ interface Iprops {
 export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
   const toast = useToast();
   const { Token } = useToken();
-  const role = Cookies.get("role");
   const dispatch = useDispatch();
   const { User } = useUser();
 
@@ -51,13 +50,18 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
 
     const { data, error } = await useMutation(addToCart, variables, Token);
     if (data) {
-      dispatch(cartItems({ customer_id: Cookies.get("customer_id") }));
+      dispatch(
+        cartItems({
+          customer_id: Cookies.get("customer_id"),
+          user_id: User["id"] ? User.id : null,
+        })
+      );
       toast({
         title: "Item Added to Cart!",
-        description: `Your Item has been added to cart, proceed to checkout`,
+        description: `Proceed to checkout`,
         status: "success",
         duration: 3000,
-        position: "top",
+        position: "bottom",
         isClosable: true,
       });
       onOpen();
@@ -101,14 +105,14 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
     <button
       aria-label="add to cart"
       onClick={() => {
-        if (role === "vendor") {
-          addToLocalStorage();
-          toast({
-            title: "Please login as a customer to use cart",
-            status: "info",
-          });
-          return;
-        }
+        // if (role === "vendor") {
+        //   addToLocalStorage();
+        //   toast({
+        //     title: "Please login as a customer to use cart",
+        //     status: "info",
+        //   });
+        //   return;
+        // }
 
         if (product.in_stock === "false") {
           addToLocalStorage();
