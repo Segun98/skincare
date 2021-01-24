@@ -217,26 +217,6 @@ const Main = ({ products, error }: Iprops) => {
           color: blue;
         }
 
-        /* .sub-category::-webkit-scrollbar {
-          height: 5px;
-        }
-
-        /* Track */
-        /* .sub-category::-webkit-scrollbar-track {
-          box-shadow: inset 0 0 5px grey;
-          border-radius: 8px;
-        } */
-
-        /* Handle */
-        /* .sub-category::-webkit-scrollbar-thumb {
-          background: var(--primary);
-          border-radius: 8px;
-        } */
-
-        /* Handle on hover */
-        /* .sub-category::-webkit-scrollbar-thumb:hover {
-          background: #b30000;
-        } */
         @media only screen and (min-width: 700px) {
           .sub-category {
             width: 90%;
@@ -244,6 +224,35 @@ const Main = ({ products, error }: Iprops) => {
           .sub-category li {
             margin: 0 12px;
             font-size: 0.9rem;
+          }
+        }
+
+        @media only screen and (min-width: 1200px) {
+          .sub-category {
+            width: 80%;
+          }
+          .sub-category li {
+            font-size: 1rem;
+          }
+          .sub-category::-webkit-scrollbar {
+            height: 5px;
+          }
+
+          /* Track */
+          .sub-category::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 8px;
+          }
+
+          /* Handle */
+          .sub-category::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 8px;
+          }
+
+          /* Handle on hover */
+          .sub-category::-webkit-scrollbar-thumb:hover {
+            background: #b30000;
           }
         }
       `}</style>
