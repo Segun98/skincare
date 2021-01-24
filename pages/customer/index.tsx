@@ -14,11 +14,11 @@ const Index = () => {
         <header>
           <div className="split">
             <div className="left">
-              <h1>Start shopping for your party items on Partystore today!</h1>
+              <h1>Start shopping for your party items on Tadlace today!</h1>
               <p>
                 We provide quality products and top notch customer service to
                 provide you an amazing shopping experience. start exploring our
-                store, throw the party of the year!
+                store today
               </p>
               <Link href="/customer/register">
                 <a>Get Started</a>
