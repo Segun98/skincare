@@ -31,9 +31,15 @@ const Checkout = () => {
   const [request, setRequest] = useState("");
 
   //cart data
-  const [data, loading, error] = useQuery(getCartItemsCheckoutPage, {
-    customer_id: Cookies.get("customer_id"),
-  });
+  const [data, loading, error] = useQuery(
+    getCartItemsCheckoutPage,
+    {
+      customer_id: Cookies.get("customer_id"),
+      user_id: User["id"] ? User.id : null,
+    },
+    "",
+    User
+  );
   let cart: Cart[] = data && data.getCartItems;
 
   //cart items subtotal

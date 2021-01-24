@@ -21,18 +21,18 @@ import { Commas } from "@/utils/helpers";
 import { addToCart } from "@/graphql/customer";
 import { cartItems } from "@/redux/features/cart/fetchCart";
 import { useDispatch } from "react-redux";
-import { useRouter } from "next/router";
 import { updateProfile } from "@/graphql/vendor";
 import { MutationAddToCartArgs } from "@/Typescript/types";
 import { v4 as uuidv4 } from "uuid";
+import { useRouter } from "next/router";
 
 export const Account = () => {
-  const router = useRouter();
   const { Token } = useToken();
   const { User, setUserDependency, userDependency } = useUser();
   const toast = useToast();
   const role = Cookies && Cookies.get("role");
   const dispatch = useDispatch();
+  const router = useRouter();
 
   //Input Fileds Values
   const [readOnly, setReadOnly] = useState(true);
@@ -48,15 +48,13 @@ export const Account = () => {
   useEffect(() => {
     if (User["email"] && User.role === "customer") {
       if (!User.phone || !User.customer_address) {
-        setTimeout(() => {
-          toast({
-            title: "Please add your contact and shipping address",
-            status: "info",
-            duration: 5000,
-            isClosable: true,
-            position: "top-right",
-          });
-        }, 2000);
+        toast({
+          title: "Please add your contact and shipping address",
+          status: "info",
+          duration: 5000,
+          isClosable: true,
+          position: "top-right",
+        });
       }
     }
   }, [User, Token]);
@@ -138,25 +136,31 @@ export const Account = () => {
     if (data) {
       toast({
         title: "Item Added to Cart!",
-        description: `Your Item has been added to cart, proceed to checkout`,
+        description: `Proceed to checkout`,
         status: "success",
       });
       //update store
-      dispatch(cartItems(Token));
+      dispatch(
+        cartItems({
+          customer_id: Cookies.get("customer_id"),
+          user_id: User["id"] ? User.id : null,
+        })
+      );
 
       //delete from saved item after adding to Cart
       const newSaved = savedItem.filter((s) => s.product_id !== product_id);
       setSavedItem(newSaved);
-
-      router.push("/customer/cart").then(() => window.scrollTo(0, 0));
     }
     if (error) {
       if (error.response?.errors[0].message === "Item is already in Cart") {
         toast({
           title: "Item Is Already In Cart",
-          description: "Please Visit your Cart page to checkout",
+          description: "Redirecing...",
           status: "info",
+          duration: 3000,
         });
+        router.push("/customer/cart").then(() => window.scrollTo(0, 0));
+
         return;
       }
       toast({

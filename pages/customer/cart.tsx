@@ -22,8 +22,9 @@ export const CustomerCart = () => {
   const role = Cookies.get("role");
   const { User } = useUser();
 
+  //prevent unecessary request if no customer_id or user id
   useEffect(() => {
-    if (!Cookies.get("customer_id")) {
+    if (!Cookies.get("customer_id") && !User["id"]) {
       return;
     }
     dispatch(
@@ -32,7 +33,7 @@ export const CustomerCart = () => {
         user_id: User["id"] ? User.id : null,
       })
     );
-  }, [Token]);
+  }, [Token, User]);
 
   //from redux feature - fetchCart
   const { loading, cart, error } = useSelector<DefaultRootState, IinitialState>(
@@ -114,7 +115,7 @@ export const CustomerCart = () => {
 
         {/* CART CONTENT  */}
         {cart && cart.length > 0 && (
-          <MainCart cart={cart} setLoadingCart={setLoadingCart} />
+          <MainCart cart={cart} setLoadingCart={setLoadingCart} User={User} />
         )}
 
         {/* NETWORK ERROR  */}
