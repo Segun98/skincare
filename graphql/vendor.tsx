@@ -34,6 +34,7 @@ export const STORE = gql`
       pending
       online
       business_name
+      business_name_slug
       business_image
       business_bio
       jwt_user_id
