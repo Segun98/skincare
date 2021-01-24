@@ -109,15 +109,15 @@ const Main = ({ products, error }: Iprops) => {
             })}
         </>
 
-        <section className="sub-category">
+        <ul className="sub-category">
           {subCategory.map((s, i) => (
-            <div key={i}>
+            <li key={i}>
               <Link href={`/category?category=${s}`}>
                 <a>{s}</a>
               </Link>
-            </div>
+            </li>
           ))}
-        </section>
+        </ul>
 
         <section className="category-results">
           <h1>
@@ -202,43 +202,46 @@ const Main = ({ products, error }: Iprops) => {
         .sub-category {
           overflow: auto;
           display: flex;
+          justify-content: space-between;
           margin: 10px auto;
           width: 99%;
           text-align: center;
         }
 
-        .sub-category div {
+        .sub-category li {
           margin: 0 5px;
           font-size: 0.8rem;
+          display: inline-block;
+          white-space: nowrap;
+          color: var(--green);
+          color: blue;
         }
 
-        /* scroll bar styling  */
-        .sub-category::-webkit-scrollbar {
+        /* .sub-category::-webkit-scrollbar {
           height: 5px;
         }
 
         /* Track */
-        .sub-category::-webkit-scrollbar-track {
+        /* .sub-category::-webkit-scrollbar-track {
           box-shadow: inset 0 0 5px grey;
           border-radius: 8px;
-        }
+        } */
 
         /* Handle */
-        .sub-category::-webkit-scrollbar-thumb {
+        /* .sub-category::-webkit-scrollbar-thumb {
           background: var(--primary);
           border-radius: 8px;
-        }
+        } */
 
         /* Handle on hover */
-        .sub-category::-webkit-scrollbar-thumb:hover {
+        /* .sub-category::-webkit-scrollbar-thumb:hover {
           background: #b30000;
-        }
-
+        } */
         @media only screen and (min-width: 700px) {
           .sub-category {
             width: 90%;
           }
-          .sub-category div {
+          .sub-category li {
             margin: 0 12px;
             font-size: 0.9rem;
           }
