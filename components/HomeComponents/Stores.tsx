@@ -49,26 +49,22 @@ export const StoresHome = () => {
           <div className="stores-wrap">
             {stores.map((s, i) => (
               <div className="store" key={i}>
-                <div
-                  className="head"
-                  tabIndex={0}
-                  role="button"
-                  aria-label="visit store"
-                  onClick={() =>
-                    router
-                      .push(`/store/${s.business_name_slug}`)
-                      .then(() => window.scrollTo(0, 0))
-                  }
-                >
-                  <img
-                    src={s.business_image || i > 1 ? images[0] : images[i]}
-                    alt={s.business_name}
-                  />
-                  <div className="about">
-                    <h2>{s.business_name}</h2>
-                    <h3>{truncate(s.business_bio, 60)}</h3>
-                  </div>
-                </div>
+                <Link href={`/store/${s.business_name_slug}`}>
+                  <a
+                    className="head"
+                    aria-label={`visit ${s.business_name} store`}
+                  >
+                    <img
+                      src={s.business_image || i > 1 ? images[0] : images[i]}
+                      alt={s.business_name}
+                    />
+                    <div className="about">
+                      <h2>{s.business_name}</h2>
+                      <h3>{truncate(s.business_bio, 60)}</h3>
+                    </div>
+                  </a>
+                </Link>
+
                 {!s.homeProducts ||
                   (s.homeProducts.length === 0 && (
                     <p style={{ color: "var(--primary)", padding: "20px 0" }}>
@@ -77,26 +73,20 @@ export const StoresHome = () => {
                   ))}
                 <section className="products">
                   {s.homeProducts.map((p, i) => (
-                    <div
-                      className="product"
-                      key={i}
-                      tabIndex={0}
-                      role="button"
-                      aria-label="link to product"
-                      onClick={() =>
-                        router
-                          .push(`/product/${p.name_slug}`)
-                          .then(() => window.scrollTo(0, 0))
-                      }
-                    >
-                      <img src={p.images[0]} alt={p.name} loading="lazy" />
-                      <div className="content">
-                        <h4>{p.name}</h4>
-                        <h5>
-                          {nairaSign} {Commas(p.price)}
-                        </h5>
-                      </div>
-                    </div>
+                    <Link href={`/product/${p.name_slug}`} key={i}>
+                      <a
+                        className="product"
+                        aria-label={`link to a product named ${p.name}`}
+                      >
+                        <img src={p.images[0]} alt={p.name} loading="lazy" />
+                        <div className="content">
+                          <h4>{p.name}</h4>
+                          <h5>
+                            {nairaSign} {Commas(p.price)}
+                          </h5>
+                        </div>
+                      </a>
+                    </Link>
                   ))}
                 </section>
               </div>
