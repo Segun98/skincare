@@ -40,16 +40,17 @@ const Sell = () => {
         </header>
 
         <section className="how-it-works">
-          <h1>How PartyStore Works</h1>
+          <h1>How {companyName} Works</h1>
           <div className="wrap">
             <div className="split">
               <h2>List your store with us</h2>
               <p>
                 Sign up and start adding your products to your public store page
+                for free
               </p>
             </div>
             <div className="split">
-              <h2>Accept Orders</h2>
+              <h2>Recieve Orders</h2>
               <p>
                 Start acknowledging orders from your comprehensive dashboard
               </p>
@@ -57,8 +58,15 @@ const Sell = () => {
             <div className="split">
               <h2>Delivery</h2>
               <p>
-                A delivery person comes to pick up the product(s) you have
-                accepted. It's that simple.
+                A delivery person comes to pick up the product(s) customers have
+                ordered. It's that simple.
+              </p>
+            </div>
+            <div className="split">
+              <h2>Payment</h2>
+              <p>
+                Once an order has been delivered to customers, your wallet gets
+                funded instantly and is available for withdrawal anytime
               </p>
             </div>
           </div>
@@ -103,9 +111,9 @@ const Sell = () => {
               <div className="split">
                 <h1>Your Public Store</h1>
                 <p>
-                  All vendors have a public store page with their business name
-                  in the web address. Customers can easily purchase your
-                  products from this SEO backed page.
+                  Get a public store page with a unique url, customers can
+                  easily purchase your products from this SEO backed page. Your
+                  store and products are promoted on our main maketplace
                 </p>
               </div>
             </div>
