@@ -76,7 +76,7 @@ const Sell = () => {
           <div className="wrap">
             <div className="dashboard">
               <div className="split">
-                <img src="/dashboard-mob.png" alt="vendor dashboard" />
+                <img src="/dashboard.png" alt="vendor dashboard" />
               </div>
               <div className="split">
                 <h1>Your Dashboard</h1>
@@ -100,13 +100,13 @@ const Sell = () => {
               </div>
 
               <div className="split">
-                <img src="/orders-page-mob.png" alt="vendor orders" />
+                <img src="/orders-page.png" alt="vendor orders" />
               </div>
             </div>
 
             <div className="store">
               <div className="split">
-                <img src="/vendor-store-mob.png" alt="vendor public store" />
+                <img src="/td-store.png" alt="vendor public store" />
               </div>
               <div className="split">
                 <h1>Your Public Store</h1>
