@@ -65,10 +65,40 @@ const Store = ({ user, error }: Iprops) => {
       <Head>
         <title>{user ? user.business_name : "Error"} | Tadlace</title>
         <meta name="description" content={user ? user.business_bio : ""} />
+        <meta name="author" content={user.business_name} />
+        <meta
+          name="twitter:title"
+          content={`Shop on ${user.business_name} | ${user.business_bio}`}
+        />
+        <meta name="twitter:image" content={user.business_image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`https://tadlace.vercel.app/store/${user.business_name_slug}`}
+        />
+        <meta property="og:title" content={user.business_name} />
+        <meta property="og:image" content={user.business_image} />
+        <meta property="og:site_name" content={user.business_name} />
+        <link
+          rel="canonical"
+          href={`https://tadlace.vercel.app/store/${user.business_name_slug}`}
+        />
         <script
           async
           src="https://kit.fontawesome.com/c772bfb479.js"
           crossOrigin="anonymous"
+        ></script>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charSet="utf-8"
+        ></script>
+        <script
+          async
+          defer
+          crossOrigin="anonymous"
+          src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"
         ></script>
       </Head>
       {error &&

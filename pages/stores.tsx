@@ -91,6 +91,10 @@ const Stores = () => {
     <Layout>
       <Head>
         <title>Stores | {companyName}</title>
+        <meta
+          name="description"
+          content="Find stores on Tadlace. Buy quality Face, Body and Hair Care products"
+        />
       </Head>
       <>
         {error &&
@@ -105,7 +109,7 @@ const Stores = () => {
         <section className="home-vendor-onboarding">
           <h1>Find Your Favourite Stores</h1>
           <div>
-            <Link href="/become-a-vendor">
+            <Link href="/sell">
               <a>
                 Open Your Store
                 <Icon name="external-link" />

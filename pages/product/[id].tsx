@@ -75,14 +75,14 @@ const Product = ({ product, error }: response) => {
             <meta property="og:type" content="website" />
             <meta
               property="og:url"
-              content={`https://partystore.vercel.app/product/${product.name_slug}`}
+              content={`https://tadlace.vercel.app/product/${product.name_slug}`}
             />
             <meta property="og:title" content={product.name} />
             <meta property="og:image" content={product.images[0]} />
             <meta property="og:site_name" content={product.name} />
             <link
               rel="canonical"
-              href={`https://partystore.vercel.app/product/${product.name_slug}`}
+              href={`https://tadlace.vercel.app/product/${product.name_slug}`}
             />
             <script
               async
@@ -201,7 +201,7 @@ const Product = ({ product, error }: response) => {
                               >
                                 <a
                                   target="_blank"
-                                  href={`https://www.facebook.com/sharer/sharer.php?u=https://partystore.vercel.app/product/${product.name_slug}`}
+                                  href={`https://www.facebook.com/sharer/sharer.php?u=https://tadlace.vercel.app/product/${product.name_slug}`}
                                   className="fb-xfbml-parse-ignore"
                                 >
                                   <img
