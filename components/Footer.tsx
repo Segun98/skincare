@@ -56,7 +56,7 @@ export const Footer = () => {
           <h1>Vendor</h1>
           <ul>
             <li>
-              <Link href="/become-a-vendor">
+              <Link href="/sell">
                 <a>Become a Vendor</a>
               </Link>{" "}
             </li>

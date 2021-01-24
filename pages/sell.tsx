@@ -5,11 +5,19 @@ import { Text } from "@chakra-ui/core";
 import { ContactForm } from "@/components/ContactForm";
 import { companyName } from "@/utils/helpers";
 
-const BecomeAVendor = () => {
+const Sell = () => {
   return (
     <Layout>
       <Head>
         <title>Become a Vendor | {companyName}</title>
+        <meta
+          name="description"
+          content="Become a vendor on Tadlace, start selling and boost your sales. The number one #1 market place for Skin care products, Male and Female, in Lagos, Nigeria"
+        />
+        <meta
+          name="keywords"
+          content="Sell on Tadlace, become a vendor tadlace, Skin Care,Beauty, E-Commerce, Online Store, Market, Lagos"
+        />
       </Head>
       <div className="become-a-vendor">
         <header>
@@ -122,4 +130,4 @@ const BecomeAVendor = () => {
   );
 };
 
-export default BecomeAVendor;
+export default Sell;
