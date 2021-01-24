@@ -62,7 +62,11 @@ const Search = ({ products, error }: Iprops) => {
     if (firstRender.current === 0) {
       return;
     }
-    router.push(`/search?query=${router.query.query}&p=${page}`);
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, p: page },
+    });
+    // router.push(`/search?query=${router.query.query}&p=${page}`);
   }, [page]);
 
   return (
