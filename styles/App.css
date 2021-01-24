@@ -1002,6 +1002,13 @@ Class names accross components can be the same but they are wrapped by a unique 
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-size: 0.8rem;
+}
+
+@media only screen and (min-width: 700px) {
+  .main-store header .store-bio {
+    font-size: 0.9rem;
+  }
 }
 
 .main-store header .store-bio img {
@@ -1018,6 +1025,37 @@ Class names accross components can be the same but they are wrapped by a unique 
   margin-right: 5px;
   height: 20px;
   width: 20px;
+}
+
+.main-store header .share {
+  margin: 10px 5px 10px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  cursor: pointer;
+}
+
+.main-store header .share .share-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main-store header .share .share-btns div {
+  margin: 0 5px;
+}
+
+.main-store header .share .share-btns .fb-share-button {
+  margin-top: -5px;
 }
 
 .main-store .store-products {

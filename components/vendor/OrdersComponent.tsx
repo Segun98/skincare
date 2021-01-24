@@ -271,7 +271,7 @@ export const OrdersComponent: React.FC<Iprops> = ({ limit }) => {
         td {
           font-size: 0.8rem;
           text-align: center;
-          padding: 5px 0;
+          padding: 5px;
         }
         .name {
           display: flex;

@@ -30,6 +30,11 @@
         .store-bio {
             margin: 10px 0;
             display: flex;
+            font-size: 0.8rem;
+
+            @media only screen and (min-width:700px) {
+                font-size: 0.9rem;
+            }
 
             img {
                 margin-right: 5px;
@@ -45,6 +50,27 @@
                 margin-right: 5px;
                 height: 20px;
                 width: 20px
+            }
+        }
+
+        .share {
+            margin: 10px 5px 10px 0;
+            display: flex;
+            align-items: baseline;
+            cursor: pointer;
+
+            .share-btns {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                div {
+                    margin: 0 5px
+                }
+
+                .fb-share-button {
+                    margin-top: -5px;
+                }
             }
         }
     }
@@ -166,6 +192,7 @@
             .product-status {
                 font-size: 0.9rem;
             }
+
         }
 
         @media only screen and (min-width: 1000px) {
