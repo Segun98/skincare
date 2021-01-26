@@ -191,3 +191,29 @@ export const updateProfile = gql`
     }
   }
 `;
+
+export const withdrawalsQuery = gql`
+  query withdrawals($user_id: ID!) {
+    withdrawals(user_id: $user_id) {
+      message
+    }
+  }
+`;
+
+export const withdrawalMutation = gql`
+  mutation withdraw(
+    $user_id: ID!
+    $amount: Int!
+    $recipient: String!
+    $transfer_id: String!
+  ) {
+    withdraw(
+      user_id: $user_id
+      amount: $amount
+      recipient: $recipient
+      transfer_id: $transfer_id
+    ) {
+      message
+    }
+  }
+`;

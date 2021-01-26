@@ -213,6 +213,23 @@ export const Newitem = () => {
                       </div>
 
                       <div className="form-item">
+                        <FormLabel htmlFor="category">Main Category</FormLabel>
+                        <Select
+                          defaultValue={mainCategory}
+                          onChange={(e) => {
+                            setmainCategory(e.target.value);
+                          }}
+                        >
+                          <option defaultValue="">--select--</option>
+                          {mainCategoriesList.map((c, i) => (
+                            <option key={i} defaultValue={c}>
+                              {c}
+                            </option>
+                          ))}
+                        </Select>
+                      </div>
+
+                      <div className="form-item">
                         <FormLabel htmlFor="category">
                           Product Category
                         </FormLabel>
@@ -224,23 +241,6 @@ export const Newitem = () => {
                         >
                           <option defaultValue="">--select--</option>
                           {categoriesList.map((c, i) => (
-                            <option key={i} defaultValue={c}>
-                              {c}
-                            </option>
-                          ))}
-                        </Select>
-                      </div>
-
-                      <div className="form-item">
-                        <FormLabel htmlFor="category">Main Category</FormLabel>
-                        <Select
-                          defaultValue={mainCategory}
-                          onChange={(e) => {
-                            setmainCategory(e.target.value);
-                          }}
-                        >
-                          <option defaultValue="">--select--</option>
-                          {mainCategoriesList.map((c, i) => (
                             <option key={i} defaultValue={c}>
                               {c}
                             </option>

@@ -183,6 +183,7 @@ export type Query = {
   getAllOrders?: Maybe<Array<Maybe<Orders>>>;
   getOrderStatus?: Maybe<Array<Maybe<Order_Status>>>;
   products?: Maybe<Array<Maybe<ProductsRes>>>;
+  withdrawals?: Maybe<CustomRes>;
 };
 
 
@@ -241,7 +242,7 @@ export type QueryEditProductPageArgs = {
 
 
 export type QueryGetCartItemsArgs = {
-  customer_id: Scalars['ID'];
+  customer_id?: Maybe<Scalars['ID']>;
   user_id?: Maybe<Scalars['ID']>;
 };
 
@@ -258,6 +259,11 @@ export type QueryGetOrderArgs = {
 
 export type QueryProductsArgs = {
   limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWithdrawalsArgs = {
+  user_id: Scalars['ID'];
 };
 
 export type Mutation = {
@@ -284,6 +290,7 @@ export type Mutation = {
   setFeatured?: Maybe<CustomRes>;
   deleteProductAdmin?: Maybe<CustomRes>;
   setOutOfStock?: Maybe<CustomRes>;
+  withdraw?: Maybe<CustomRes>;
 };
 
 
@@ -428,6 +435,7 @@ export type MutationSetUserStatusArgs = {
 
 export type MutationSetInTransitArgs = {
   order_id: Scalars['ID'];
+  email: Scalars['String'];
 };
 
 
@@ -461,6 +469,13 @@ export type MutationDeleteProductAdminArgs = {
 export type MutationSetOutOfStockArgs = {
   id: Scalars['ID'];
   in_stock: Scalars['String'];
+};
+
+
+export type MutationWithdrawArgs = {
+  user_id: Scalars['ID'];
+  amount: Scalars['Int'];
+  password: Scalars['String'];
 };
 
 export enum CacheControlScope {

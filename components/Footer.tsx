@@ -68,6 +68,11 @@ export const Footer = () => {
               </li>
             )}
             <li>
+              <Link href="/sell">
+                <a>Payment</a>
+              </Link>{" "}
+            </li>
+            <li>
               <Link href="/vendor/login">
                 <a>Login</a>
               </Link>{" "}
@@ -109,9 +114,9 @@ export const Footer = () => {
               </Link>{" "}
             </li>
             <li>
-              <Link href="https://twitter.com/tadlaceStore">
+              <Link href="https://instagram.com/tadlacestore">
                 <a>
-                  <img src="/linkedin.svg" alt="linkedin icon" />
+                  <img src="/icons8-instagram.svg" alt="instagram icon" />
                 </a>
               </Link>{" "}
             </li>
@@ -159,8 +164,8 @@ export const Footer = () => {
           margin: 10px 0;
         }
 
-        .footer-item:last-child li {
-          margin: 0 10px;
+        .footer-item:last-child ul li:nth-child(2) {
+          margin: 0 5px;
         }
         .footer-item:last-child img {
           height: 25px;
@@ -196,6 +201,9 @@ export const Footer = () => {
           .footer-wrap {
             width: 80%;
             grid-template-columns: repeat(5, 1fr);
+          }
+          .footer-item:last-child ul li:nth-child(2) {
+            margin: 0 10px;
           }
 
           .footer-wrap h1 {

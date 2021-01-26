@@ -30,6 +30,18 @@ $shinyblue: #2D2D2D;
 $pink: #f082ac;
 $green: #2cc096;
 
+// @mixin mobile {
+    //     @media (max-width: 600px) {
+    //         @content;
+    //     }
+
+    //     @include mobile {
+    //         background: linear-gradient(45deg, #05111c, #071827);
+    //         min-height: 100vh;
+    //     }
+    // }
+
+
 p {
     color: $text;
 }

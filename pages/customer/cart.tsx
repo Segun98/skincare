@@ -71,7 +71,7 @@ export const CustomerCart = () => {
       {/* NOT LOGGED IN  */}
       <div className="cart-page">
         {/* vendors trying to access Cart  */}
-        {role && role === "vendor" && !loading && (
+        {/* {role && role === "vendor" && !loading && (
           <div className="indicator">
             <div className="status">
               <div>Only Customers can use Cart </div>
@@ -96,10 +96,10 @@ export const CustomerCart = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
         {/* EMPTY CART  */}
-        {role !== "vendor" && cart.length === 0 && (
+        {cart && cart.length === 0 && (
           <div
             style={{
               textAlign: "center",

@@ -138,29 +138,6 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
                   </AccordionItem>
                 </Accordion>
               </div>
-
-              {/* <h1>Categories</h1>
-              {mainCategoriesList.map((m, i) => (
-                <ul key={i}>
-                  <Link href={`/main?category=${m}`}>
-                    <a>
-                      <li>{m}</li>
-                    </a>
-                  </Link>
-                </ul>
-              ))} */}
-
-              {/* <h1>Sub Categories</h1>
-
-              {categoriesList.map((c, i) => (
-                <ul key={i}>
-                  <Link href={`/category?category=${c}`}>
-                    <a>
-                      <li>{c}</li>
-                    </a>
-                  </Link>
-                </ul>
-              ))} */}
             </nav>
           </DrawerBody>
         </DrawerContent>
@@ -168,16 +145,14 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
       <style jsx>{`
         .navigation ul li {
           padding: 10px;
-          /* border-bottom: 1px solid var(--lightblue); */
           font-size: 0.9rem;
           font-weight: 400;
         }
 
         .navigation h1 {
-          /* color: var(--text); */
           font-weight: 600;
           padding: 8px;
-          text-align: center;
+          /* text-align: center; */
           font-size: 1.1rem;
         }
 

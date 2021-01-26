@@ -117,12 +117,13 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
                   data-size="small"
                   data-show-count="false"
                 >
-                  <img
+                  Tweet
+                  {/* <img
                     src="/twitter.svg"
                     alt="Twitter Icon"
                     width="40px"
                     height="40px"
-                  />
+                  /> */}
                 </a>
               </div>
 

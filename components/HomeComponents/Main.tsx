@@ -19,10 +19,10 @@ export const MainHome = () => {
       <main>
         <div className="main_content">
           <h1>
-            Welcome to the #1 online marketplace for quality skin and hair
+            Welcome to the #1 online marketplace for quality skin and hair care
             products
           </h1>
-          <form onSubmit={handleSearch}>
+          <form onSubmit={handleSearch} autoComplete="new-password">
             <InputGroup size="md">
               <InputLeftElement
                 cursor="pointer"
@@ -32,6 +32,7 @@ export const MainHome = () => {
               />
 
               <Input
+                autoComplete="new-password"
                 aria-label="search"
                 title="search"
                 type="search"
