@@ -121,24 +121,53 @@ export const OrdersComponent: React.FC<Iprops> = ({ limit }) => {
                         <PopoverContent zIndex={4}>
                           <PopoverArrow />
                           <PopoverCloseButton />
-                          <PopoverHeader>Order ID: {o.order_id}</PopoverHeader>
+                          <PopoverHeader>ID: {o.order_id}</PopoverHeader>
                           <PopoverBody>
-                            <Button
-                              color="var(--deepblue)"
-                              isDisabled={
-                                o.orderStatus.delivered === "true" &&
-                                o.orderStatus.canceled === "true"
-                                  ? true
-                                  : false
-                              }
-                              // onClick={() =>
-                              //   router.push(
-                              //     `/customer?returnId=${lookup[o][0].orderStatus.order_id}`
-                              //   )
-                              // }
-                            >
-                              Contact
-                            </Button>
+                            <div>
+                              <span>Status: </span>
+                              <span
+                                style={{
+                                  color: "var(--primary)",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {o.orderStatus.canceled === "true"
+                                  ? "Cancelled"
+                                  : ""}
+
+                                {/* processing  */}
+                                {o.orderStatus.delivered === "false" &&
+                                o.orderStatus.in_transit === "false" &&
+                                o.orderStatus.canceled === "false"
+                                  ? "Processing"
+                                  : ""}
+
+                                {/* delivered shows "delivered", else in transit */}
+                                {o.orderStatus.delivered === "true"
+                                  ? "delivered"
+                                  : o.orderStatus.in_transit === "true"
+                                  ? "In Transit"
+                                  : ""}
+                              </span>
+                            </div>
+                            <div style={{ textAlign: "center" }}>
+                              <Button
+                                color="var(--deepblue)"
+                                isDisabled={
+                                  o.orderStatus.delivered === "true" &&
+                                  o.orderStatus.canceled === "true"
+                                    ? true
+                                    : false
+                                }
+                                // onClick={() =>
+                                //   router.push(
+                                //     `/customer?returnId=${lookup[o][0].orderStatus.order_id}`
+                                //   )
+                                // }
+                              >
+                                Contact
+                              </Button>
+                            </div>
                           </PopoverBody>
                           <PopoverFooter fontSize="0.7rem">
                             Ensure your products are always readily available

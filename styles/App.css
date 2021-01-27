@@ -62,62 +62,6 @@ button {
   cursor: pointer;
 }
 
-.contact {
-  padding: 40px 0;
-}
-
-.contact h1 {
-  font-size: 1.5rem;
-  font-weight: bolder;
-  color: #2D2D2D;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.contact form {
-  margin: auto;
-  width: 90%;
-}
-
-.contact form label {
-  font-size: 0.9rem;
-}
-
-.contact form div {
-  margin: 10px 0;
-}
-
-.contact form div textarea {
-  height: 200px;
-}
-
-@media only screen and (min-width: 700px) {
-  .contact form {
-    width: 60%;
-  }
-}
-
-@media only screen and (min-width: 1000px) {
-  .contact form {
-    width: 50%;
-  }
-  .contact form label {
-    font-size: 1rem;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .contact form {
-    width: 40%;
-  }
-}
-
-@media only screen and (min-width: 1800px) {
-  .contact form {
-    width: 30%;
-  }
-}
-
 /* Note - ALL Imported styles represent each page and are named accordingly. 
 Class names accross components can be the same but they are wrapped by a unique class, usually named after the page or component */
 .main-section .featured {
@@ -286,83 +230,6 @@ Class names accross components can be the same but they are wrapped by a unique 
 @media only screen and (min-width: 2000px) {
   .main-section .featured .featured-wrap {
     width: 60%;
-  }
-}
-
-.steps {
-  margin: 25px 0 0 0;
-  background: #fafafb;
-  padding: 20px 0;
-}
-
-.steps h1 {
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  text-align: center;
-  font-weight: bold;
-}
-
-.steps .steps-wrap {
-  margin: auto;
-  width: 80%;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
-  gap: 35px;
-}
-
-.steps .steps-wrap .steps-item {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 3fr;
-      grid-template-columns: 1fr 3fr;
-}
-
-.steps .steps-wrap .steps-item img {
-  margin-right: 20px;
-  width: 60px;
-  height: 60px;
-}
-
-.steps .steps-wrap .steps-item p {
-  font-size: 0.9rem;
-}
-
-@media only screen and (min-width: 700px) {
-  .steps .steps-wrap {
-    width: 90%;
-    -ms-grid-columns: (1fr)[4];
-        grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-  }
-  .steps .steps-wrap .steps-item {
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .steps h1 {
-    font-size: 1.4rem;
-  }
-}
-
-@media only screen and (min-width: 1400px) {
-  .steps .steps-wrap {
-    width: 80%;
-  }
-  .steps .steps-wrap .steps-item p {
-    font-size: 1rem;
-  }
-}
-
-@media only screen and (min-width: 2000px) {
-  .steps .steps-wrap {
-    width: 60%;
-  }
-  .steps .steps-wrap .steps-item p {
-    font-size: 1.05rem;
   }
 }
 
@@ -1055,7 +922,7 @@ Class names accross components can be the same but they are wrapped by a unique 
 }
 
 .main-store header .share .share-btns .fb-share-button {
-  margin-top: -5px;
+  margin-top: -3px;
 }
 
 .main-store .store-products {
@@ -2421,6 +2288,139 @@ Class names accross components can be the same but they are wrapped by a unique 
 @media only screen and (min-width: 1400px) {
   .customer .return {
     width: 80%;
+  }
+}
+
+.steps {
+  margin: 25px 0 0 0;
+  background: #fafafb;
+  padding: 20px 0;
+}
+
+.steps h1 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.steps .steps-wrap {
+  margin: auto;
+  width: 80%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  gap: 35px;
+}
+
+.steps .steps-wrap .steps-item {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+}
+
+.steps .steps-wrap .steps-item img {
+  margin-right: 20px;
+  width: 60px;
+  height: 60px;
+}
+
+.steps .steps-wrap .steps-item p {
+  font-size: 0.9rem;
+}
+
+@media only screen and (min-width: 700px) {
+  .steps .steps-wrap {
+    width: 90%;
+    -ms-grid-columns: (1fr)[4];
+        grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  .steps .steps-wrap .steps-item {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .steps h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .steps .steps-wrap {
+    width: 80%;
+  }
+  .steps .steps-wrap .steps-item p {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .steps .steps-wrap {
+    width: 60%;
+  }
+  .steps .steps-wrap .steps-item p {
+    font-size: 1.05rem;
+  }
+}
+
+.contact {
+  padding: 40px 0;
+}
+
+.contact h1 {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #2D2D2D;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contact form {
+  margin: auto;
+  width: 90%;
+}
+
+.contact form label {
+  font-size: 0.9rem;
+}
+
+.contact form div {
+  margin: 10px 0;
+}
+
+.contact form div textarea {
+  height: 200px;
+}
+
+@media only screen and (min-width: 700px) {
+  .contact form {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .contact form {
+    width: 50%;
+  }
+  .contact form label {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .contact form {
+    width: 40%;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .contact form {
+    width: 30%;
   }
 }
 /*# sourceMappingURL=App.css.map */

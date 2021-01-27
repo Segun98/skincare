@@ -1,0 +1,143 @@
+// global style for "purchasesteps" component
+
+.steps {
+    margin: 25px 0 0 0;
+    background: $softblue;
+    padding: 20px 0;
+
+    h1 {
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .steps-wrap {
+        margin: auto;
+        width: 80%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 35px;
+
+        .steps-item {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+
+            img {
+                margin-right: 20px;
+                width: 60px;
+                height: 60px;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    @include ipad {
+
+        .steps-wrap {
+            width: 90%;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+
+            .steps-item {
+                grid-template-columns: 1fr;
+
+            }
+        }
+    }
+
+    @include laptop {
+        h1 {
+            font-size: 1.4rem;
+        }
+    }
+
+    @media only screen and (min-width:1400px) {
+        .steps-wrap {
+            width: 80%;
+
+            .steps-item {
+                p {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    @include largelaptop {
+
+        .steps-wrap {
+            width: 60%;
+
+            .steps-item {
+                p {
+                    font-size: 1.05rem;
+                }
+            }
+        }
+    }
+}
+
+//CONTACT FORM
+
+.contact {
+    padding: 40px 0;
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: bolder;
+        color: $shinyblue;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    form {
+        margin: auto;
+        width: 90%;
+
+        label {
+            font-size: 0.9rem
+        }
+
+        div {
+            margin: 10px 0;
+
+            textarea {
+                height: 200px;
+            }
+        }
+
+
+    }
+
+    @include ipad() {
+        form {
+            width: 60%
+        }
+    }
+
+    @include ipadpro() {
+        form {
+            width: 50%;
+
+            label {
+                font-size: 1rem
+            }
+        }
+    }
+
+    @include laptop() {
+        form {
+            width: 40%
+        }
+    }
+
+    @include largelaptop() {
+        form {
+            width: 30%
+        }
+    }
+}

@@ -12,34 +12,56 @@
 $primary: #2D2D2D;
 $soft: #fafafb;
 
-// --header: #333333;
-//   --subhead: #1f2c35;
-//   --text: #889ab4;
-//   --background: #fafafb;
 
 $softgrey: rgba(32, 33, 36, 0.28);
 //boxshadow
 $box: 0 1px 6px 0;
 $lightblue: #cbd8f9;
 $deepblue: #2D2D2D;
-// $deepblue: #02247a;
-// $text: #1f2c35;
 $text: #333333;
 $softblue: #fafafb;
 $shinyblue: #2D2D2D;
 $pink: #f082ac;
 $green: #2cc096;
 
-// @mixin mobile {
-    //     @media (max-width: 600px) {
-    //         @content;
-    //     }
 
-    //     @include mobile {
-    //         background: linear-gradient(45deg, #05111c, #071827);
-    //         min-height: 100vh;
-    //     }
-    // }
+//media queries
+
+@mixin largephone {
+    @media only screen and (min-width: 400px) {
+        @content;
+    }
+}
+
+@mixin ipad {
+    @media only screen and (min-width: 700px) {
+        @content;
+    }
+}
+
+@mixin ipadpro {
+    @media only screen and (min-width: 1000px) {
+        @content;
+    }
+}
+
+
+@mixin laptop {
+    @media only screen and (min-width: 1200px) {
+        @content;
+    }
+
+}
+
+@mixin largelaptop {
+    @media only screen and (min-width: 1800px) {
+        @content;
+    }
+
+}
+
+
+//globals
 
 
 p {
@@ -95,66 +117,7 @@ button {
     cursor: pointer;
 }
 
-//CONTACT FORM
 
-.contact {
-    padding: 40px 0;
-
-    h1 {
-        font-size: 1.5rem;
-        font-weight: bolder;
-        color: $shinyblue;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    form {
-        margin: auto;
-        width: 90%;
-
-        label {
-            font-size: 0.9rem
-        }
-
-        div {
-            margin: 10px 0;
-
-            textarea {
-                height: 200px;
-            }
-        }
-
-
-    }
-
-    @media only screen and (min-width:700px) {
-        form {
-            width: 60%
-        }
-    }
-
-    @media only screen and (min-width:1000px) {
-        form {
-            width: 50%;
-
-            label {
-                font-size: 1rem
-            }
-        }
-    }
-
-    @media only screen and (min-width:1200px) {
-        form {
-            width: 40%
-        }
-    }
-
-    @media only screen and (min-width:1800px) {
-        form {
-            width: 30%
-        }
-    }
-}
 
 /* Note - ALL Imported styles represent each page and are named accordingly. 
 Class names accross components can be the same but they are wrapped by a unique class, usually named after the page or component */
@@ -170,3 +133,4 @@ Class names accross components can be the same but they are wrapped by a unique 
 @import "./header";
 @import "./category";
 @import "./customer";
+@import "./misc";

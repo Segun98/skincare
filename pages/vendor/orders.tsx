@@ -17,11 +17,11 @@ export const Orders = () => {
         <main>
           <div className="order-status">
             <List>
-              <ListItem mt="2" mb="2">
+              <ListItem>
                 * <strong>Cancelled</strong> signifies that admin or a customer
                 has cancelled the order.
               </ListItem>
-              <ListItem>
+              <ListItem mt="2" mb="2">
                 * <strong>Delivered</strong> signifies that your item has been
                 delivered to your customer
               </ListItem>

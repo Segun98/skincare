@@ -125,7 +125,7 @@ export const Chart: React.FC<Iprops> = ({ orders }) => {
     datasets: [
       {
         label: `Sales by Month for ${selectedYear}`,
-        fill: true,
+        fill: false,
         lineTension: 0.1,
         backgroundColor: "rgba(75,192,192,0.4)",
         borderColor: "rgba(75,192,192,1)",
@@ -142,7 +142,7 @@ export const Chart: React.FC<Iprops> = ({ orders }) => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        // data: [2, 7, 12, 5, 8, 14, 12, 1, 19, 30],
+        // data: [2, 7, 12, 5, 8, 14, 12, 1, 19, 30, 40, 33],
         data: final(),
       },
     ],

@@ -1,5 +1,6 @@
+// styles can be found in "_misc.scss"
+
 export const PurchaseSteps = () => {
-  // styles can be found in "_home.scss"
   return (
     <div>
       <section className="steps" id="steps">

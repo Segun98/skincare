@@ -65,47 +65,50 @@ export const Payment = () => {
 
   return (
     <div className="payment_layout">
+      <head>
+        <title>Withdraw from wallet | vendor | Tadlace</title>
+      </head>
       <section>
         <Navigation />
       </section>
-      {/* {data && ( */}
-      <main>
-        <header>
-          <div>
-            <h1>Hi {User?.business_name},</h1>
-            <p>{User.business_name && `Your wallet`}</p>
-          </div>
-          <div></div>
-        </header>
-        <section className="boxes">
-          <div className="total-revenue">
-            <h1>Net Revenue</h1>
-            <hr />
-            <p>
-              {nairaSign} {Commas(net_revenue)}
-            </p>
-          </div>
-          <div className="withdrawals">
-            <h1>Withdrawals</h1>
-            <hr />
-            <p>
-              {nairaSign} {Commas(withdrawals)}
-            </p>
-          </div>
-          <div className="wallet-balance">
-            <h1>Wallet Balance</h1>
-            <hr />
-            <p>
-              {nairaSign} {Commas(wallet_balance)}
-            </p>
-          </div>
-        </section>
+      {data && (
+        <main>
+          <header>
+            <div>
+              <h1>Hi {User?.business_name},</h1>
+              <p>{User.business_name && `Your wallet`}</p>
+            </div>
+            <div></div>
+          </header>
+          <section className="boxes">
+            <div className="total-revenue">
+              <h1>Net Revenue</h1>
+              <hr />
+              <p>
+                {nairaSign} {Commas(net_revenue)}
+              </p>
+            </div>
+            <div className="withdrawals">
+              <h1>Withdrawals</h1>
+              <hr />
+              <p>
+                {nairaSign} {Commas(withdrawals)}
+              </p>
+            </div>
+            <div className="wallet-balance">
+              <h1>Wallet Balance</h1>
+              <hr />
+              <p>
+                {nairaSign} {Commas(wallet_balance)}
+              </p>
+            </div>
+          </section>
 
-        <section>
-          <Withdraw balance={wallet_balance} />
-        </section>
-      </main>
-      {/* )} */}
+          <section>
+            <Withdraw balance={wallet_balance} />
+          </section>
+        </main>
+      )}
       <style jsx>{`
         .payment_layout {
           display: flex;
@@ -210,4 +213,4 @@ export const Payment = () => {
   );
 };
 
-export default Payment;
+export default ProtectRouteV(Payment);

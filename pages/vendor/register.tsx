@@ -160,6 +160,13 @@ export const Register = () => {
                 {errors.business_name &&
                   "Business name should be a minimum of 3 chracters"}
               </small>
+              {watch("business_name") && (
+                <small>
+                  {`store link: https://tadlace.com/store/${slug(
+                    watch("business_name")
+                  )}`}
+                </small>
+              )}
             </div>
 
             <div>
