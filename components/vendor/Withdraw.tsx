@@ -71,9 +71,7 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `https://api.paystack.co/bank/resolve?account_number=${Number(
-          accountNo
-        )}&bank_code=${bankCode}`,
+        `https://api.paystack.co/bank/resolve?account_number=${accountNo}&bank_code=${bankCode}`,
         {
           headers: {
             Authorization: `Bearer ${process.env.SECRET_KEY_TEST}`,
@@ -123,6 +121,7 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
       });
       return;
     }
+    setLoading(true);
 
     //password check
     try {
@@ -131,6 +130,8 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
         user_id: User.id,
       });
     } catch (error) {
+      setLoading(false);
+
       toast({
         title: "Password incorrect",
         description: "Forgot password? reset in the log in page",
@@ -180,7 +181,7 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
           },
         }
       );
-      console.log(transfer);
+      //   console.log(transfer);
 
       //recieves transfer code and recipient code
       recordWithdrawal(
@@ -189,6 +190,7 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
       );
     } catch (err) {
       // console.log(err.message);
+      setLoading(false);
 
       toast({
         title: "An error occured while carrying out this withdrawal",
