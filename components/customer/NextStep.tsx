@@ -97,7 +97,7 @@ export const NextStep: React.FC<Iprops> = ({
         request,
         customer_email: User.email,
         vendor_email: c.product.creator.email,
-        customer_phone: User.phone,
+        customer_phone: phone,
         vendor_phone: c.product.creator.phone,
         customer_address: address,
         business_address: c.product.creator.business_address,
