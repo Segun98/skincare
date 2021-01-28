@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/vendor/Navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ProtectRouteV } from "@/utils/ProtectedRouteV";
 import { useToken } from "@/Context/TokenProvider";
 import { Commas, nairaSign } from "@/utils/helpers";
@@ -8,15 +8,12 @@ import { getVendorOrders, withdrawalsQuery } from "@/graphql/vendor";
 import queryFunc from "@/utils/fetcher";
 import { useUser } from "@/Context/UserProvider";
 import { useQuery } from "@/components/useQuery";
-import { useToast } from "@chakra-ui/core";
 import { Withdraw } from "@/components/vendor/Withdraw";
 
 export const Payment = () => {
   //Token from context
   const { Token } = useToken();
   const { User } = useUser();
-
-  const toast = useToast();
 
   //fetch orders
   const { data: orders, isValidating } = useSWR(`getVendorOrders`, () =>
