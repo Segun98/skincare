@@ -62,13 +62,6 @@ const Sell = () => {
                 ordered. It's that simple.
               </p>
             </div>
-            <div className="split">
-              <h2>Payment</h2>
-              <p>
-                Once an order has been delivered to customers, your wallet gets
-                funded instantly and is available for withdrawal anytime
-              </p>
-            </div>
           </div>
         </section>
 
@@ -76,7 +69,11 @@ const Sell = () => {
           <div className="wrap">
             <div className="dashboard">
               <div className="split">
-                <img src="/dashboard.png" alt="vendor dashboard" />
+                <img
+                  src="/dashboard.png"
+                  alt="vendor dashboard"
+                  loading="lazy"
+                />
               </div>
               <div className="split">
                 <h1>Your Dashboard</h1>
@@ -100,13 +97,21 @@ const Sell = () => {
               </div>
 
               <div className="split">
-                <img src="/orders-page.png" alt="vendor orders" />
+                <img
+                  src="/orders-page.png"
+                  alt="vendor orders"
+                  loading="lazy"
+                />
               </div>
             </div>
 
             <div className="store">
               <div className="split">
-                <img src="/td-store.png" alt="vendor public store" />
+                <img
+                  src="/td-store.png"
+                  alt="vendor public store"
+                  loading="lazy"
+                />
               </div>
               <div className="split">
                 <h1>Your Public Store</h1>
@@ -117,6 +122,28 @@ const Sell = () => {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="payment" id="payment">
+          <h1>Payment</h1>
+          <div className="payment-wrap">
+            <div>
+              <aside>
+                <p>
+                  Once your product has been delivered to a customer, your
+                  wallet gets funded instantly and is available for withdrawal
+                  24/7.
+                </p>
+                <p>
+                  <strong>
+                    We charge only <span style={{ color: "#2a69ac" }}>6%</span>{" "}
+                    from each sale you make.
+                  </strong>
+                </p>
+              </aside>
+            </div>
+            <img src="/wallet.png" alt="vendor's wallet" loading="lazy" />
           </div>
         </section>
 

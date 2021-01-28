@@ -68,7 +68,7 @@ export const Footer = () => {
               </li>
             )}
             <li>
-              <Link href="/sell">
+              <Link href="/sell#payment">
                 <a>Payment</a>
               </Link>{" "}
             </li>

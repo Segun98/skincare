@@ -316,6 +316,89 @@
             }
         }
 
+        //PAYMENT
+
+        .payment {
+            background: $softblue;
+            padding: 20px 0;
+
+            h1 {
+                text-align: center;
+                font-weight: bold;
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+            }
+
+            .payment-wrap {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                margin: auto;
+                width: 90%;
+                gap: 10px;
+
+                p {
+                    font-size: 0.9rem;
+                    margin: 5px 0;
+                    text-align: center;
+                }
+
+                div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            @include ipad {
+                .payment-wrap {
+                    width: 80%;
+                    gap: 1px;
+
+                    img {
+                        object-fit: contain;
+                        position: static;
+                        height: 380px;
+                        width: 375px;
+                    }
+                }
+            }
+
+            @include ipadpro {
+                .payment-wrap {
+                    width: 60%;
+                }
+            }
+
+            @include laptop {
+                h1 {
+                    font-size: 1.5rem;
+                    margin: 12px 0 15px 0;
+                }
+
+                .payment-wrap {
+                    gap: 15px;
+
+                    p {
+                        font-size: 1.2rem;
+                    }
+
+                    img {
+                        object-fit: contain;
+                        width: 100%;
+                        height: 790px;
+                    }
+                }
+            }
+
+            @include largelaptop {
+                .payment-wrap {
+                    p {
+                        font-size: 1.5rem;
+                    }
+
+                }
+            }
+        }
 
 
         //START SECTION
@@ -327,7 +410,7 @@
             width: 80%;
 
             h1 {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
                 font-weight: bolder;
                 color: $shinyblue;
                 margin-bottom: 30px;
