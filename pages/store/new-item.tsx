@@ -37,9 +37,9 @@ export const Newitem = () => {
   const [Loading, setLoading] = useState(false);
 
   //input states
-  const { handleSubmit, register, errors, watch } = useForm();
-  const [category, setCategory] = useState("");
+  const { handleSubmit, register, errors } = useForm();
   const [mainCategory, setmainCategory] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
   const [images, setImages] = useState([]);
   const [imageLoad, setImageLoad] = useState(false);
 
@@ -79,9 +79,9 @@ export const Newitem = () => {
       });
       return;
     }
-    if (!category || !mainCategory) {
+    if (tags.length === 0 || !mainCategory) {
       toast({
-        title: "Category  Must Be Selected",
+        title: "Category Must Be Selected",
         status: "info",
         duration: 3000,
         isClosable: true,
@@ -93,7 +93,7 @@ export const Newitem = () => {
       name_slug: slug(name),
       description,
       price: parseInt(price),
-      category: category,
+      category: tags,
       main_category: mainCategory,
       images,
       available_qty: parseInt(available_qty),
@@ -213,8 +213,11 @@ export const Newitem = () => {
                       </div>
 
                       <div className="form-item">
-                        <FormLabel htmlFor="category">Main Category</FormLabel>
+                        <FormLabel htmlFor="main-category">
+                          Main Category
+                        </FormLabel>
                         <Select
+                          id="main-category"
                           defaultValue={mainCategory}
                           onChange={(e) => {
                             setmainCategory(e.target.value);
@@ -230,13 +233,41 @@ export const Newitem = () => {
                       </div>
 
                       <div className="form-item">
-                        <FormLabel htmlFor="category">
-                          Product Category
+                        <FormLabel htmlFor="other-categories">
+                          Category
                         </FormLabel>
+                        <div className="tags">
+                          {tags.map((t, i) => (
+                            <div key={i}>
+                              <span>{t}</span>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  let alltags = [...tags];
+                                  alltags.splice(i, 1);
+                                  setTags(alltags);
+                                }}
+                              >
+                                x
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="form-item">
                         <Select
-                          defaultValue={category}
+                          id="other-categories"
                           onChange={(e) => {
-                            setCategory(e.target.value);
+                            if (tags.length === 3) {
+                              toast({
+                                title: "can't add more than 3 categories",
+                                position: "top-right",
+                                isClosable: true,
+                              });
+                              return;
+                            }
+                            setTags([...tags, e.target.value]);
                           }}
                         >
                           <option defaultValue="">--select--</option>

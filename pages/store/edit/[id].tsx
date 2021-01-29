@@ -62,7 +62,6 @@ const Edit = ({ product, error }: Iprops) => {
 
   const [Loading, setLoading] = useState(false);
 
-  const [category, setCategory] = useState("");
   const [mainCategory, setmainCategory] = useState("");
   const [inStock, setInStock] = useState("");
   const [name, setName] = useState("");
@@ -71,6 +70,7 @@ const Edit = ({ product, error }: Iprops) => {
   const [available_qty, setAvailableQty] = useState<any>("");
   const [images, setImages] = useState([]);
   const [imageLoad, setImageLoad] = useState(false);
+  const [tags, setTags] = useState<string[]>([]);
 
   //populate product input fields with exisiting data from DB
   useEffect(() => {
@@ -79,7 +79,7 @@ const Edit = ({ product, error }: Iprops) => {
       setDescription(product.description || "");
       setPrice(product.price || "");
       setAvailableQty(product.available_qty || "");
-      setCategory(product.category || "");
+      setTags(product.category || []);
       setmainCategory(product.main_category || "");
       setInStock(product.in_stock || "");
       setImages(product.images || []);
@@ -98,7 +98,7 @@ const Edit = ({ product, error }: Iprops) => {
       });
       return;
     }
-    if (!category || !mainCategory) {
+    if (tags.length === 0 || !mainCategory) {
       toast({
         title: "Category  Must Be Selected",
         status: "info",
@@ -122,7 +122,7 @@ const Edit = ({ product, error }: Iprops) => {
       name: name.trim(),
       description,
       price: parseInt(price),
-      category,
+      category: tags,
       main_category: mainCategory,
       images,
       in_stock: inStock,
@@ -262,19 +262,44 @@ const Edit = ({ product, error }: Iprops) => {
                         </div>
 
                         <div className="form-item">
-                          <FormLabel htmlFor="category">
-                            Product Category
+                          <FormLabel htmlFor="other-categories">
+                            Category
                           </FormLabel>
+                          <div className="tags">
+                            {tags.map((t, i) => (
+                              <div key={i}>
+                                <span>{t}</span>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    let alltags = [...tags];
+                                    alltags.splice(i, 1);
+                                    setTags(alltags);
+                                  }}
+                                >
+                                  x
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="form-item">
                           <Select
-                            defaultValue={category}
+                            id="other-categories"
                             onChange={(e) => {
-                              setCategory(e.target.value);
+                              if (tags.length >= 3) {
+                                toast({
+                                  title: "can't add more than 3 categories",
+                                  position: "top-right",
+                                  isClosable: true,
+                                });
+                                return;
+                              }
+                              setTags([...tags, e.target.value]);
                             }}
                           >
-                            <option defaultValue={`${category}`}>
-                              {category}
-                            </option>
-
+                            <option defaultValue="">--select--</option>
                             {categoriesList.map((c, i) => (
                               <option key={i} defaultValue={c}>
                                 {c}

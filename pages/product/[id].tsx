@@ -132,8 +132,8 @@ const Product = ({ product, error }: response) => {
                     </BreadcrumbItem>
 
                     <BreadcrumbItem>
-                      <Link href={`/category?category=${product.category}`}>
-                        <a>{product.category}</a>
+                      <Link href={`/category?category=${product.category[0]}`}>
+                        <a>{product.category[0]}</a>
                       </Link>
                     </BreadcrumbItem>
 
