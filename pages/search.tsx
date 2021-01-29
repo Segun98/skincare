@@ -243,7 +243,7 @@ const Search = ({ products, error }: Iprops) => {
         .results-wrap .search-item img {
           width: 100%;
           height: 100px;
-          object-fit: contain;
+          object-fit: cover;
           border-radius: 5px;
           display: flex;
           flex-direction: column;
@@ -323,7 +323,7 @@ const Search = ({ products, error }: Iprops) => {
           }
 
           .results-wrap .search-item img {
-            object-fit: contain;
+            /* object-fit: contain; */
             width: 100%;
           }
 
