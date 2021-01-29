@@ -25,7 +25,7 @@ const Sell = () => {
         <header>
           <div className="split">
             <div className="left">
-              <h1>Partner With Us, Grow Your Business The Right Way!</h1>
+              <h1>Partner With Us, Grow Your Business With Less Effort!</h1>
               <p>
                 Start selling today on {companyName}, we handle everything, from
                 delivery to order management. All you have to do is make your
@@ -80,10 +80,10 @@ const Sell = () => {
               <div className="split">
                 <h1>Your Dashboard</h1>
                 <p>
-                  Your comprehensive dashboard highlights your order status,
-                  completed orders are orders that have been delivered to
+                  Your comprehensive dashboard highlights your orders' status.
+                  Completed orders are orders that have been delivered to
                   customers. A sales metrics showing your completed orders by
-                  month and recent orders are also highlighted.
+                  month and recent orders are also provided.
                 </p>
               </div>
             </div>
@@ -120,7 +120,7 @@ const Sell = () => {
                 <p>
                   Get a public store page with a unique url, customers can
                   easily purchase your products from this SEO backed page. Your
-                  store and products are promoted on our main maketplace
+                  store and products are also promoted on our main maketplace.
                 </p>
               </div>
             </div>
@@ -180,7 +180,7 @@ const Sell = () => {
         </section>
 
         <section className="start">
-          <h1>Grow Your Business With Less Effort</h1>
+          <h1>We Provide More Than Just a Store Front.</h1>
           <Text as="div" className="mr-2 ml-2">
             <Link href="/vendor/register">
               <a>Get Started</a>
