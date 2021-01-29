@@ -51,7 +51,7 @@
                 img {
                     min-width: 150px;
                     height: 150px;
-                    object-fit: contain;
+                    object-fit: cover;
                     border-radius: 5px;
                 }
 
@@ -131,7 +131,6 @@
                     }
 
                     img {
-                        object-fit: contain;
                         min-width: 200px;
                         height: 200px;
                     }

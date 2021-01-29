@@ -160,7 +160,7 @@ export const Login = () => {
               </InputGroup>
               <span className="forgot-pass">
                 <Link href="/password/change">
-                  <a>forgot password?</a>
+                  <a style={{ color: "blue" }}>forgot password?</a>
                 </Link>
               </span>
             </div>
@@ -179,7 +179,7 @@ export const Login = () => {
               <small>
                 Don't have an account?{" "}
                 <Link href="/vendor/register">
-                  <a>Sign Up</a>
+                  <a style={{ color: "blue" }}>Sign Up</a>
                 </Link>{" "}
               </small>
             </div>

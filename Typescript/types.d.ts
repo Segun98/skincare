@@ -78,7 +78,7 @@ export type Products = {
   name_slug?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['Int']>;
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Array<Maybe<Scalars['String']>>>;
   main_category?: Maybe<Scalars['String']>;
   images?: Maybe<Array<Maybe<Scalars['String']>>>;
   in_stock?: Maybe<Scalars['String']>;
@@ -94,7 +94,7 @@ export type ProductsRes = {
   name_slug?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['Int']>;
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Array<Maybe<Scalars['String']>>>;
   main_category?: Maybe<Scalars['String']>;
   images?: Maybe<Array<Maybe<Scalars['String']>>>;
   in_stock?: Maybe<Scalars['String']>;
@@ -336,7 +336,7 @@ export type MutationAddProductArgs = {
   name_slug: Scalars['String'];
   description?: Maybe<Scalars['String']>;
   price: Scalars['Int'];
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Array<Maybe<Scalars['String']>>>;
   main_category?: Maybe<Scalars['String']>;
   images?: Maybe<Array<Maybe<Scalars['String']>>>;
   available_qty: Scalars['Int'];
@@ -348,7 +348,7 @@ export type MutationUpdateProductArgs = {
   name: Scalars['String'];
   description?: Maybe<Scalars['String']>;
   price: Scalars['Int'];
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Array<Maybe<Scalars['String']>>>;
   main_category?: Maybe<Scalars['String']>;
   images?: Maybe<Array<Maybe<Scalars['String']>>>;
   available_qty?: Maybe<Scalars['Int']>;
@@ -475,7 +475,8 @@ export type MutationSetOutOfStockArgs = {
 export type MutationWithdrawArgs = {
   user_id: Scalars['ID'];
   amount: Scalars['Int'];
-  password: Scalars['String'];
+  recipient: Scalars['String'];
+  transfer_id: Scalars['String'];
 };
 
 export enum CacheControlScope {

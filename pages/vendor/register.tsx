@@ -162,7 +162,7 @@ export const Register = () => {
               </small>
               {watch("business_name") && (
                 <small>
-                  {`store link: https://tadlace.com/store/${slug(
+                  {`store link: tadlace.com/store/${slug(
                     watch("business_name")
                   )}`}
                 </small>
@@ -315,7 +315,7 @@ export const Register = () => {
             <small>
               Already have an account?{" "}
               <Link href="/vendor/login">
-                <a>Login</a>
+                <a style={{ color: "blue" }}>Login</a>
               </Link>{" "}
             </small>
           </div>

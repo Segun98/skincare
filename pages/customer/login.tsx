@@ -257,7 +257,7 @@ export const Login = () => {
               </InputGroup>
               <span className="forgot-pass">
                 <Link href="/password/change">
-                  <a>forgot password?</a>
+                  <a style={{ color: "blue" }}>forgot password?</a>
                 </Link>
               </span>
             </div>

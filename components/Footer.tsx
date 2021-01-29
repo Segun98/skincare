@@ -139,8 +139,7 @@ export const Footer = () => {
       <div className="attribution">
         <div className="attr-wrap">
           <div>
-            Copyright {new Date().getFullYear()}, PartyStore. All Rights
-            Reserved
+            Copyright {new Date().getFullYear()}, Tadlace. All Rights Reserved
           </div>
         </div>
       </div>

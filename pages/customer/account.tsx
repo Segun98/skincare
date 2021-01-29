@@ -259,6 +259,7 @@ export const Account = () => {
                     <Input
                       isRequired
                       aria-label="phone number"
+                      border={readOnly ? "none" : "1px"}
                       isReadOnly={readOnly}
                       autoFocus={readOnly ? false : true}
                       placeholder="Click Edit to add Phone Number"
@@ -276,6 +277,7 @@ export const Account = () => {
                 <div>
                   <h2>Shipping Address</h2>
                   <Textarea
+                    border={readOnly ? "none" : "1px"}
                     isRequired
                     aria-label="Address"
                     isReadOnly={readOnly}
