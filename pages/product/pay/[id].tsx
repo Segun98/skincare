@@ -9,6 +9,7 @@ import { Commas, nairaSign } from "@/utils/helpers";
 import { useToast } from "@chakra-ui/core";
 import Head from "next/head";
 import { ProtectRouteC } from "@/utils/ProtectedRouteC";
+import { Flutterwave } from "@/components/customer/Flutterwave";
 
 export async function getServerSideProps({ params }) {
   const variables = {
@@ -36,6 +37,7 @@ const Pay = ({ variables }) => {
     <Layout>
       <Head>
         <title>Payment | Secure | Tadlace</title>
+        <script src="https://checkout.flutterwave.com/v3.js"></script>
       </Head>
       {error &&
         toast({
@@ -93,7 +95,8 @@ const Pay = ({ variables }) => {
 
       {order && (
         <div className="text-center pb-3 pt-3">
-          <ConfirmOrder order={order} subtotal={subTotal} delivery={delivery} />
+          {/* <ConfirmOrder order={order} subtotal={subTotal} delivery={delivery} /> */}
+          <Flutterwave order={order} subtotal={subTotal} delivery={delivery} />
         </div>
       )}
 

@@ -149,47 +149,66 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
   //actual transfer with paystack
   async function transferRecipient() {
     try {
-      //get recipient code
-      const res = await axios.post(
-        `https://api.paystack.co/transferrecipient`,
-        {
-          type: "nuban",
-          name: accountName,
-          account_number: accountNo,
-          bank_code: bankCode,
-          currency: "NGN",
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.SECRET_KEY_TEST}`,
-          },
-        }
-      );
-
       //initiate transfer
       const transfer = await axios.post(
-        `https://api.paystack.co/transfer`,
+        `${restEndpoint}/pay`,
         {
-          source: "balance",
+          account_bank: bankCode,
+          account_number: accountNo,
           amount,
-          recipient: res.data.data.recipient_code,
-          reason: `${User.business_name} withdrawal on Tadlace`,
+          narration: `Vendor ${User?.business_name} Withdrawal on Tadlace`,
+          currency: "NGN",
+          reference: Date.now(),
+          // callback_url: "https://webhook.site/b3e505b0-fe02-430e-a538-22bbbce8ce0d",
+          debit_currency: "NGN",
         },
         {
           headers: {
-            Authorization: `Bearer ${process.env.SECRET_KEY_TEST}`,
+            Authorization: `Bearer ${process.env.FL_SECRET_KEY_TEST}`,
           },
         }
       );
-      //   console.log(transfer);
 
-      //recieves transfer code and recipient code
-      recordWithdrawal(
-        transfer.data.data.transfer_code,
-        res.data.data.recipient_code
-      );
+      //       account_number: "2173237869"
+      // amount: "100"
+      // bank_code: "033"
+      // bank_name: "UNITED BANK FOR AFRICA PLC"
+      // complete_message: ""
+      // created_at: "2021-01-29T08:31:28.000Z"
+      // currency: "NGN"
+      // debit_currency: "NGN"
+      // fee: 10.75
+      // full_name: "OLUSEGUN SAMUEL OLANITORI"
+      // id: 6532628
+      // is_approved: 1
+      // meta: null
+      // narration: "Vendor Ace Concepts Withdrawal on Tadlace"
+      // reference: 1611909085728
+      // requires_approval: 0
+      if (transfer.data.status === "error") {
+        setLoading(false);
+        toast({
+          title: "An error occured while carrying out this withdrawal",
+          description: transfer.data.message,
+        });
+        return;
+      }
+
+      if (transfer.data.status === "success") {
+        recordWithdrawal(
+          String(transfer.data.data.reference),
+          transfer.data.data.account_number
+        );
+        return;
+      }
+      setLoading(false);
+
+      // recieves transfer code and recipient code
+      // recordWithdrawal(
+      //   transfer.data.data.transfer_code,
+      //   res.data.data.recipient_code
+      // );
     } catch (err) {
-      // console.log(err.message);
       setLoading(false);
 
       toast({
@@ -198,6 +217,59 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
       });
     }
   }
+
+  //actual transfer with paystack
+  // async function transferRecipient() {
+  //   try {
+  //     //get recipient code
+  //     const res = await axios.post(
+  //       `https://api.paystack.co/transferrecipient`,
+  //       {
+  //         type: "nuban",
+  //         name: accountName,
+  //         account_number: accountNo,
+  //         bank_code: bankCode,
+  //         currency: "NGN",
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${process.env.SECRET_KEY_TEST}`,
+  //         },
+  //       }
+  //     );
+
+  //     //initiate transfer
+  //     const transfer = await axios.post(
+  //       `https://api.paystack.co/transfer`,
+  //       {
+  //         source: "balance",
+  //         amount,
+  //         recipient: res.data.data.recipient_code,
+  //         reason: `${User.business_name} withdrawal on Tadlace`,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${process.env.SECRET_KEY_TEST}`,
+  //         },
+  //       }
+  //     );
+  //     //   console.log(transfer);
+
+  //     //recieves transfer code and recipient code
+  //     recordWithdrawal(
+  //       transfer.data.data.transfer_code,
+  //       res.data.data.recipient_code
+  //     );
+  //   } catch (err) {
+  //     // console.log(err.message);
+  //     setLoading(false);
+
+  //     toast({
+  //       title: "An error occured while carrying out this withdrawal",
+  //       description: "Please retry",
+  //     });
+  //   }
+  // }
 
   //record withdrawal in database
   async function recordWithdrawal(transfer_code, recipient_code) {
@@ -228,7 +300,6 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
     if (error) {
       setLoading(false);
       let errorgql = error?.response?.errors[0].message;
-      console.log(errorgql);
 
       await useMutation(
         withdrawalMutation,
