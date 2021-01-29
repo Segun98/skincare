@@ -95,7 +95,7 @@ const Pay = ({ variables }) => {
 
       {order && (
         <div className="text-center pb-3 pt-3">
-          {/* <ConfirmOrder order={order} subtotal={subTotal} delivery={delivery} /> */}
+          <ConfirmOrder order={order} subtotal={subTotal} delivery={delivery} />
           <Flutterwave order={order} subtotal={subTotal} delivery={delivery} />
         </div>
       )}

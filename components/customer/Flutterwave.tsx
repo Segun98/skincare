@@ -159,6 +159,7 @@ export const Flutterwave: React.FC<Iprops> = ({
   return (
     <form>
       <Button
+        mt="8px"
         background="#F5A623"
         color="white"
         onClick={() => {
@@ -177,7 +178,7 @@ export const Flutterwave: React.FC<Iprops> = ({
           });
         }}
       >
-        Pay Now
+        Pay With Flutterwave
       </Button>
     </form>
   );
