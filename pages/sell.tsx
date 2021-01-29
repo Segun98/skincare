@@ -1,11 +1,13 @@
 import Head from "next/head";
 import { Layout } from "@/components/Layout";
 import Link from "next/link";
-import { Text } from "@chakra-ui/core";
+import { Text, Input } from "@chakra-ui/core";
 import { ContactForm } from "@/components/ContactForm";
-import { companyName } from "@/utils/helpers";
+import { Commas, companyName, nairaSign } from "@/utils/helpers";
+import { useState } from "react";
 
 const Sell = () => {
+  const [price, setPrice] = useState(null);
   return (
     <Layout>
       <Head>
@@ -141,6 +143,36 @@ const Sell = () => {
                     from each sale you make.
                   </strong>
                 </p>
+
+                <section className="calculator">
+                  <br />
+                  <span>
+                    <h3>Enter Price</h3>
+                    <Input
+                      variant="flushed"
+                      autoComplete="off"
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      id="Amount"
+                      maxLength={7}
+                      value={price}
+                      onChange={(e) => {
+                        setPrice(e.target.value);
+                      }}
+                      placeholder="Enter product price"
+                    />
+                  </span>
+                  <div>
+                    <p>
+                      Amount we charge:{" "}
+                      <span style={{ color: "#2a69ac" }}>
+                        {nairaSign}
+                        {isNaN(price) ? "" : Commas((price * 0.06).toFixed(2))}
+                      </span>
+                    </p>
+                  </div>
+                </section>
               </aside>
             </div>
             <img src="/wallet.png" alt="vendor's wallet" loading="lazy" />
