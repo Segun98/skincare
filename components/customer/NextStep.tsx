@@ -151,6 +151,7 @@ export const NextStep: React.FC<Iprops> = ({
       rightIcon="arrow-forward"
       variant="outline"
       isDisabled={disable}
+      isLoading={disable}
     >
       Pay
     </Button>
