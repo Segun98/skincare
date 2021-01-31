@@ -24,9 +24,7 @@ export const Featured = () => {
   );
 
   useEffect(() => {
-    if (error) {
-      setCheckError(!checkError);
-    }
+    setCheckError(!checkError);
   }, [error]);
   return (
     <div className="main-section">

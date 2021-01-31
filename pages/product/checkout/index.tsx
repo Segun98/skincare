@@ -38,7 +38,7 @@ const Checkout = () => {
       user_id: User["id"] ? User.id : null,
     },
     "",
-    User
+    User["id"]
   );
   let cart: Cart[] = data && data.getCartItems;
 

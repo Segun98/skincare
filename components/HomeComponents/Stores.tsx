@@ -32,9 +32,7 @@ export const StoresHome = () => {
   const [data, loading, error] = useQuery(homeStores, {}, null, checkError);
 
   useEffect(() => {
-    if (error) {
-      setCheckError(!checkError);
-    }
+    setCheckError(!checkError);
   }, [error]);
 
   const stores: UsersRes[] = data ? data.homeStores : null;
