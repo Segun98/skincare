@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Spinner, useToast } from "@chakra-ui/core";
-import Link from "next/link";
+// import Link from "next/link";
 import { useToken } from "@/Context/TokenProvider";
 import { Layout } from "@/components/Layout";
 import Head from "next/head";
@@ -19,7 +19,7 @@ export const CustomerCart = () => {
   const dispatch = useDispatch();
   const toast = useToast();
   const { Token } = useToken();
-  const role = Cookies.get("role");
+  // const role = Cookies.get("role");
   const { User } = useUser();
 
   //prevent unecessary request if no customer_id or user id

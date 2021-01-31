@@ -1,5 +1,5 @@
-import { Button, Icon, useToast } from "@chakra-ui/core";
-import React from "react";
+import { Button, Icon, Spinner, useToast } from "@chakra-ui/core";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteFromCart, updateCart } from "@/graphql/customer";
 import { cartItems } from "@/redux/features/cart/fetchCart";
@@ -21,12 +21,15 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
   const { Token } = useToken();
   const role = Cookies.get("role");
   const { User } = useUser();
+  //update cart quantity loading state
+  const [loadingCart, setLoadingCart] = useState(false);
 
   //cart items subtotal
   const subTotal = cart.reduce((a, c) => a + c.product.price * c.quantity, 0);
 
   //update quantity of an item
   const updateCartFn = async (id, quantity) => {
+    setLoadingCart(true);
     const { data, error } = await useMutation(updateCart, {
       id,
       quantity,
@@ -38,6 +41,7 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
           user_id: User["id"] ? User.id : null,
         })
       );
+      setLoadingCart(false);
       toast({
         title: "Quantity Updated",
         status: "info",
@@ -46,6 +50,7 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
       });
     }
     if (error) {
+      setLoadingCart(false);
       toast({
         title: "Updating Cart Item Quantity Failed",
         description: "check your internet connection and refresh.",
@@ -58,10 +63,12 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
 
   //delete from cart
   const deleteCartFn = async (id) => {
+    setLoadingCart(true);
     const { data, error } = await useMutation(deleteFromCart, {
       id,
     });
     if (data.deleteFromCart) {
+      setLoadingCart(false);
       dispatch(
         cartItems({
           customer_id: Cookies.get("customer_id"),
@@ -77,6 +84,7 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
       });
     }
     if (error) {
+      setLoadingCart(false);
       toast({
         title: "Failed To Remove From Cart",
         description: "check your internet connection and refresh.",
@@ -99,6 +107,13 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
         <hr />
         {cart && cart.length === 0 && (
           <div style={{ textAlign: "center" }}>No item in your cart...</div>
+        )}
+
+        {/* LOADING INDICATOR WHEN UPDATE QUANTITY  */}
+        {loadingCart && (
+          <div className="center">
+            <Spinner speed="0.5s"></Spinner>
+          </div>
         )}
 
         {cart &&
@@ -199,6 +214,13 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
         )}
       </div>
       <style jsx>{`
+        .center {
+          text-align: center;
+          /* position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%); */
+        }
         .cart-item-title,
         .cart-item {
           display: grid;
