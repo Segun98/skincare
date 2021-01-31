@@ -105,7 +105,6 @@ export const Flutterwave: React.FC<Iprops> = ({
   }
 
   //confirmation emails
-
   async function confirmationEmail() {
     try {
       //customer endpoint
@@ -113,7 +112,7 @@ export const Flutterwave: React.FC<Iprops> = ({
         to: order[0].customer_email,
         name: User.first_name,
         orderId: order[0].order_id,
-        body: "order",
+        order,
       });
     } catch (error) {
       //eyahh
@@ -125,7 +124,7 @@ export const Flutterwave: React.FC<Iprops> = ({
       //vendor endpoint
       await axios.post(`${restEndpoint}/order_vendor`, {
         to: o.vendor_email,
-        body: "order",
+        order: o,
         orderId: o.order_id,
       });
     } catch (error) {
