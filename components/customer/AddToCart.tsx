@@ -30,7 +30,7 @@ export const AddToCart: React.FC<Iprops> = ({
   const toast = useToast();
   const { Token } = useToken();
   const { User } = useUser();
-  const role = Cookies.get("role");
+  // const role = Cookies.get("role");
   const dispatch = useDispatch();
 
   //add to cart
@@ -73,11 +73,12 @@ export const AddToCart: React.FC<Iprops> = ({
       );
       toast({
         title: "Item Added to Cart!",
-        description: `Proceed to checkout`,
+        description: `Visit Cart to Checkout`,
         status: "success",
         isClosable: true,
         duration: 7000,
       });
+      (() => window.scrollTo(0, 0))();
     }
     if (error) {
       setLoading(false);
