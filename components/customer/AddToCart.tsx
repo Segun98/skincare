@@ -13,7 +13,6 @@ import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
 import { useLocalStorage } from "../useLocalStorage";
 import { useUser } from "@/Context/UserProvider";
-
 interface Iprops {
   product: ProductsRes;
   setLoading: Dispatch<SetStateAction<boolean>>;
@@ -72,8 +71,8 @@ export const AddToCart: React.FC<Iprops> = ({
         })
       );
       toast({
-        title: "Item Added to Cart!",
-        description: `Visit Cart to Checkout`,
+        title: `Item Added to Cart!`,
+        description: `Visit Cart (top-right icon) to Checkout`,
         status: "success",
         isClosable: true,
         duration: 7000,

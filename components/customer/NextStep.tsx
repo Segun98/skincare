@@ -36,11 +36,12 @@ export const NextStep: React.FC<Iprops> = ({
       toast({
         title: "Address Details Cannot Be Empty",
         description: "Click edit to add phone number and shipping address",
-        status: "error",
+        status: "info",
         duration: 5000,
         isClosable: true,
         position: "top",
       });
+      (() => window.scrollTo(0, 0))();
       return;
     }
 
@@ -117,9 +118,9 @@ export const NextStep: React.FC<Iprops> = ({
           isClosable: true,
           position: "top",
         });
+        setDisable(false);
         return;
       }
-      setDisable(false);
     }
 
     //Route to payment page after loop
