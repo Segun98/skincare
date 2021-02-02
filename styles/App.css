@@ -962,6 +962,10 @@ Class names accross components can be the same but they are wrapped by a unique 
   margin: 0 5px;
 }
 
+.main-store header .share .share-btns .twitter img {
+  height: 26px;
+}
+
 .main-store header .share .share-btns .fb-share-button {
   margin-top: -3px;
 }

@@ -136,7 +136,7 @@ export const Account = () => {
     if (data) {
       toast({
         title: "Item Added to Cart!",
-        description: `Proceed to checkout`,
+        description: `Visit Cart to proceed to checkout`,
         status: "success",
       });
       //update store

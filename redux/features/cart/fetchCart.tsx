@@ -45,6 +45,7 @@ export function cartItems(variables) {
       dispatch(getCart(data));
     } catch (err) {
       let error = err?.response?.errors[0].message || err.message;
+
       dispatch(errorResponse(error));
     }
   };

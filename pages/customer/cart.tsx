@@ -48,7 +48,7 @@ export const CustomerCart = () => {
       <Head>
         <title>Cart | Tadlace</title>
       </Head>
-      <>
+      {/* <>
         {error &&
           error === "Network request failed" &&
           toast({
@@ -59,7 +59,7 @@ export const CustomerCart = () => {
             isClosable: true,
             position: "top",
           })}
-      </>
+      </> */}
 
       {/* LOADING INDICATOR WHEN UPDATE QUANTITY  */}
       {loadingCart && (
