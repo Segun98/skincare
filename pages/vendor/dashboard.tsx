@@ -46,7 +46,9 @@ export const Dashboard: React.FC = () => {
   const subtotal = delivered.map((d) => d.subtotal);
 
   //ensure subtotal has run before reducing
-  const revenue = subtotal.length > 0 ? subtotal.reduce((a, c) => a + c) : 0;
+  const sub = subtotal.length > 0 ? subtotal.reduce((a, c) => a + c) : 0;
+
+  const revenue = sub - (6 / 100) * sub;
 
   const pending = orders.filter(
     (o) =>
