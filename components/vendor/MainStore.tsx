@@ -108,35 +108,20 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
           <div className="share">
             <img src="/share.svg" alt="share store" />
             <div className="share-btns">
-              <div>
+              <div className="twitter">
                 <a
-                  href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-                  className="twitter-share-button"
-                  data-text={`Shop from ${user.business_name} | ${user.business_bio}`}
-                  data-lang="en"
-                  data-size="small"
-                  data-show-count="false"
+                  href={`https://twitter.com/intent/tweet?url=https://tadlace.vercel.app/store/${user.business_name_slug}&text=${user.business_name} %7C ${user.business_bio}&via=tadlacestore`}
+                  target="_blank"
                 >
-                  Tweet
-                  {/* <img
-                    src="/twitter.svg"
-                    alt="Twitter Icon"
-                    width="40px"
-                    height="40px"
-                  /> */}
+                  <img src="/twitter.svg" alt="Twitter Icon" />
                 </a>
               </div>
 
-              <div
-                className="fb-share-button"
-                data-href="https://developers.facebook.com/docs/plugins/"
-                data-layout="button"
-                data-size="small"
-              >
+              <div>
                 <a
+                  href={`https://web.facebook.com/sharer.php?u=https://tadlace.vercel.app/store/${user.business_name_slug}`}
                   target="_blank"
-                  href={`https://www.facebook.com/sharer/sharer.php?u=https://tadlace.vercel.app/store/${user.business_name_slug}`}
-                  className="fb-xfbml-parse-ignore"
+                  rel="noopener noreferrer"
                 >
                   <img src="/facebook.svg" alt="Facebook Icon" />
                 </a>

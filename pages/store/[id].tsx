@@ -90,17 +90,6 @@ const Store = ({ user, error }: Iprops) => {
             src="https://kit.fontawesome.com/c772bfb479.js"
             crossOrigin="anonymous"
           ></script>
-          <script
-            async
-            src="https://platform.twitter.com/widgets.js"
-            charSet="utf-8"
-          ></script>
-          <script
-            async
-            defer
-            crossOrigin="anonymous"
-            src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"
-          ></script>
         </Head>
       )}
       {error &&
