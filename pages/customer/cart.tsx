@@ -63,8 +63,10 @@ export const CustomerCart = () => {
 
       {/* LOADING INDICATOR WHEN UPDATE QUANTITY  */}
       {loadingCart && (
-        <div className="spinner">
-          <Spinner speed="0.5s"></Spinner>
+        <div className="opacity">
+          <div className="spinner">
+            <Spinner speed="0.5s" color="white"></Spinner>
+          </div>
         </div>
       )}
 
