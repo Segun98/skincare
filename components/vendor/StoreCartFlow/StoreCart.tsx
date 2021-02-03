@@ -214,12 +214,15 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
         )}
       </div>
       <style jsx>{`
+        .cart-wrap {
+          position: relative;
+        }
         .center {
           text-align: center;
-          /* position: absolute;
+          position: absolute;
           left: 50%;
           top: 50%;
-          transform: translate(-50%, -50%); */
+          transform: translate(-50%, -50%);
         }
         .cart-item-title,
         .cart-item {
