@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { useUser } from "@/Context/UserProvider";
 import { useToken } from "@/Context/TokenProvider";
@@ -25,12 +25,14 @@ interface Iprops {
   order: Orders[];
   subtotal: number;
   delivery: number;
+  setLoader: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Flutterwave: React.FC<Iprops> = ({
   order,
   subtotal,
   delivery,
+  setLoader,
 }) => {
   const { Token } = useToken();
   const { User } = useUser();
@@ -38,6 +40,7 @@ export const Flutterwave: React.FC<Iprops> = ({
   const router = useRouter();
 
   async function updateOrderFn(transaction_id: string) {
+    setLoader(true);
     const variables: MutationUpdateOrderArgs = {
       order_id: order[0].order_id,
       transaction_id,
@@ -46,15 +49,6 @@ export const Flutterwave: React.FC<Iprops> = ({
     };
 
     const { data, error } = await useMutation(updateOrder, variables, Token);
-
-    toast({
-      title: "Payment Successful",
-      description:
-        "Your Order has been successfuly placed, track it in your Orders page",
-      status: "success",
-      duration: 5000,
-      position: "top",
-    });
 
     //email to customer
     confirmationEmail();
@@ -65,6 +59,15 @@ export const Flutterwave: React.FC<Iprops> = ({
     }
 
     if (data) {
+      toast({
+        title: "Payment Successful",
+        description:
+          "Your Order has been successfuly placed, track it in your Orders page",
+        status: "success",
+        duration: 5000,
+        position: "top",
+      });
+
       //clear cart
       await useMutation(deleteAllFromCart, {
         customer_id: Cookies.get("customer_id"),

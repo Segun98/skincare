@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useToken } from "@/Context/TokenProvider";
 import { useQuery } from "@/components/useQuery";
 import { getOrder } from "@/graphql/customer";
@@ -6,7 +6,7 @@ import { Layout } from "@/components/Layout";
 import { ConfirmOrder } from "@/components/customer/ConfirmOrder";
 import { Orders } from "@/Typescript/types";
 import { Commas, nairaSign } from "@/utils/helpers";
-import { useToast } from "@chakra-ui/core";
+import { Spinner, useToast } from "@chakra-ui/core";
 import Head from "next/head";
 import { ProtectRouteC } from "@/utils/ProtectedRouteC";
 import { Flutterwave } from "@/components/customer/Flutterwave";
@@ -26,8 +26,16 @@ export async function getServerSideProps({ params }) {
 const Pay = ({ variables }) => {
   const toast = useToast();
   const { Token } = useToken();
-  const [data, loading, error] = useQuery(getOrder, variables, Token);
+  const [Loader, setLoader] = useState(false);
+
+  //refetch query
+  const [refetch, setRefetch] = useState(false);
+  const [data, loading, error] = useQuery(getOrder, variables, Token, refetch);
   const order: Orders[] = data ? data.getOrder : null;
+
+  useEffect(() => {
+    setRefetch(!refetch);
+  }, [error]);
 
   const subTotal =
     order && order.length > 0 ? order.reduce((a, c) => a + c.subtotal, 0) : 0;
@@ -46,6 +54,15 @@ const Pay = ({ variables }) => {
           status: "error",
         })}
       {!order && <div className="space"></div>}
+
+      {Loader && (
+        <div className="opacity">
+          <div className="spinner">
+            <Spinner speed="1s" color="white"></Spinner>
+          </div>
+        </div>
+      )}
+
       {order && (
         <div className="pay-wrap">
           <h1 className="heading">Order Summary</h1>
@@ -95,8 +112,18 @@ const Pay = ({ variables }) => {
 
       {order && (
         <div className="text-center pb-3 pt-3">
-          <ConfirmOrder order={order} subtotal={subTotal} delivery={delivery} />
-          <Flutterwave order={order} subtotal={subTotal} delivery={delivery} />
+          <ConfirmOrder
+            setLoader={setLoader}
+            order={order}
+            subtotal={subTotal}
+            delivery={delivery}
+          />
+          <Flutterwave
+            setLoader={setLoader}
+            order={order}
+            subtotal={subTotal}
+            delivery={delivery}
+          />
         </div>
       )}
 

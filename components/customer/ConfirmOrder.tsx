@@ -2,7 +2,7 @@ import { useUser } from "@/Context/UserProvider";
 import { Button, useToast } from "@chakra-ui/core";
 import { gql } from "graphql-request";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { PaystackConsumer } from "react-paystack";
 import { useToken } from "@/Context/TokenProvider";
 import { deleteAllFromCart, updateOrder } from "@/graphql/customer";
@@ -25,12 +25,14 @@ interface Iprops {
   order: Orders[];
   subtotal: number;
   delivery: number;
+  setLoader: Dispatch<SetStateAction<boolean>>;
 }
 
 export const ConfirmOrder: React.FC<Iprops> = ({
   order,
   subtotal,
   delivery,
+  setLoader,
 }) => {
   const { Token } = useToken();
   const { User } = useUser();
@@ -38,6 +40,7 @@ export const ConfirmOrder: React.FC<Iprops> = ({
   const router = useRouter();
 
   async function updateOrderFn(transaction_id: string) {
+    setLoader(true);
     const variables: MutationUpdateOrderArgs = {
       order_id: order[0].order_id,
       transaction_id,
@@ -46,15 +49,6 @@ export const ConfirmOrder: React.FC<Iprops> = ({
     };
 
     const { data, error } = await useMutation(updateOrder, variables, Token);
-
-    toast({
-      title: "Payment Successful",
-      description:
-        "Your Order has been successfuly placed, track it in your Orders page",
-      status: "success",
-      duration: 5000,
-      position: "top",
-    });
 
     //email to customer
     confirmationEmail();
@@ -65,6 +59,15 @@ export const ConfirmOrder: React.FC<Iprops> = ({
     }
 
     if (data) {
+      toast({
+        title: "Payment Successful",
+        description:
+          "Your Order has been successfuly placed, track it in your Orders page",
+        status: "success",
+        duration: 7000,
+        position: "top",
+      });
+
       //clear cart
       await useMutation(deleteAllFromCart, {
         customer_id: Cookies.get("customer_id"),
@@ -89,7 +92,7 @@ export const ConfirmOrder: React.FC<Iprops> = ({
         }
       }
 
-      router.push(`/customer/cart`).then(() => window.scrollTo(0, 0));
+      router.push(`/customer/orders`).then(() => window.scrollTo(0, 0));
     }
 
     if (error) {
