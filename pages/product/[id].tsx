@@ -16,7 +16,6 @@ import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
 import Head from "next/head";
 import { AddToCart } from "@/components/customer/AddToCart";
 import { useLocalStorage } from "@/components/useLocalStorage";
-
 interface response {
   product: ProductsRes;
   error: any;
