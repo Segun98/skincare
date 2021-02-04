@@ -905,6 +905,12 @@ Class names accross components can be the same but they are wrapped by a unique 
   font-size: 0.9rem;
 }
 
+@media only screen and (max-width: 400px) {
+  .main-store header {
+    margin-top: 35px;
+  }
+}
+
 @media only screen and (min-width: 700px) {
   .main-store header {
     font-size: 1rem;
@@ -914,6 +920,10 @@ Class names accross components can be the same but they are wrapped by a unique 
 .main-store header .store-name {
   font-weight: bold;
   color: #2D2D2D;
+}
+
+.main-store header .store-name img {
+  margin-right: 5px;
 }
 
 .main-store header .store-bio {
@@ -931,19 +941,13 @@ Class names accross components can be the same but they are wrapped by a unique 
 }
 
 .main-store header .store-bio img {
-  margin-right: 5px;
+  margin-right: 10px;
   height: 20px;
   width: 20px;
 }
 
 .main-store header .store-location {
   padding-bottom: 2px;
-}
-
-.main-store header .store-location i {
-  margin-right: 5px;
-  height: 20px;
-  width: 20px;
 }
 
 .main-store header .share {
@@ -970,7 +974,7 @@ Class names accross components can be the same but they are wrapped by a unique 
 }
 
 .main-store header .share .share-btns div {
-  margin: 0 5px;
+  margin: 0 3px;
 }
 
 .main-store header .share .share-btns .twitter img {
@@ -979,6 +983,22 @@ Class names accross components can be the same but they are wrapped by a unique 
 
 .main-store header .share .share-btns .fb-share-button {
   margin-top: -3px;
+}
+
+.main-store header .views {
+  margin: 10px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+}
+
+.main-store header .views img {
+  margin-right: 10px;
 }
 
 .main-store .store-products {

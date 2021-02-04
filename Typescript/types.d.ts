@@ -53,6 +53,7 @@ export type UsersRes = {
   featured?: Maybe<Scalars['String']>;
   completed_qty?: Maybe<Scalars['Int']>;
   jwt_user_id?: Maybe<Scalars['String']>;
+  views?: Maybe<Scalars['Int']>;
   usersProducts?: Maybe<Array<Maybe<ProductsRes>>>;
   customerOrders?: Maybe<Array<Maybe<Orders>>>;
   homeProducts?: Maybe<Array<Maybe<ProductsRes>>>;
@@ -154,6 +155,7 @@ export type Order_Status = {
   refund?: Maybe<Scalars['String']>;
   paid?: Maybe<Scalars['String']>;
   delivery_date?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['String']>;
 };
 
 export type IdRes = {
