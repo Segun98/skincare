@@ -94,7 +94,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
       <header>
         <div>
           <div className="store-name" style={{ display: "flex" }}>
-            <img src="/home-alt.svg" alt="profile" className="mr-1" />{" "}
+            <img src="/home-alt.svg" alt="profile" />{" "}
             <span>{user.business_name}</span>
           </div>
           <div className="store-bio">
@@ -102,11 +102,11 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
             {user.business_bio || "This is " + user.business_name + " bio"}
           </div>
           <div className="store-location">
-            <Icon name="phone" mr="10px" />
+            <Icon name="phone" mr="10px" ml="5px" />
             {user.phone || "080123456789"}
           </div>
           <div className="share">
-            <img src="/share.svg" alt="share store" />
+            <img src="/share.svg" alt="share store" className="mr-1" />
             <div className="share-btns">
               <div className="twitter">
                 <a
@@ -143,6 +143,18 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
               </CopyToClipboard>
             </div>
           </div>
+          {user && user.id === user.jwt_user_id ? (
+            <div className="views">
+              <img
+                src="/eye.svg"
+                alt="store impressiond"
+                title="store impressions"
+              />
+              {user.views}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         {/* ONLY SHOW EDIT BUTTON TO STORE OWNER */}
         <div>

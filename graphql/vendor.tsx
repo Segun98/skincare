@@ -37,6 +37,7 @@ export const STORE = gql`
       business_name_slug
       business_image
       business_bio
+      views
       jwt_user_id
       usersProducts {
         id
