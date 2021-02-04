@@ -27,6 +27,8 @@
         .store-name {
             font-weight: bold;
             color: $deepblue;
+            display: flex;
+            align-items: center;
 
             img {
                 margin-right: 5px;

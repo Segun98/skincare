@@ -920,6 +920,12 @@ Class names accross components can be the same but they are wrapped by a unique 
 .main-store header .store-name {
   font-weight: bold;
   color: #2D2D2D;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main-store header .store-name img {
