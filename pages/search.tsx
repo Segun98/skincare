@@ -6,6 +6,9 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  MenuDivider,
+  MenuOptionGroup,
+  MenuItemOption,
 } from "@chakra-ui/core";
 import Head from "next/head";
 import Link from "next/link";
@@ -89,53 +92,63 @@ const Search = ({ products, error }: Iprops) => {
 
         <section className="search-results">
           <h1>Search Results... ({products && products.length} items)</h1>
-          <Text as="div" mb="2" textAlign="center">
-            <Menu autoSelect={false}>
+          <div className="filters">
+            <Menu closeOnSelect={false} autoSelect={false}>
               <MenuButton
                 as={Button}
-                size="sm"
-                background="var(--deepblue)"
-                color="white"
                 //@ts-ignore
+                variantColor="blue"
                 rightIcon="chevron-down"
+                size="sm"
               >
-                Sort By Price
+                Filters
               </MenuButton>
-              <MenuList>
-                <MenuItem
-                  // check if theres's a sort query, update the query to "low" else append sort query
-                  onClick={() => {
-                    router.query.sort
-                      ? router.push({
-                          pathname: router.pathname,
-                          query: { ...router.query, sort: "low" },
-                        })
-                      : router.push(router.asPath + "&sort=low");
-                  }}
-                >
-                  Low to High
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    router.query.sort
-                      ? router.push({
-                          pathname: router.pathname,
-                          query: { ...router.query, sort: "high" },
-                        })
-                      : router.push(router.asPath + "&sort=high");
-                  }}
-                >
-                  High to Low
-                </MenuItem>
+              <MenuList minWidth="240px">
+                <MenuOptionGroup title="Sort By Price" type="radio">
+                  <MenuItemOption
+                    value="asc"
+                    onClick={() => {
+                      router.query.sort
+                        ? router.push({
+                            pathname: router.pathname,
+                            query: { ...router.query, sort: "low" },
+                          })
+                        : router.push(router.asPath + "&sort=low");
+                    }}
+                  >
+                    Low to high
+                  </MenuItemOption>
+                  <MenuItemOption
+                    value="desc"
+                    onClick={() => {
+                      router.query.sort
+                        ? router.push({
+                            pathname: router.pathname,
+                            query: { ...router.query, sort: "high" },
+                          })
+                        : router.push(router.asPath + "&sort=high");
+                    }}
+                  >
+                    High to low
+                  </MenuItemOption>
+                </MenuOptionGroup>
+                <MenuDivider />
+                <MenuOptionGroup defaultValue="unisex" title="Sex" type="radio">
+                  <MenuItemOption value="male">Male</MenuItemOption>
+                  <MenuItemOption value="female">Female</MenuItemOption>
+                  <MenuItemOption value="unisex">Unisex</MenuItemOption>
+                </MenuOptionGroup>
               </MenuList>
             </Menu>
-          </Text>
+          </div>
+
           {products && products.length === 0 && (
             <h1>
               <br />
               Oops! no results found
             </h1>
           )}
+
           <div className="results-wrap">
             {products &&
               products.map((p) => (
@@ -210,12 +223,13 @@ const Search = ({ products, error }: Iprops) => {
       <style jsx>{`
         .search-results {
           padding: 20px 10px;
+          position: relative;
         }
         .search-results h1 {
           font-weight: bold;
           font-size: 1rem;
           text-align: center;
-          margin: 10px 0 20px 0;
+          margin: 10px 0 10px 0;
         }
         .results-wrap {
           margin: auto;
@@ -223,6 +237,11 @@ const Search = ({ products, error }: Iprops) => {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 10px;
+        }
+
+        .filters {
+          text-align: center;
+          margin-bottom: 15px;
         }
         .paginate {
           margin: 10px auto;

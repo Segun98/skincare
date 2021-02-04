@@ -37,7 +37,7 @@ export const Featured = () => {
               aria-label="scroll left"
               onClick={() => {
                 if (scrollRef.current) {
-                  scrollRef.current.scrollLeft -= 30;
+                  scrollRef.current.scrollLeft -= 200;
                 }
               }}
             >
@@ -49,7 +49,7 @@ export const Featured = () => {
               aria-label="scroll right"
               onClick={() => {
                 if (scrollRef.current) {
-                  scrollRef.current.scrollLeft += 30;
+                  scrollRef.current.scrollLeft += 200;
                 }
               }}
             >

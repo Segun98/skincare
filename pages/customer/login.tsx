@@ -9,6 +9,7 @@ import {
   Icon,
   useToast,
   Text,
+  Spinner,
 } from "@chakra-ui/core";
 import { useForm } from "react-hook-form";
 import { graphQLClient, oAuthLoginLink } from "@/utils/client";
@@ -38,6 +39,9 @@ export const Login = () => {
   //show password or not in input field- password/confirm password
   const [show, setShow] = useState(false);
   const [Loading, setLoading] = useState(false);
+
+  //loader screen after login with google --- since it takes a few secs before redirect
+  const [Loader, setLoader] = useState(false);
 
   //form submit function
 
@@ -119,6 +123,8 @@ export const Login = () => {
 
   //succesful oauth response
   const responseGoogle = async (response) => {
+    setLoader(true);
+
     let data = {
       first_name: response.profileObj.givenName,
       last_name: response.profileObj.familyName,
@@ -173,6 +179,7 @@ export const Login = () => {
         }
       }
     } catch (error) {
+      setLoader(false);
       if (error.message === "Network Error") {
         toast({
           title: "Check your internet connection",
@@ -185,6 +192,7 @@ export const Login = () => {
   };
   //failed oauth response
   const failureGoogle = (response) => {
+    setLoader(false);
     toast({
       title: "Google Error",
       description:
@@ -199,6 +207,15 @@ export const Login = () => {
       <Head>
         <title>Customer LogIn | Tadlace</title>
       </Head>
+
+      {Loader && (
+        <div className="opacity">
+          <div className="spinner">
+            <Spinner speed="1s" color="white"></Spinner>
+          </div>
+        </div>
+      )}
+
       <div className="login-page-wrap">
         <img src="/login.png" alt="login vector" className="login-vector" />
         <form onSubmit={handleSubmit(onSubmit)}>
