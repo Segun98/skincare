@@ -141,3 +141,29 @@
         }
     }
 }
+
+// An helper to center notifications 
+
+.opacity {
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+}
+
+.indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    z-index: 999;
+}
+
+//just space, incase there's a network error and data isn't loaded
+
+.space {
+    padding: 200px 0;
+}

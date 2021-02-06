@@ -13,7 +13,7 @@ import axios from "axios";
 import { restEndpoint } from "@/utils/client";
 import { useRouter } from "next/router";
 
-//STYLES IN APP.SCSS
+//STYLES IN _MISC.SCSS
 
 export const ContactForm = () => {
   const { User } = useUser();

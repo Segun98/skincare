@@ -123,7 +123,7 @@ export const Dashboard: React.FC = () => {
             <h1>Order Status</h1>
 
             <div className="order-status_items">
-              <div className="order-status_item">
+              <div className="order-status_item shadow">
                 <div className="icon">
                   <Icon name="repeat" color="#805AD5" size="30px" />
                 </div>
@@ -132,7 +132,7 @@ export const Dashboard: React.FC = () => {
                 <p>Total Orders</p>
               </div>
 
-              <div className="order-status_item">
+              <div className="order-status_item shadow">
                 <div
                   className="icon"
                   style={{
@@ -148,7 +148,7 @@ export const Dashboard: React.FC = () => {
                 <p>Pending Orders</p>
               </div>
 
-              <div className="order-status_item">
+              <div className="order-status_item shadow">
                 <div className="icon">
                   <Icon name="check-circle" color="#32CD32" size="30px" />
                 </div>
@@ -157,7 +157,7 @@ export const Dashboard: React.FC = () => {
                 <p>Delivered Orders</p>
               </div>
 
-              <div className="order-status_item">
+              <div className="order-status_item shadow">
                 <div className="icon">
                   <Icon
                     name="not-allowed"
@@ -170,7 +170,7 @@ export const Dashboard: React.FC = () => {
                 <p>Canceled Orders</p>
               </div>
 
-              <div className="order-status_item">
+              <div className="order-status_item shadow">
                 <div className="icon">
                   <Icon
                     name="lock"

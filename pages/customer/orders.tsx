@@ -43,7 +43,7 @@ export const CustomerOrders = () => {
         <title>Orders | Customer | Tadlace</title>
       </Head>
       <main className="customer-orders">
-        <div className="order-status">
+        <div className="order-status shadow">
           <List>
             <ListItem>
               * <strong>Processing</strong> signifies that your Order is being
@@ -97,7 +97,7 @@ export const CustomerOrders = () => {
         .order-status {
           font-size: 0.9rem;
           margin: 25px 0;
-          box-shadow: var(--box) var(--softgrey);
+          /* box-shadow: var(--box) var(--softgrey); */
           padding: 5px;
           border-radius: 8px;
         }

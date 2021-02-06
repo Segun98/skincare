@@ -15,7 +15,7 @@ export const Orders = () => {
       <div className="orders-layout">
         <Navigation />
         <main>
-          <div className="order-status">
+          <div className="order-status shadow">
             <List>
               <ListItem>
                 * <strong>Cancelled</strong> signifies that admin or a customer
@@ -59,7 +59,7 @@ export const Orders = () => {
         .order-status {
           font-size: 0.9rem;
           margin: 45px 0 30px 0;
-          box-shadow: var(--box) var(--softgrey);
+          /* box-shadow: var(--box) var(--softgrey); */
           padding: 5px;
           border-radius: 8px;
         }

@@ -155,6 +155,7 @@ export const Account = () => {
                     <small
                       style={{
                         display: editMode ? "block" : "none",
+                        color: "var(--secondary)",
                       }}
                     >
                       *This will be displayed in the public "Stores" Page
@@ -226,7 +227,7 @@ export const Account = () => {
                       `No5, My Business Address, Lagos.`}
                     <small
                       style={{
-                        color: "var(--deepblue)",
+                        color: "var(--secondary)",
                         display: editMode ? "block" : "none",
                       }}
                     >
@@ -281,7 +282,7 @@ export const Account = () => {
                       )}
                       <small
                         style={{
-                          color: "var(--deepblue)",
+                          color: "var(--secondary)",
                           display: editMode ? "block" : "none",
                         }}
                       >

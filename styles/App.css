@@ -41,34 +41,6 @@ a:hover {
   text-decoration: none !important;
 }
 
-.opacity {
-  background: rgba(0, 0, 0, 0.8);
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 999;
-}
-
-.indicator {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 90vh;
-  z-index: 999;
-}
-
-.space {
-  padding: 200px 0;
-}
-
 button {
   cursor: pointer;
 }
@@ -1265,8 +1237,6 @@ Class names accross components can be the same but they are wrapped by a unique 
 }
 
 .dashboard main .order-status_items .order-status_item {
-  -webkit-box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
-          box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
   padding: 5px 15px;
   border-radius: 5px;
 }
@@ -2607,5 +2577,33 @@ Class names accross components can be the same but they are wrapped by a unique 
   .contact form {
     width: 30%;
   }
+}
+
+.opacity {
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+.indicator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 90vh;
+  z-index: 999;
+}
+
+.space {
+  padding: 200px 0;
 }
 /*# sourceMappingURL=App.css.map */
