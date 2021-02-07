@@ -1,6 +1,6 @@
 import { useToken } from "@/Context/TokenProvider";
 import { Layout } from "@/components/Layout";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useUser } from "@/Context/UserProvider";
@@ -45,18 +45,23 @@ export const Account = () => {
   }, [User, Token]);
 
   //notification to insert your contact
+  //show notification once
+  const count = useRef(0);
   useEffect(() => {
     if ((User.role === "customer" && !User.phone) || !User.customer_address) {
-      toast({
-        title:
-          "Please add your contact and shipping address for a faster chechkout experience",
-        status: "info",
-        duration: 5000,
-        isClosable: true,
-        position: "top-right",
-      });
+      if (count.current < 1) {
+        toast({
+          title:
+            "Please add your contact and shipping address for a faster chechkout experience",
+          status: "info",
+          duration: 7000,
+          isClosable: true,
+          position: "top-right",
+        });
+        count.current++;
+      }
     }
-  }, [User]);
+  }, [User?.phone, User?.customer_address]);
 
   async function updateAccount(e) {
     e.preventDefault();
