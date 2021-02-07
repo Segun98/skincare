@@ -46,18 +46,16 @@ export const Account = () => {
 
   //notification to insert your contact
   useEffect(() => {
-    if (User["email"] && User.role === "customer") {
-      if (!User.phone || !User.customer_address) {
-        toast({
-          title: "Please add your contact and shipping address",
-          status: "info",
-          duration: 5000,
-          isClosable: true,
-          position: "top-right",
-        });
-      }
+    if ((User.role === "customer" && !User.phone) || !User.customer_address) {
+      toast({
+        title: "Please add your contact and shipping address",
+        status: "info",
+        duration: 5000,
+        isClosable: true,
+        position: "top-right",
+      });
     }
-  }, [User, Token]);
+  }, [User?.role, Token]);
 
   async function updateAccount(e) {
     e.preventDefault();

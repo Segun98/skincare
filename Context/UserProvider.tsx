@@ -49,6 +49,7 @@ export const UserProvider = ({ children }) => {
         business_image
         business_bio
         customer_address
+        role
       }
     }
   `;
