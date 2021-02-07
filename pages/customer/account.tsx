@@ -52,7 +52,7 @@ export const Account = () => {
       if (count.current < 1) {
         toast({
           title:
-            "Please add your contact and shipping address for a faster chechkout experience",
+            "Please add your contact and shipping address for a faster checkhout experience",
           status: "info",
           duration: 7000,
           isClosable: true,
