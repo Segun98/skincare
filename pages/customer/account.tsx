@@ -48,14 +48,15 @@ export const Account = () => {
   useEffect(() => {
     if ((User.role === "customer" && !User.phone) || !User.customer_address) {
       toast({
-        title: "Please add your contact and shipping address",
+        title:
+          "Please add your contact and shipping address for a faster chechkout experience",
         status: "info",
         duration: 5000,
         isClosable: true,
         position: "top-right",
       });
     }
-  }, [User?.role, Token]);
+  }, [User]);
 
   async function updateAccount(e) {
     e.preventDefault();
