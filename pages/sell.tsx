@@ -27,8 +27,8 @@ const Sell = () => {
             <div className="left">
               <h1>Partner With Us, Grow Your Business With Less Effort!</h1>
               <p>
-                Start selling today on {companyName}, we handle everything, from
-                delivery to order management. All you have to do is make your
+                We handle everything, from inventory and order management to
+                taking care of deliveries. All you have to do is make your
                 products available as orders roll in, that easy!
               </p>
               <Link href="/vendor/register">
@@ -134,8 +134,11 @@ const Sell = () => {
               <aside>
                 <p>
                   Once your product has been delivered to a customer, your
-                  wallet gets funded instantly and is available for withdrawal
-                  24/7.
+                  wallet gets funded{" "}
+                  <span style={{ color: "#2a69ac", fontWeight: "bold" }}>
+                    instantly
+                  </span>{" "}
+                  and is available for withdrawal 24/7.
                 </p>
                 <p>
                   <strong>
