@@ -106,6 +106,15 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
       return;
     }
 
+    if (User.pending === "true") {
+      toast({
+        title: "Your account is restricted",
+        description: "Please reach out to us asap",
+        isClosable: true,
+      });
+      return;
+    }
+
     if (amount < 1) {
       toast({
         title: "You can't withdraw nothing :-/",
