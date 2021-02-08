@@ -78,21 +78,21 @@ export const Payment = () => {
             <div></div>
           </header>
           <section className="boxes">
-            <div className="total-revenue">
+            <div className="total-revenue shadow">
               <h1>Net Revenue</h1>
               <hr />
               <p>
                 {nairaSign} {Commas(net_revenue)}
               </p>
             </div>
-            <div className="withdrawals">
+            <div className="withdrawals shadow">
               <h1>Withdrawals</h1>
               <hr />
               <p>
                 {nairaSign} {Commas(withdrawals)}
               </p>
             </div>
-            <div className="wallet-balance">
+            <div className="wallet-balance shadow">
               <h1>Wallet Balance</h1>
               <hr />
               <p>
@@ -139,7 +139,7 @@ export const Payment = () => {
         }
 
         .boxes div {
-          box-shadow: var(--box) var(--softgrey);
+          /* box-shadow: var(--box) var(--softgrey); */
           border-radius: 5px;
         }
 

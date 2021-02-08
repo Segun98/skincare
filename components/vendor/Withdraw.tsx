@@ -365,7 +365,7 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
               ))}
             </Select>
           </div>
-          <div style={{ textAlign: "center", marginTop: "5px" }}>
+          <div style={{ textAlign: "center", marginTop: "10px" }}>
             <Button
               isDisabled={!accountNo || !bankCode ? true : false}
               variantColor="blue"
@@ -426,7 +426,7 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
           <div style={{ textAlign: "center" }}>
             <Button
               type="submit"
-              mt="5px"
+              mt="10px"
               isDisabled={!password || !amount ? true : false}
               size="sm"
               borderRadius="12px"

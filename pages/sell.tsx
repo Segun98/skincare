@@ -119,8 +119,9 @@ const Sell = () => {
                 <h1>Your Public Store</h1>
                 <p>
                   Get a public store page with a unique url, customers can
-                  easily purchase your products from this SEO backed page. Your
-                  store and products are also promoted on our main maketplace.
+                  easily purchase your products from this SEO backed page, see
+                  page views and more! Your store and products are also promoted
+                  on our main maketplace.
                 </p>
               </div>
             </div>
@@ -142,7 +143,7 @@ const Sell = () => {
                 </p>
                 <p>
                   <strong>
-                    We charge only <span style={{ color: "#2a69ac" }}>6%</span>{" "}
+                    We charge only <span style={{ color: "#2a69ac" }}>5%</span>{" "}
                     from each sale you make.
                   </strong>
                 </p>
@@ -171,7 +172,7 @@ const Sell = () => {
                       Amount we charge:{" "}
                       <span style={{ color: "#2a69ac" }}>
                         {nairaSign}
-                        {isNaN(price) ? "" : Commas((price * 0.06).toFixed(2))}
+                        {isNaN(price) ? "" : Commas((price * 0.05).toFixed(2))}
                       </span>
                     </p>
                   </div>
