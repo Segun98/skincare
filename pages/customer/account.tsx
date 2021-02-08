@@ -48,17 +48,19 @@ export const Account = () => {
   //show notification once
   const count = useRef(0);
   useEffect(() => {
-    if ((User.role === "customer" && !User.phone) || !User.customer_address) {
-      if (count.current < 1) {
-        toast({
-          title:
-            "Please add your contact and shipping address for a faster checkhout experience",
-          status: "info",
-          duration: 7000,
-          isClosable: true,
-          position: "top-right",
-        });
-        count.current++;
+    if (Token && role) {
+      if ((role === "customer" && !User.phone) || !User.customer_address) {
+        if (count.current < 1) {
+          toast({
+            title:
+              "Please add your contact and shipping address for a faster checkout experience",
+            status: "info",
+            duration: 7000,
+            isClosable: true,
+            position: "top-right",
+          });
+          count.current++;
+        }
       }
     }
   }, [User?.phone, User?.customer_address]);
