@@ -312,7 +312,7 @@ export const Account = () => {
             </form>
 
             {/* SAVD ITEMS  */}
-            <h3 id="saved-items wishlist">Wishlist</h3>
+            <h3 id="wishlist">Wishlist</h3>
             <hr />
             {savedItem.length === 0 ? <p>No Item...</p> : null}
             <div className="saved-item-wrap">
