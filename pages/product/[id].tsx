@@ -6,6 +6,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Icon,
+  Tooltip,
   useToast,
 } from "@chakra-ui/core";
 import { ProductsRes } from "@/Typescript/types";
@@ -160,7 +161,7 @@ const Product = ({ product, error }: response) => {
                         <img
                           key={index}
                           src={`${i}`}
-                          alt={`Image ${index}`}
+                          alt={`Image ${index + 1}`}
                           loading="lazy"
                           role="button"
                           onClick={() => {
@@ -212,6 +213,7 @@ const Product = ({ product, error }: response) => {
                             </li>
                           </ul>
                           <button
+                            style={{ zIndex: 999 }}
                             aria-label="add product to wishlist"
                             onClick={() => {
                               addToSavedItems(
@@ -223,7 +225,7 @@ const Product = ({ product, error }: response) => {
                                 product.name_slug
                               );
                               toast({
-                                title: "Added to Saved Items",
+                                title: "Added to Wishlist",
                                 description: "Find it in your Account page",
                                 status: "info",
                                 duration: 5000,
@@ -232,11 +234,17 @@ const Product = ({ product, error }: response) => {
                               });
                             }}
                           >
-                            <img
-                              className="hearts"
-                              src="/heart.svg"
-                              alt="add to wishlist"
-                            />
+                            <Tooltip
+                              label="Add to Wishlist"
+                              placement="bottom"
+                              aria-label="Add to Wishlist"
+                            >
+                              <img
+                                className="hearts"
+                                src="/heart.svg"
+                                alt="add to wishlist"
+                              />
+                            </Tooltip>
                           </button>
                         </div>
                         <hr />

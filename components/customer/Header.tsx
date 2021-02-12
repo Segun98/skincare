@@ -233,6 +233,13 @@ export const Header = () => {
                             <a>Cart</a>
                           </Link>
                         </p>
+                        <p>
+                          <Link href="/customer/account#wishlist">
+                            <a>
+                              <li>Wishlist</li>
+                            </a>
+                          </Link>
+                        </p>
                         {Token && role === "customer" && (
                           <p>
                             <Link href="/customer/orders">

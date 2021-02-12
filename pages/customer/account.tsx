@@ -48,8 +48,8 @@ export const Account = () => {
   //show notification once
   const count = useRef(0);
   useEffect(() => {
-    if (Token && role) {
-      if ((role === "customer" && !User.phone) || !User.customer_address) {
+    if (Token && role && role === "customer") {
+      if (!User.phone || !User.customer_address) {
         if (count.current < 1) {
           toast({
             title:
@@ -312,9 +312,9 @@ export const Account = () => {
             </form>
 
             {/* SAVD ITEMS  */}
-            <h3 id="saved-items">Saved Items</h3>
+            <h3 id="saved-items wishlist">Wishlist</h3>
             <hr />
-            {savedItem.length === 0 ? <p>No Saved Item...</p> : null}
+            {savedItem.length === 0 ? <p>No Item...</p> : null}
             <div className="saved-item-wrap">
               {savedItem.map((s, i) => (
                 <div className="saved-item" key={s.product_id}>

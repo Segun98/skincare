@@ -83,11 +83,11 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
                     </a>
                   </Link>
                 )}
-                {/* <Link href="/customer#contact">
+                <Link href="/customer/account#wishlist">
                   <a>
-                    <li>Help</li>
+                    <li>Wishlist</li>
                   </a>
-                </Link> */}
+                </Link>
                 <Link href="/stores">
                   <a>
                     <li>Stores</li>
