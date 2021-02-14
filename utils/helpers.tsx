@@ -2,6 +2,8 @@ import { differenceInDays, formatDistance } from "date-fns";
 
 export const companyName = "Tadlace";
 
+export const paymentPercentage = 5 / 100;
+
 //Adds commas to numbers
 export function Commas(x: string | number) {
   if (!x) {

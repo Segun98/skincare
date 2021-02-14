@@ -12,7 +12,7 @@ import {
 } from "@/redux/features/orders/fetchOrders";
 import { DashboardOrders } from "@/components/vendor/DashboardOrders";
 import { Chart } from "@/components/vendor/Chart";
-import { Commas } from "@/utils/helpers";
+import { Commas, paymentPercentage } from "@/utils/helpers";
 import { useUser } from "@/Context/UserProvider";
 
 interface DefaultOrderState {
@@ -48,7 +48,7 @@ export const Dashboard: React.FC = () => {
   //ensure subtotal has run before reducing
   const sub = subtotal.length > 0 ? subtotal.reduce((a, c) => a + c) : 0;
 
-  const revenue = sub - (6 / 100) * sub;
+  const revenue = sub - paymentPercentage * sub;
 
   const pending = orders.filter(
     (o) =>

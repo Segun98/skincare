@@ -2,7 +2,7 @@ import { Navigation } from "@/components/vendor/Navigation";
 import React, { useEffect } from "react";
 import { ProtectRouteV } from "@/utils/ProtectedRouteV";
 import { useToken } from "@/Context/TokenProvider";
-import { Commas, nairaSign } from "@/utils/helpers";
+import { Commas, nairaSign, paymentPercentage } from "@/utils/helpers";
 import useSWR, { mutate } from "swr";
 import { getVendorOrders, withdrawalsQuery } from "@/graphql/vendor";
 import queryFunc from "@/utils/fetcher";
@@ -46,8 +46,8 @@ export const Payment = () => {
   const gross_revenue =
     orders && subtotal.length > 0 ? subtotal.reduce((a, c) => a + c) : 0;
 
-  //deduction of 6%
-  let deduction = (6 / 100) * gross_revenue;
+  //deduction percentage
+  let deduction = paymentPercentage * gross_revenue;
 
   //net revenue
   const net_revenue = gross_revenue - deduction;
