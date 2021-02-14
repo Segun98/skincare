@@ -54,9 +54,7 @@ export const Flutterwave: React.FC<Iprops> = ({
     confirmationEmail();
 
     //email to vendor
-    for await (const o of order) {
-      confirmationEmailVendor(o);
-    }
+    confirmationEmailVendor();
 
     if (data) {
       toast({
@@ -72,6 +70,7 @@ export const Flutterwave: React.FC<Iprops> = ({
       await useMutation(deleteAllFromCart, {
         customer_id: Cookies.get("customer_id"),
         user_id: User["id"] ? User.id : null,
+        prod_creator_id: order[0].prod_creator_id,
       });
       toast({
         title: "You are being redirected...",
@@ -122,13 +121,13 @@ export const Flutterwave: React.FC<Iprops> = ({
     }
   }
 
-  async function confirmationEmailVendor(o: Orders) {
+  async function confirmationEmailVendor() {
     try {
       //vendor endpoint
       await axios.post(`${restEndpoint}/order_vendor`, {
-        to: o.vendor_email,
-        order: o,
-        orderId: o.order_id,
+        to: order[0].vendor_email,
+        order,
+        orderId: order[0].order_id,
       });
     } catch (error) {
       //eyahh

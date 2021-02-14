@@ -69,9 +69,7 @@ export const OrderPage: React.FC<Props> = ({ lookup, Token }) => {
         //emails
         toCustomer(order_id);
         //incase multiple vendors
-        for await (const o of orders) {
-          toVendors(order_id, o.vendor_email);
-        }
+        toVendors(order_id, orders[0].vendor_email);
       }
       if (error) {
         let msg = error.response.errors[0].message || error.message;

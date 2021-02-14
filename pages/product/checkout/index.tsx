@@ -76,9 +76,11 @@ const Checkout = () => {
             status: "error",
           })}
 
-        {error || !cart || (!router.query.id && <div className="space"></div>)}
+        {!router.query.id && <div className="space"></div>}
 
-        {cart && router.query.id && (
+        {error || (!cart && <div className="space"></div>)}
+
+        {!loading && cart && router.query.id && (
           <div className="bread-crumb">
             <Breadcrumb
               separator={<Icon color="gray.300" name="chevron-right" />}
@@ -91,16 +93,18 @@ const Checkout = () => {
                 </BreadcrumbItem>
               )}
 
-              <BreadcrumbItem>
-                <Link
-                  href={`/store/${cart[0].product.creator.business_name_slug}`}
-                >
-                  <a>Cart</a>
-                </Link>
-              </BreadcrumbItem>
+              {/* {cart && !loading && (
+                <BreadcrumbItem>
+                  <Link
+                    href={`/store/${cart[0].product.creator.business_name_slug}`}
+                  >
+                    <a>Cart</a>
+                  </Link>
+                </BreadcrumbItem>
+              )} */}
 
               <BreadcrumbItem isCurrentPage>
-                <BreadcrumbLink>Checkout</BreadcrumbLink>
+                <BreadcrumbLink>Checkout Page</BreadcrumbLink>
               </BreadcrumbItem>
             </Breadcrumb>
           </div>
