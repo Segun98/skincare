@@ -71,11 +71,6 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
                     <li>Account</li>
                   </a>
                 </Link>
-                <Link href="/customer/cart">
-                  <a>
-                    <li>Cart</li>
-                  </a>
-                </Link>
                 {Token && role && (
                   <Link href="/customer/orders">
                     <a>
@@ -152,7 +147,6 @@ export const HeaderDrawer: React.FC<props> = ({ isOpen, onClose }) => {
         .navigation h1 {
           font-weight: 600;
           padding: 8px;
-          /* text-align: center; */
           font-size: 1.1rem;
         }
 

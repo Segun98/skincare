@@ -1,20 +1,30 @@
-import { Button, Icon, Spinner, useToast } from "@chakra-ui/core";
+import {
+  Button,
+  Icon,
+  Spinner,
+  useToast,
+  useDisclosure,
+} from "@chakra-ui/core";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteFromCart, updateCart } from "@/graphql/customer";
 import { cartItems } from "@/redux/features/cart/fetchCart";
-import { Cart } from "@/Typescript/types";
+import { Cart, UsersRes } from "@/Typescript/types";
 import { Commas, nairaSign } from "@/utils/helpers";
 import { useMutation } from "@/utils/useMutation";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { useToken } from "@/Context/TokenProvider";
 import { useUser } from "@/Context/UserProvider";
+import { StoreLogin } from "./StoreLogin";
 
 interface IProps {
   cart: Cart[];
+  user: UsersRes;
 }
-export const StoreCart: React.FC<IProps> = ({ cart }) => {
+export const StoreCart: React.FC<IProps> = ({ cart, user }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const toast = useToast();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -39,6 +49,7 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
         cartItems({
           customer_id: Cookies.get("customer_id"),
           user_id: User["id"] ? User.id : null,
+          prod_creator_id: user.id,
         })
       );
       setLoadingCart(false);
@@ -193,25 +204,29 @@ export const StoreCart: React.FC<IProps> = ({ cart }) => {
                 if (!Token || !role) {
                   toast({
                     title: "Almost There! You need to Login before checkout",
-                    description: "Redirecting",
                     status: "info",
                     position: "top",
                     duration: 7000,
                   });
 
-                  setTimeout(() => {
-                    router.push(`/customer/login?redirect=checkout`);
-                  }, 1000);
+                  onOpen();
+
+                  // setTimeout(() => {
+                  //   router.push(`/customer/login?redirect=checkout`);
+                  // }, 1000);
 
                   return;
                 }
-                router.push(`/product/checkout`);
+                router.push(`/product/checkout?id=${user.id}`);
               }}
             >
               Checkout
             </Button>
           </div>
         )}
+
+        {/* Popup modal for unauthenticated users  */}
+        <StoreLogin isOpen={isOpen} onClose={onClose} storeid={user.id} />
       </div>
       <style jsx>{`
         .cart-wrap {

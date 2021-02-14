@@ -246,6 +246,7 @@ export type QueryEditProductPageArgs = {
 export type QueryGetCartItemsArgs = {
   customer_id?: Maybe<Scalars['ID']>;
   user_id?: Maybe<Scalars['ID']>;
+  prod_creator_id?: Maybe<Scalars['ID']>;
 };
 
 

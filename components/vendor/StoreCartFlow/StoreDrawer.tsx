@@ -8,14 +8,20 @@ import {
   DrawerCloseButton,
 } from "@chakra-ui/core";
 import { StoreCart } from "./StoreCart";
-import { Cart } from "@/Typescript/types";
+import { Cart, UsersRes } from "@/Typescript/types";
 
 interface props {
   isOpen: any;
   onClose: any;
   cart: Cart[];
+  user: UsersRes;
 }
-export const StoreDrawer: React.FC<props> = ({ isOpen, onClose, cart }) => {
+export const StoreDrawer: React.FC<props> = ({
+  isOpen,
+  onClose,
+  cart,
+  user,
+}) => {
   return (
     <div>
       <Drawer
@@ -30,7 +36,7 @@ export const StoreDrawer: React.FC<props> = ({ isOpen, onClose, cart }) => {
             <DrawerCloseButton />
             <DrawerHeader borderBottomWidth="1px">Your Cart</DrawerHeader>
             <DrawerBody>
-              <StoreCart cart={cart} />
+              <StoreCart cart={cart} user={user} />
             </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>

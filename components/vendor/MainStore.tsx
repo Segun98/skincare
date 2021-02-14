@@ -1,8 +1,8 @@
-import { Icon, useToast, useDisclosure } from "@chakra-ui/core";
+import { Icon, useToast, useDisclosure, Spinner } from "@chakra-ui/core";
 import { gql } from "graphql-request";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useToken } from "@/Context/TokenProvider";
 import { MutationDeleteProductArgs, UsersRes } from "@/Typescript/types";
 import { Commas } from "@/utils/helpers";
@@ -22,6 +22,9 @@ interface StoreProps {
 export const MainStore: React.FC<StoreProps> = ({ user }) => {
   //for chakra ui drawer
   const { isOpen, onOpen, onClose } = useDisclosure();
+  //loading cart
+  const [loading, setLoading] = useState(false);
+
   //CART FROM REDUX STORE
   const { cartLength, cart } = useSelector<any, any>((state) => state.cart);
   const dispatch = useDispatch();
@@ -41,6 +44,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
       cartItems({
         customer_id: Cookies.get("customer_id"),
         user_id: User["id"] ? User.id : null,
+        prod_creator_id: user.id,
       })
     );
   }, [cartLength, User]);
@@ -186,13 +190,31 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
                 <img src="/shopping-cart.svg" alt="open cart icon" />
                 <h1>{cartLength === 0 ? "" : cartLength}</h1>
               </button>
-              <StoreDrawer onClose={onClose} isOpen={isOpen} cart={cart} />
+              <StoreDrawer
+                onClose={onClose}
+                isOpen={isOpen}
+                cart={cart}
+                user={user}
+              />
             </div>
           )}
         </div>
       </header>
       <hr />
       {/* END OF HEADER  */}
+
+      {/* LOADER WHEN ADDNG TO CART  */}
+      {loading && (
+        <div className="center">
+          <Spinner
+            speed="0.5s"
+            thickness="4px"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          ></Spinner>
+        </div>
+      )}
 
       <div className="store-products">
         <div className="store-products_head">
@@ -287,7 +309,13 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
                 ) : (
                   //Add to cart button
                   <div className="store-add-cart">
-                    <StoreAddToCart onOpen={onOpen} product={p} />
+                    <StoreAddToCart
+                      onOpen={onOpen}
+                      product={p}
+                      loading={loading}
+                      setLoading={setLoading}
+                      user={user}
+                    />
                   </div>
                 )}
               </div>

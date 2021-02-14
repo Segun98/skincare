@@ -8,7 +8,6 @@ import { useToken } from "@/Context/TokenProvider";
 import { Button, useToast } from "@chakra-ui/core";
 import { useMutation } from "@/utils/useMutation";
 import { addToCart } from "@/graphql/customer";
-import { cartItems } from "@/redux/features/cart/fetchCart";
 import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
 import { useLocalStorage } from "../useLocalStorage";
@@ -29,8 +28,6 @@ export const AddToCart: React.FC<Iprops> = ({
   const toast = useToast();
   const { Token } = useToken();
   const { User } = useUser();
-  // const role = Cookies.get("role");
-  const dispatch = useDispatch();
 
   //add to cart
   async function addCart(
@@ -64,33 +61,29 @@ export const AddToCart: React.FC<Iprops> = ({
     const { data, error } = await useMutation(addToCart, variables, Token);
     if (data) {
       setLoading(false);
-      dispatch(
-        cartItems({
-          customer_id: Cookies.get("customer_id"),
-          user_id: User["id"] ? User.id : null,
+      router.push(`/store/${product.creator.business_name_slug}`).then(() =>
+        toast({
+          title: `Item Added to Cart!`,
+          description: `Open Cart (top-right icon) to Checkout`,
+          status: "success",
+          isClosable: true,
+          duration: 7000,
         })
       );
-      toast({
-        title: `Item Added to Cart!`,
-        description: `Visit Cart (top-right icon) to Checkout`,
-        status: "success",
-        isClosable: true,
-        duration: 7000,
-      });
-      (() => window.scrollTo(0, 0))();
     }
     if (error) {
       setLoading(false);
       //handled this error cos chakra ui "status" should be "info"
       if (error.response?.errors[0].message === "Item is already in Cart") {
-        toast({
-          title: "Item Is Already In Cart",
-          description: "Redirecting to cart...",
-          isClosable: true,
-          status: "info",
-          duration: 3000,
-        });
-        router.push("/customer/cart").then(() => window.scrollTo(0, 0));
+        router.push(`/store/${product.creator.business_name_slug}`).then(() =>
+          toast({
+            title: "Item Is Already In Cart",
+            description: `Open Cart (top-right icon) to Checkout`,
+            isClosable: true,
+            status: "info",
+            duration: 3000,
+          })
+        );
 
         return;
       }
@@ -125,21 +118,11 @@ export const AddToCart: React.FC<Iprops> = ({
       isLoading={loading ? true : false}
       style={{ backgroundColor: "var(--deepblue" }}
       onClick={() => {
-        // if (role === "vendor") {
-        //   addToLocalStorage();
-        //   toast({
-        //     title: "Please login as a customer to use cart",
-        //     status: "info",
-        //   });
-        //   return;
-        // }
-
         if (product.in_stock === "false") {
           addToLocalStorage();
           toast({
             title: "This Product is Currently Out of Stock!",
-            description:
-              "It has been added to Saved Items in your Account page",
+            description: "It has been added to Wishlist in your Account page",
             status: "info",
             duration: 5000,
             position: "bottom",
@@ -152,7 +135,7 @@ export const AddToCart: React.FC<Iprops> = ({
           toast({
             title: "The Vendor is Currently OFFLINE",
             description:
-              "This Item Has Been Saved In Your Account Page. Please Try Again Later",
+              "This Item Has Been addedd to your Wishlist. Please Try Again Later",
             status: "info",
             duration: 5000,
             position: "bottom",

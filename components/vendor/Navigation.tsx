@@ -111,8 +111,8 @@ export const Navigation = () => {
               </Link>
             </li>
             <li>
-              <Link href="/customer/cart">
-                <a>Cart</a>
+              <Link href="/customer/account#wishlist">
+                <a>Wishlist</a>
               </Link>
             </li>
             <li>

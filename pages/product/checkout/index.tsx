@@ -20,10 +20,13 @@ import Link from "next/link";
 import { NextStep } from "@/components/customer/NextStep";
 import Cookies from "js-cookie";
 import { useUser } from "@/Context/UserProvider";
+import { useRouter } from "next/router";
+import { ProtectRouteC } from "@/utils/ProtectedRouteC";
 
 const Checkout = () => {
   const toast = useToast();
   const { User } = useUser();
+  const router = useRouter();
 
   const [editMode, setEditMode] = useState(false);
   const [address, setAddress] = useState("");
@@ -36,6 +39,7 @@ const Checkout = () => {
     {
       customer_id: Cookies.get("customer_id"),
       user_id: User["id"] ? User.id : null,
+      prod_creator_id: router.query.id,
     },
     "",
     User["id"]
@@ -72,9 +76,9 @@ const Checkout = () => {
             status: "error",
           })}
 
-        {error || (!cart && <div className="space"></div>)}
+        {error || !cart || (!router.query.id && <div className="space"></div>)}
 
-        {cart && (
+        {cart && router.query.id && (
           <div className="bread-crumb">
             <Breadcrumb
               separator={<Icon color="gray.300" name="chevron-right" />}
@@ -88,7 +92,9 @@ const Checkout = () => {
               )}
 
               <BreadcrumbItem>
-                <Link href={`/customer/cart`}>
+                <Link
+                  href={`/store/${cart[0].product.creator.business_name_slug}`}
+                >
                   <a>Cart</a>
                 </Link>
               </BreadcrumbItem>
@@ -100,7 +106,7 @@ const Checkout = () => {
           </div>
         )}
 
-        {cart && (
+        {cart && router.query.id && (
           <div className="checkout-wrap">
             <div className="delivery-info">
               <div className="grid-1">
@@ -349,4 +355,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default ProtectRouteC(Checkout);

@@ -1,5 +1,9 @@
-import React from "react";
-import { MutationAddToCartArgs, ProductsRes } from "@/Typescript/types";
+import React, { Dispatch, SetStateAction } from "react";
+import {
+  MutationAddToCartArgs,
+  ProductsRes,
+  UsersRes,
+} from "@/Typescript/types";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import { useToken } from "@/Context/TokenProvider";
@@ -14,8 +18,16 @@ import { useUser } from "@/Context/UserProvider";
 interface Iprops {
   onOpen: any;
   product: ProductsRes;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+  loading: boolean;
+  user: UsersRes;
 }
-export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
+export const StoreAddToCart: React.FC<Iprops> = ({
+  product,
+  onOpen,
+  setLoading,
+  user,
+}) => {
   const toast = useToast();
   const { Token } = useToken();
   const dispatch = useDispatch();
@@ -27,6 +39,8 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
     prod_creator_id: string,
     quantity: number
   ) {
+    setLoading(true);
+
     //generate customer id
     let customer_id = "";
     const check = Cookies.get("customer_id");
@@ -50,10 +64,13 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
 
     const { data, error } = await useMutation(addToCart, variables, Token);
     if (data) {
+      setLoading(false);
+
       dispatch(
         cartItems({
           customer_id: Cookies.get("customer_id"),
           user_id: User["id"] ? User.id : null,
+          prod_creator_id: user.id,
         })
       );
       toast({
@@ -67,6 +84,7 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
       onOpen();
     }
     if (error) {
+      setLoading(false);
       if (error.response?.errors[0].message === "Item is already in Cart") {
         toast({
           title: "Item Is Already In Cart",
@@ -105,21 +123,12 @@ export const StoreAddToCart: React.FC<Iprops> = ({ product, onOpen }) => {
     <button
       aria-label="add to cart"
       onClick={() => {
-        // if (role === "vendor") {
-        //   addToLocalStorage();
-        //   toast({
-        //     title: "Please login as a customer to use cart",
-        //     status: "info",
-        //   });
-        //   return;
-        // }
-
         if (product.in_stock === "false") {
           addToLocalStorage();
           toast({
             title: "This Product is Currently Out of Stock!",
             description:
-              "It has been added to Saved Items in your Account page",
+              "It has been added to your wishlist in your Account page",
             status: "info",
             duration: 5000,
             position: "bottom",

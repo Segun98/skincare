@@ -228,11 +228,7 @@ export const Header = () => {
                             <a>Account</a>
                           </Link>
                         </p>
-                        <p>
-                          <Link href="/customer/cart">
-                            <a>Cart</a>
-                          </Link>
-                        </p>
+
                         <p>
                           <Link href="/customer/account#wishlist">
                             <a>
@@ -276,14 +272,14 @@ export const Header = () => {
                 </Popover>
               </div>
 
-              <div className="cart-icon">
-                <Link href="/customer/cart">
+              {/* <div className="cart-icon"> */}
+              {/* <Link href="/customer/cart">
                   <a title="visit cart">
                     <aside>{cartLength === 0 ? null : cartLength}</aside>
                     <img src="/shopping-cart.svg" alt="cart icon" />
                   </a>
-                </Link>
-              </div>
+                </Link> */}
+              {/* </div> */}
             </div>
           </div>
         </header>

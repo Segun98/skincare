@@ -314,7 +314,12 @@ export const Account = () => {
             {/* SAVD ITEMS  */}
             <h3 id="wishlist">Wishlist</h3>
             <hr />
-            {savedItem.length === 0 ? <p>No Item...</p> : null}
+            {savedItem.length === 0 ? (
+              <p>
+                No Item... add products here by clicking the heart icon on a
+                product's page
+              </p>
+            ) : null}
             <div className="saved-item-wrap">
               {savedItem.map((s, i) => (
                 <div className="saved-item" key={s.product_id}>

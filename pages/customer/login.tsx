@@ -68,21 +68,6 @@ export const Login = () => {
         // secure: true,
       });
 
-      //redirect to checkout page if customer came from there.
-      if (data && fromCheckout) {
-        setLoading(false);
-        setToken(data.accesstoken);
-
-        toast({
-          title: "LogIn Successfull!",
-          description: "Redirecting to checkout...",
-          status: "success",
-          duration: 5000,
-        });
-        router.push("/product/checkout").then(() => window.scrollTo(0, 0));
-        return;
-      }
-
       if (data) {
         setLoading(false);
         setToken(data.accesstoken);
@@ -153,19 +138,6 @@ export const Login = () => {
           expires: 7,
           // secure: true,
         });
-
-        //redirect to checkout page if customer came from there.
-        if (res.data && fromCheckout) {
-          setToken(res.data.accesstoken);
-          toast({
-            title: "LogIn Successfull!",
-            description: "Redirecting to checkout...",
-            status: "success",
-            duration: 5000,
-          });
-          router.push("/product/checkout").then(() => window.scrollTo(0, 0));
-          return;
-        }
 
         if (res.data) {
           setToken(res.data.accesstoken);

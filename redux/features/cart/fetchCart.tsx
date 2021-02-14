@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getCartItemsCartPage } from "@/graphql/customer";
-import { Cart } from "@/Typescript/types";
+import { Cart, QueryGetCartItemsArgs } from "@/Typescript/types";
 import { graphQLClient } from "@/utils/client";
 
 export interface IinitialState {
@@ -37,7 +37,7 @@ export default cartSlice.reducer;
 export const { getCart, errorResponse } = cartSlice.actions;
 
 // get cart items thunk
-export function cartItems(variables) {
+export function cartItems(variables: QueryGetCartItemsArgs) {
   return async (dispatch) => {
     try {
       const res = await graphQLClient.request(getCartItemsCartPage, variables);
