@@ -236,23 +236,25 @@ export const Newitem = () => {
                         <FormLabel htmlFor="other-categories">
                           Category
                         </FormLabel>
-                        <div className="tags">
-                          {tags.map((t, i) => (
-                            <div key={i}>
-                              <span>{t}</span>
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  let alltags = [...tags];
-                                  alltags.splice(i, 1);
-                                  setTags(alltags);
-                                }}
-                              >
-                                x
-                              </button>
-                            </div>
-                          ))}
-                        </div>
+                        {tags.length > 0 && (
+                          <div className="tags">
+                            {tags.map((t, i) => (
+                              <div key={i}>
+                                <span>{t}</span>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    let alltags = [...tags];
+                                    alltags.splice(i, 1);
+                                    setTags(alltags);
+                                  }}
+                                >
+                                  x
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
 
                       <div className="form-item">

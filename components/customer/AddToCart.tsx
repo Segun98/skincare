@@ -68,6 +68,7 @@ export const AddToCart: React.FC<Iprops> = ({
           duration: 7000,
         })
       );
+      return;
     }
     if (error) {
       setLoading(false);
