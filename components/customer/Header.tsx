@@ -79,7 +79,7 @@ export const Header = () => {
   function handleSearch(e) {
     e.preventDefault();
     if (search.trim() !== "") {
-      router.push(`/search?query=${search}`);
+      router.push(`/search?query=${search}`).then(() => window.scrollTo(0, 0));
     }
   }
 
@@ -250,6 +250,11 @@ export const Header = () => {
                             </Link>
                           </p>
                         )}
+                        <p>
+                          <Link href="/stores">
+                            <a>Stores</a>
+                          </Link>
+                        </p>
                         <p>
                           <Link href="/customer#contact">
                             <a>Help</a>

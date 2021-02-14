@@ -2,7 +2,6 @@ import React from "react";
 import { MutationAddToCartArgs, ProductsRes } from "@/Typescript/types";
 import { Dispatch } from "react";
 import { SetStateAction } from "react";
-import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import { useToken } from "@/Context/TokenProvider";
 import { Button, useToast } from "@chakra-ui/core";

@@ -207,10 +207,10 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
       {loading && (
         <div className="center">
           <Spinner
-            speed="0.5s"
+            speed="0.8s"
             thickness="4px"
             emptyColor="gray.200"
-            color="blue.500"
+            color="var(--primary)"
             size="xl"
           ></Spinner>
         </div>

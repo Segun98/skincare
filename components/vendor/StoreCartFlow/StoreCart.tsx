@@ -84,6 +84,7 @@ export const StoreCart: React.FC<IProps> = ({ cart, user }) => {
         cartItems({
           customer_id: Cookies.get("customer_id"),
           user_id: User["id"] ? User.id : null,
+          prod_creator_id: user.id,
         })
       );
       toast({
@@ -210,10 +211,6 @@ export const StoreCart: React.FC<IProps> = ({ cart, user }) => {
                   });
 
                   onOpen();
-
-                  // setTimeout(() => {
-                  //   router.push(`/customer/login?redirect=checkout`);
-                  // }, 1000);
 
                   return;
                 }

@@ -18,12 +18,8 @@ import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
 import { useMutation } from "@/utils/useMutation";
 import Head from "next/head";
 import { Commas } from "@/utils/helpers";
-import { addToCart } from "@/graphql/customer";
-import { cartItems } from "@/redux/features/cart/fetchCart";
 import { useDispatch } from "react-redux";
 import { updateProfile } from "@/graphql/vendor";
-import { MutationAddToCartArgs } from "@/Typescript/types";
-import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 
 export const Account = () => {
@@ -31,8 +27,6 @@ export const Account = () => {
   const { User, setUserDependency, userDependency } = useUser();
   const toast = useToast();
   const role = Cookies && Cookies.get("role");
-  const dispatch = useDispatch();
-  const router = useRouter();
 
   //Input Fileds Values
   const [readOnly, setReadOnly] = useState(true);
@@ -114,67 +108,6 @@ export const Account = () => {
       localStorage.setItem("savedItem", JSON.stringify(savedItem));
     }
   }, [savedItem]);
-
-  // add saved item to cart
-  async function addCart(product_id, prod_creator_id, quantity) {
-    //generate customer id
-    let customer_id = "";
-    const check = Cookies.get("customer_id");
-    if (check) {
-      customer_id = check;
-    } else {
-      customer_id = uuidv4();
-
-      Cookies.set("customer_id", customer_id, {
-        expires: 365,
-      });
-    }
-
-    const variables: MutationAddToCartArgs = {
-      customer_id,
-      product_id,
-      prod_creator_id,
-      quantity,
-      user_id: User["id"] ? User.id : null,
-    };
-    const { data, error } = await useMutation(addToCart, variables, Token);
-
-    if (data) {
-      toast({
-        title: "Item Added to Cart!",
-        description: `Visit Cart to proceed to checkout`,
-        status: "success",
-      });
-      //update store
-      dispatch(
-        cartItems({
-          customer_id: Cookies.get("customer_id"),
-          user_id: User["id"] ? User.id : null,
-        })
-      );
-
-      //delete from saved item after adding to Cart
-      const newSaved = savedItem.filter((s) => s.product_id !== product_id);
-      setSavedItem(newSaved);
-    }
-    if (error) {
-      if (error.response?.errors[0].message === "Item is already in Cart") {
-        toast({
-          title: "Item Is Already In Cart",
-          description: "Redirecing...",
-          status: "info",
-          duration: 3000,
-        });
-        router.push("/customer/cart").then(() => window.scrollTo(0, 0));
-
-        return;
-      }
-      toast({
-        title: "An Error occurred while adding to cart.",
-        status: "info",
-      });
-    }
-  }
 
   //delete from saved item
   function removeSavedItem(product_id) {
@@ -339,17 +272,6 @@ export const Account = () => {
                     </Link>
                   </div>
                   <div className="saved-btns">
-                    <Button
-                      size="xs"
-                      background="var(--deepblue)"
-                      color="white"
-                      borderRadius="2px"
-                      onClick={() => {
-                        addCart(s.product_id, s.prod_creator_id, 1);
-                      }}
-                    >
-                      Add To Cart
-                    </Button>
                     <button
                       onClick={() => removeSavedItem(s.product_id)}
                       className="ml-2"
@@ -457,9 +379,9 @@ export const Account = () => {
         }
         .saved-btns {
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           margin: 5px 0;
-          width: 100px;
+          align-items: center;
         }
         /* notification */
         .indicator {

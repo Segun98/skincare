@@ -2023,29 +2023,6 @@ Class names accross components can be the same but they are wrapped by a unique 
   width: 25px;
 }
 
-.header-component .cart-icon {
-  color: var(--deepblue);
-  margin-left: 10px;
-  font-size: 0.8rem;
-  text-align: center;
-  font-weight: bold;
-  position: relative;
-}
-
-.header-component .cart-icon img {
-  width: 30px;
-  height: 25px;
-}
-
-.header-component .cart-icon a aside {
-  position: absolute;
-  top: 0;
-  margin-left: 20px;
-  margin-top: -12px;
-  color: var(--deepblue);
-  font-weight: bolder;
-}
-
 .header-component .large-bar {
   display: none;
 }
@@ -2071,13 +2048,6 @@ Class names accross components can be the same but they are wrapped by a unique 
   }
   .header-component .logo {
     font-size: 1.2rem;
-  }
-  .header-component .cart-icon {
-    font-size: 1rem;
-  }
-  .header-component .cart-icon img {
-    width: 35px;
-    height: 30px;
   }
 }
 
