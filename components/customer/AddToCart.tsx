@@ -59,7 +59,6 @@ export const AddToCart: React.FC<Iprops> = ({
 
     const { data, error } = await useMutation(addToCart, variables, Token);
     if (data) {
-      setLoading(false);
       router.push(`/store/${product.creator.business_name_slug}`).then(() =>
         toast({
           title: `Item Added to Cart!`,
