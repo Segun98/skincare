@@ -21,9 +21,6 @@ import { useRouter } from "next/router";
 import { companyName } from "@/utils/helpers";
 import { HeaderDrawer } from "./HeaderDrawer";
 
-interface DefaultRootState {
-  cart: any;
-}
 export const Header = () => {
   const { Token } = useToken();
   const router = useRouter();
