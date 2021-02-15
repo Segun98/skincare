@@ -119,7 +119,7 @@ export const DashboardOrders = () => {
 
                   {/* delivered shows "delivered", else in transit */}
                   {o.orderStatus.delivered === "true"
-                    ? "delivered"
+                    ? "Delivered"
                     : o.orderStatus.in_transit === "true"
                     ? "In Transit"
                     : ""}

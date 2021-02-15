@@ -158,7 +158,12 @@ export const OrderPage: React.FC<Props> = ({ lookup, Token }) => {
                     {o.request && (
                       <div>
                         <br />
-                        <h2 style={{ color: "var(--deepblue)" }}>
+                        <h2
+                          style={{
+                            color: "var(--deepblue)",
+                            fontWeight: "bold",
+                          }}
+                        >
                           {" "}
                           &#8226; Request{" "}
                         </h2>
@@ -182,7 +187,7 @@ export const OrderPage: React.FC<Props> = ({ lookup, Token }) => {
 
               {/* delivered shows "delivered", else in transit */}
               {lookup[o][0].orderStatus.delivered === "true"
-                ? "delivered"
+                ? "Delivered"
                 : lookup[o][0].orderStatus.in_transit === "true"
                 ? "In Transit"
                 : ""}
