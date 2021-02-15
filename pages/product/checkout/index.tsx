@@ -93,15 +93,13 @@ const Checkout = () => {
                 </BreadcrumbItem>
               )}
 
-              {/* {cart && !loading && (
-                <BreadcrumbItem>
-                  <Link
-                    href={`/store/${cart[0].product.creator.business_name_slug}`}
-                  >
-                    <a>Cart</a>
-                  </Link>
-                </BreadcrumbItem>
-              )} */}
+              <BreadcrumbItem>
+                <Link
+                  href={`/store/${cart[0]?.product.creator.business_name_slug}`}
+                >
+                  <a>Store</a>
+                </Link>
+              </BreadcrumbItem>
 
               <BreadcrumbItem isCurrentPage>
                 <BreadcrumbLink>Checkout Page</BreadcrumbLink>
@@ -279,14 +277,15 @@ const Checkout = () => {
                       {nairaSign} {Commas(c.quantity * c.product.price)}
                     </p>
                   </div>
-                  <aside>
-                    <p>Vendor</p>
-                    <p style={{ color: "var(--deepblue)", fontWeight: "bold" }}>
-                      {c.product.creator.business_name}
-                    </p>
-                  </aside>
                 </div>
               ))}
+
+              <aside>
+                <p>Vendor</p>
+                <p style={{ color: "var(--deepblue)", fontWeight: "bold" }}>
+                  {cart[0]?.product.creator.business_name}
+                </p>
+              </aside>
             </div>
           </div>
         )}
