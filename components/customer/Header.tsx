@@ -11,52 +11,29 @@ import {
   InputLeftElement,
 } from "@chakra-ui/core";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useToken } from "@/Context/TokenProvider";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 // import axios from "axios";
 
-import { useSelector, useDispatch } from "react-redux";
-import { cartItems } from "@/redux/features/cart/fetchCart";
-
 // import { logoutLink } from "./../../utils/client";
 import { companyName } from "@/utils/helpers";
 import { HeaderDrawer } from "./HeaderDrawer";
-import { useUser } from "@/Context/UserProvider";
 
 interface DefaultRootState {
   cart: any;
 }
 export const Header = () => {
-  const { cartLength } = useSelector<DefaultRootState, any>(
-    (state) => state.cart
-  );
-  const dispatch = useDispatch();
-
   const { Token } = useToken();
   const router = useRouter();
   const role = Cookies && Cookies.get("role");
-  const { User } = useUser();
 
   //search input state
   const [search, setSearch] = useState("");
 
   //chakraui stuff for drawer
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  //prevent requests if user doesn't have an id
-  useEffect(() => {
-    if (!Cookies.get("customer_id") && !User["id"]) {
-      return;
-    }
-    dispatch(
-      cartItems({
-        customer_id: Cookies.get("customer_id"),
-        user_id: User["id"] ? User.id : null,
-      })
-    );
-  }, [dispatch]);
 
   // //close menu when you click outside of the menu
   // useEffect(() => {
