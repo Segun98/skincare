@@ -76,11 +76,12 @@ const Checkout = () => {
             status: "error",
           })}
 
-        {!router.query.id && <div className="space"></div>}
+        {!router.query.id ||
+          (cart?.length === 0 && <div className="space"></div>)}
 
         {error || (!cart && <div className="space"></div>)}
 
-        {!loading && cart && router.query.id && (
+        {!loading && cart && router.query.id && cart.length > 0 && (
           <div className="bread-crumb">
             <Breadcrumb
               separator={<Icon color="gray.300" name="chevron-right" />}
@@ -108,7 +109,7 @@ const Checkout = () => {
           </div>
         )}
 
-        {cart && router.query.id && (
+        {cart && router.query.id && cart?.length > 0 && (
           <div className="checkout-wrap">
             <div className="delivery-info">
               <div className="grid-1">
@@ -133,7 +134,8 @@ const Checkout = () => {
                   </span>
                 </p>
                 <p>
-                  Shipping Address: <span>{address}</span>{" "}
+                  Shipping Address:{" "}
+                  <span onClick={() => setEditMode(true)}>{address}</span>{" "}
                 </p>
                 <Input
                   aria-label="address"
@@ -146,7 +148,8 @@ const Checkout = () => {
                   onChange={(e) => setAddress(e.target.value)}
                 />
                 <p>
-                  Phone Number: <span>{phone}</span>{" "}
+                  Phone Number:{" "}
+                  <span onClick={() => setEditMode(true)}>{phone}</span>{" "}
                 </p>
                 <Input
                   aria-label="phone number"
@@ -161,7 +164,7 @@ const Checkout = () => {
               </div>
 
               {/* Only show personalised note for 1 order  */}
-              {cart.length === 1 && (
+              {cart?.length === 1 && (
                 <div className="grid-2">
                   <div className="head">
                     <h1>

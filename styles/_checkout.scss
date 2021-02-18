@@ -55,6 +55,7 @@
 .product-info {
     position: sticky;
     top: 0;
+    font-size: 0.9rem;
 
     p {
         font-size: 0.9rem
@@ -93,13 +94,10 @@
             display: block;
             background: white;
 
-            p {
-                font-size: 1rem
-            }
 
             h1 {
                 font-weight: bold;
-                font-size: 1.1rem;
+                font-size: 1rem;
                 color: $deepblue;
                 text-align: center;
                 padding: 5px 0;
