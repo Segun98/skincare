@@ -91,7 +91,7 @@ const Search = ({ products, error }: Iprops) => {
         <section className="search-results">
           <h1>Search Results... ({products && products.length} items)</h1>
           <div className="filters">
-            <Menu closeOnSelect={false} autoSelect={false}>
+            <Menu closeOnSelect={true} autoSelect={false}>
               <MenuButton
                 as={Button}
                 //@ts-ignore

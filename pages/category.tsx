@@ -118,7 +118,7 @@ export const Category = ({ products, error }: Iprops) => {
           </h1>
 
           <div className="filters">
-            <Menu closeOnSelect={false} autoSelect={false}>
+            <Menu closeOnSelect={true} autoSelect={false}>
               <MenuButton
                 as={Button}
                 //@ts-ignore
