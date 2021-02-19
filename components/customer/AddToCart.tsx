@@ -59,30 +59,36 @@ export const AddToCart: React.FC<Iprops> = ({
 
     const { data, error } = await useMutation(addToCart, variables, Token);
     if (data) {
-      router.push(`/store/${product.creator.business_name_slug}`).then(() =>
-        toast({
-          title: `Item Added to Cart!`,
-          description: `Open Cart (top-right icon) to Checkout`,
-          status: "success",
-          isClosable: true,
-          duration: 7000,
-        })
-      );
+      router
+        .push(`/store/${product.creator.business_name_slug}`)
+        .then(() =>
+          toast({
+            title: `Item Added to Cart!`,
+            description: `Open Cart (top-right icon) to Checkout`,
+            status: "success",
+            isClosable: true,
+            duration: 7000,
+          })
+        )
+        .then(() => window.scrollTo(0, 0));
       return;
     }
     if (error) {
       setLoading(false);
       //handled this error cos chakra ui "status" should be "info"
       if (error.response?.errors[0].message === "Item is already in Cart") {
-        router.push(`/store/${product.creator.business_name_slug}`).then(() =>
-          toast({
-            title: "Item Is Already In Cart",
-            description: `Open Cart (top-right icon) to Checkout`,
-            isClosable: true,
-            status: "info",
-            duration: 3000,
-          })
-        );
+        router
+          .push(`/store/${product.creator.business_name_slug}`)
+          .then(() =>
+            toast({
+              title: "Item Is Already In Cart",
+              description: `Open Cart (top-right icon) to Checkout`,
+              isClosable: true,
+              status: "info",
+              duration: 3000,
+            })
+          )
+          .then(() => window.scrollTo(0, 0));
 
         return;
       }
