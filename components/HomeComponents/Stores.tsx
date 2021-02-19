@@ -4,7 +4,6 @@ import { Commas, nairaSign, truncate } from "@/utils/helpers";
 import { gql } from "graphql-request";
 import { useEffect, useState } from "react";
 import { useQuery } from "../useQuery";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 const homeStores = gql`
@@ -25,7 +24,6 @@ const homeStores = gql`
 `;
 
 export const StoresHome = () => {
-  const router = useRouter();
   // check for error after fetching data then pass as a dependency to the custom useQuery hook
   const [checkError, setCheckError] = useState(false);
 
