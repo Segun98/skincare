@@ -1,11 +1,9 @@
 import {
   Button,
   useToast,
-  Text,
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
   MenuDivider,
   MenuOptionGroup,
   MenuItemOption,

@@ -1,4 +1,13 @@
-import { Button, useToast } from "@chakra-ui/core";
+import {
+  Button,
+  useToast,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuDivider,
+  MenuOptionGroup,
+  MenuItemOption,
+} from "@chakra-ui/core";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
@@ -15,8 +24,18 @@ interface Iprops {
   error: any;
 }
 export const byCategory = gql`
-  query byCategory($category: String!, $limit: Int, $offset: Int) {
-    byCategory(category: $category, limit: $limit, offset: $offset) {
+  query byCategory(
+    $category: String!
+    $limit: Int
+    $offset: Int
+    $sort: String
+  ) {
+    byCategory(
+      category: $category
+      limit: $limit
+      offset: $offset
+      sort: $sort
+    ) {
       id
       name
       name_slug
@@ -32,6 +51,7 @@ export async function getServerSideProps({ query }) {
     category: query.category,
     limit: 30,
     offset: pageCalc || 0,
+    sort: query.sort,
   };
 
   try {
@@ -65,7 +85,11 @@ export const Category = ({ products, error }: Iprops) => {
     if (firstRender.current === 0) {
       return;
     }
-    router.push(`/category?category=${router.query.category}&p=${page}`);
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, p: page },
+    });
+    // router.push(`/category?category=${router.query.category}&p=${page}`);
   }, [page]);
 
   return (
@@ -92,6 +116,56 @@ export const Category = ({ products, error }: Iprops) => {
           <h1>
             {router.query.category} ({products && products.length} items)
           </h1>
+
+          <div className="filters">
+            <Menu closeOnSelect={false} autoSelect={false}>
+              <MenuButton
+                as={Button}
+                //@ts-ignore
+                variantColor="blue"
+                rightIcon="chevron-down"
+                size="sm"
+              >
+                Filters
+              </MenuButton>
+              <MenuList minWidth="240px">
+                <MenuOptionGroup title="Sort By Price" type="radio">
+                  <MenuItemOption
+                    value="asc"
+                    onClick={() => {
+                      router.query.sort
+                        ? router.push({
+                            pathname: router.pathname,
+                            query: { ...router.query, sort: "low" },
+                          })
+                        : router.push(router.asPath + "&sort=low");
+                    }}
+                  >
+                    Low to high
+                  </MenuItemOption>
+                  <MenuItemOption
+                    value="desc"
+                    onClick={() => {
+                      router.query.sort
+                        ? router.push({
+                            pathname: router.pathname,
+                            query: { ...router.query, sort: "high" },
+                          })
+                        : router.push(router.asPath + "&sort=high");
+                    }}
+                  >
+                    High to low
+                  </MenuItemOption>
+                </MenuOptionGroup>
+                <MenuDivider />
+                <MenuOptionGroup defaultValue="unisex" title="Sex" type="radio">
+                  <MenuItemOption value="male">Male</MenuItemOption>
+                  <MenuItemOption value="female">Female</MenuItemOption>
+                  <MenuItemOption value="unisex">Unisex</MenuItemOption>
+                </MenuOptionGroup>
+              </MenuList>
+            </Menu>
+          </div>
 
           {products && products.length === 0 && (
             <h1>
