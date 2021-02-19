@@ -18,9 +18,7 @@ import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
 import { useMutation } from "@/utils/useMutation";
 import Head from "next/head";
 import { Commas } from "@/utils/helpers";
-import { useDispatch } from "react-redux";
 import { updateProfile } from "@/graphql/vendor";
-import { useRouter } from "next/router";
 
 export const Account = () => {
   const { Token } = useToken();
@@ -42,7 +40,7 @@ export const Account = () => {
   //show notification once
   const count = useRef(0);
   useEffect(() => {
-    if (Token && role && role === "customer") {
+    if (Token && role && role === "customer" && User.id) {
       if (!User.phone || !User.customer_address) {
         if (count.current < 1) {
           toast({
