@@ -9,7 +9,7 @@ import {
   InputGroup,
 } from "@chakra-ui/core";
 import Cookies from "js-cookie";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import slug from "slug";
 import { useToken } from "@/Context/TokenProvider";
@@ -112,7 +112,7 @@ export const Newitem = () => {
         isClosable: true,
       });
       e.target.reset();
-      router.push(`/product/${slug(name)}`);
+      router.push(`/product/${slug(name)}`).then(() => window.scrollTo(0, 0));
     }
     if (error) {
       setLoading(false);
@@ -128,6 +128,20 @@ export const Newitem = () => {
       // console.log(error.response?.errors[0].message);
     }
   };
+
+  useEffect(() => {
+    if (User["pending"] && User.pending === "true") {
+      toast({
+        title: "You Profile is currently under review",
+        description:
+          "Please complete your profile information in your Account page to start adding products!",
+        status: "info",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  }, [User]);
 
   return (
     <div>
@@ -268,6 +282,13 @@ export const Newitem = () => {
                                 isClosable: true,
                               });
                               return;
+                            }
+                            if (tags.length < 1) {
+                              toast({
+                                title: "You can add more categories",
+                                position: "top-right",
+                                isClosable: true,
+                              });
                             }
                             setTags([...tags, e.target.value]);
                           }}
