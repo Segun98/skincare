@@ -253,7 +253,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
                 {user && user.id === user.jwt_user_id ? (
                   <div
                     className="product-status pl-3"
-                    style={{ color: "var(--primary)" }}
+                    style={{ color: "white" }}
                   >
                     {p.available_qty === 0 || p.in_stock === "false" ? (
                       <span style={{ color: "red", fontWeight: "bold" }}>
