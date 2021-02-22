@@ -21,7 +21,6 @@ import { NextStep } from "@/components/customer/NextStep";
 import Cookies from "js-cookie";
 import { useUser } from "@/Context/UserProvider";
 import { useRouter } from "next/router";
-import { ProtectRouteC } from "@/utils/ProtectedRouteC";
 
 const Checkout = () => {
   const toast = useToast();
@@ -361,4 +360,4 @@ const Checkout = () => {
   );
 };
 
-export default ProtectRouteC(Checkout);
+export default Checkout;
