@@ -26,7 +26,7 @@ export const Account = () => {
   const { User, userDependency, setUserDependency } = useUser();
   const { Token } = useToken();
   const toast = useToast();
-  const tempImage = `/slider/service.jpg`;
+  const tempImage = `/slider/storefront1.jpg`;
 
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
