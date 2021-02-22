@@ -63,8 +63,8 @@ export const StoresHome = () => {
 
                 {!s.homeProducts ||
                   (s.homeProducts.length === 0 && (
-                    <p style={{ color: "var(--primary)", padding: "20px 0" }}>
-                      No products in store...
+                    <p style={{ color: "var(--primary)", padding: "80px 0" }}>
+                      No products in this store...
                     </p>
                   ))}
                 <section className="products">
