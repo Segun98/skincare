@@ -7,7 +7,6 @@ import {
   Icon,
   Input,
   InputGroup,
-  InputLeftAddon,
   InputLeftElement,
   Spinner,
   useToast,
