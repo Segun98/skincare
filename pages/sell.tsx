@@ -83,7 +83,7 @@ const Sell = () => {
                   Your comprehensive dashboard highlights your orders' status.
                   Completed orders are orders that have been delivered to
                   customers. A sales metrics showing your completed orders by
-                  month and recent orders are also provided.
+                  month and your recent orders are provided.
                 </p>
               </div>
             </div>
