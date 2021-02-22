@@ -86,7 +86,6 @@ export const MainHome = () => {
           margin-bottom: 15px;
           text-align: center;
         }
-
         @media only screen and (min-width: 700px) {
           .main_content {
             width: 75%;
