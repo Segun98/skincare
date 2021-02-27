@@ -29,12 +29,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <TokenProvider>
         <UserProvider>
-          <GlobalLayout>
-            <ThemeProvider>
+          <ThemeProvider>
+            <GlobalLayout>
               <CSSReset />
               <Component {...pageProps} />
-            </ThemeProvider>
-          </GlobalLayout>
+            </GlobalLayout>
+          </ThemeProvider>
         </UserProvider>
       </TokenProvider>
     </Provider>

@@ -1,5 +1,6 @@
 import { companyName } from "@/utils/helpers";
 import Head from "next/head";
+import { ToTop } from "./ToTop";
 
 //The other layout doesn't cover the vendor aspect of things
 export const GlobalLayout = ({ children }) => {
@@ -25,6 +26,7 @@ export const GlobalLayout = ({ children }) => {
         <link rel="apple-touch-icon" href="/home-alt.svg" />
       </Head>
       {children}
+        <ToTop />
       {/* GLOBAL STYLES  */}
       <style jsx global>{`
         :root {
