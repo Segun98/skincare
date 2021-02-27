@@ -26,6 +26,7 @@ export const ToTop = () => {
           bottom: 20,
           right: 10,
           color: "var(--primary)",
+          zIndex: 9999,
         }}
       >
         {showToTop && (
