@@ -205,7 +205,8 @@ export const StoreCart: React.FC<IProps> = ({ cart, user }) => {
                 if (!Token || !role) {
                   toast({
                     title: "Almost There! You need to Login before checkout",
-                    description: "Login with Google for a faster experience",
+                    description:
+                      "New User? Login with Google for a faster sign up process",
                     status: "info",
                     position: "top",
                     duration: 7000,
