@@ -1,11 +1,24 @@
+// .overall-wrap-header {
+//     margin-bottom: 100px;
+// }
+
+// @include ipad {
+//     margin-bottom: 78px;
+// }
+
+
 .header-component {
     background: white;
     width: 100%;
+    // position: fixed;
+    // top: 0;
+    // z-index: 555;
 
     header {
         box-shadow: var(--box) var(--softgrey);
         padding: 8px 0;
     }
+
 
     .header-wrap {
         display: flex;

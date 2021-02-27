@@ -214,7 +214,7 @@ const Product = ({ product, error }: response) => {
                           </ul>
 
                           <button
-                            style={{ zIndex: 999 }}
+                            style={{ zIndex: 5 }}
                             aria-label="add product to wishlist"
                             onClick={() => {
                               addToSavedItems(

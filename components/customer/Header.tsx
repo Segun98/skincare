@@ -80,7 +80,7 @@ export const Header = () => {
   };
 
   return (
-    <div>
+    <div className="overall-wrap-header">
       <div className="header-component">
         <header>
           <div className="header-wrap">
