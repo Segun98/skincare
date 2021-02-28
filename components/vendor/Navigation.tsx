@@ -34,17 +34,20 @@ export const Navigation = () => {
     }
   };
 
-  // //close menu when you click outside of the menu
+  // close menu when you click outside of the menu
   useEffect(() => {
     if (typeof window === "object") {
       const body = document.body;
       body.addEventListener("click", (e) => {
         // console.log(typeof e.target.className);
+        //classname of menu
         // @ts-ignore
         let cName = e.target.className;
 
+        //ensure it's a string to avoid errors with .split
         let cNameToString = typeof cName === "string" ? cName : "";
 
+        //close menu if outside of menu
         if (cNameToString.split(" ")[0] !== "jsx-2182696973") {
           if (isOpen) {
             setIsOpen(false);
