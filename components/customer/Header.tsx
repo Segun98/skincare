@@ -32,24 +32,6 @@ export const Header = () => {
   //chakraui stuff for drawer
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // //close menu when you click outside of the menu
-  // useEffect(() => {
-  //   if (typeof window === "object") {
-  //     const body = document.body;
-  //     body.addEventListener("click", (e) => {
-  //       //@ts-ignore
-  //       if (e.target.parentNode.nodeName === "NAV") {
-  //         return;
-  //       } else {
-  //         if (IsOpen) {
-  //           setIsOpen(false);
-  //           return;
-  //         }
-  //       }
-  //     });
-  //   }
-  // }, [IsOpen]);
-
   function handleSearch(e) {
     e.preventDefault();
     if (search.trim() !== "") {
