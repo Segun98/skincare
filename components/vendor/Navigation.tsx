@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button, Icon } from "@chakra-ui/core";
 import Cookies from "js-cookie";
@@ -33,6 +33,27 @@ export const Navigation = () => {
       // }
     }
   };
+
+  // //close menu when you click outside of the menu
+  useEffect(() => {
+    if (typeof window === "object") {
+      const body = document.body;
+      body.addEventListener("click", (e) => {
+        // console.log(typeof e.target.className);
+        // @ts-ignore
+        let cName = e.target.className;
+
+        let cNameToString = typeof cName === "string" ? cName : "";
+
+        if (cNameToString.split(" ")[0] !== "jsx-2182696973") {
+          if (isOpen) {
+            setIsOpen(false);
+            return;
+          }
+        }
+      });
+    }
+  }, [isOpen]);
 
   return (
     <div className={isOpen ? "vendor-menu open" : "vendor-menu"}>
