@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Orders } from "@/Typescript/types";
 import { useUser } from "@/Context/UserProvider";
+import { screenWidth } from "@/utils/helpers";
 
 interface Iprops {
   orders: Orders[];
@@ -129,23 +130,36 @@ export const Chart: React.FC<Iprops> = ({ orders }) => {
         lineTension: 0.1,
         backgroundColor: "rgba(75,192,192,0.4)",
         borderColor: "rgba(75,192,192,1)",
-        borderCapStyle: "butt",
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: "miter",
         pointBorderColor: "rgba(75,192,192,1)",
         pointBackgroundColor: "#fff",
-        pointBorderWidth: 1,
+        pointBorderWidth: 2,
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: "rgba(75,192,192,1)",
-        pointHoverBorderColor: "rgba(220,220,220,1)",
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        // data: [2, 7, 12, 5, 8, 14, 12, 1, 19, 30, 40, 33],
-        data: final(),
+        pointHoverBorderWidth: 3,
+        pointRadius: 3,
+        pointHitRadius: 15,
+        data: [2, 7, 12, 5, 8, 14, 12, 1, 19, 30, 40, 33],
+        // data: final(),
       },
     ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: screenWidth() < 500 ? false : true,
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            //  display: false,
+            lineHeight: 1.8,
+          },
+          gridLines: {
+            // display: false,
+            // drawBorder: false,
+          },
+        },
+      ],
+    },
   };
   return (
     <div className="chart-comp">
@@ -172,7 +186,7 @@ export const Chart: React.FC<Iprops> = ({ orders }) => {
       </div>
 
       {/* the chart  */}
-      <Line data={data} />
+      <Line data={data} options={options} />
     </div>
   );
 };
