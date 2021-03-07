@@ -67,13 +67,13 @@ const Checkout = () => {
             <Spinner speed="1s"></Spinner>
           </div>
         )}
-        {!loading &&
+        {/* {!loading &&
           error &&
           toast({
             title: "An error occurred",
             description: "Please refresh the page",
             status: "error",
-          })}
+          })} */}
 
         {!router.query.id ||
           (cart?.length === 0 && <div className="space"></div>)}
@@ -132,9 +132,8 @@ const Checkout = () => {
                     {User?.first_name} {User?.last_name}
                   </span>
                 </p>
-                <p>
-                  Shipping Address:{" "}
-                  <span onClick={() => setEditMode(true)}>{address}</span>{" "}
+                <p onClick={() => setEditMode(true)}>
+                  Shipping Address: <span>{address}</span>{" "}
                 </p>
                 <Input
                   aria-label="address"
@@ -146,9 +145,8 @@ const Checkout = () => {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
-                <p>
-                  Phone Number:{" "}
-                  <span onClick={() => setEditMode(true)}>{phone}</span>{" "}
+                <p onClick={() => setEditMode(true)}>
+                  Phone Number: <span>{phone}</span>{" "}
                 </p>
                 <Input
                   aria-label="phone number"

@@ -30,8 +30,14 @@
 
             .dashboard_chart {
                 padding: 5px 0;
+
                 // height: 200px;
+                // @media only screen and (max-width:400px) {
+                //     height: 300px;
+                // }
             }
+
+
         }
 
         .order-status_items {

@@ -137,15 +137,15 @@ export const Chart: React.FC<Iprops> = ({ orders }) => {
         pointHoverBorderWidth: 3,
         pointRadius: 3,
         pointHitRadius: 15,
-        data: [2, 7, 12, 5, 8, 14, 12, 1, 19, 30, 40, 33],
-        // data: final(),
+        // data: [2, 7, 12, 5, 8, 14, 12, 1, 19, 30, 40, 33],
+        data: final(),
       },
     ],
   };
 
   const options = {
-    responsive: true,
-    maintainAspectRatio: screenWidth() < 500 ? false : true,
+    // responsive: true,
+    // maintainAspectRatio: screenWidth() < 500 ? false : true,
     scales: {
       yAxes: [
         {

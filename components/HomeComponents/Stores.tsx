@@ -1,6 +1,6 @@
 import React from "react";
 import { UsersRes } from "@/Typescript/types";
-import { Commas, nairaSign, truncate } from "@/utils/helpers";
+import { Commas, nairaSign, screenWidth, truncate } from "@/utils/helpers";
 import { gql } from "graphql-request";
 import { useEffect, useState } from "react";
 import { useQuery } from "../useQuery";
@@ -113,7 +113,7 @@ export const StoresHome = () => {
           grid-template-columns: 1fr;
           margin: auto;
           width: 95%;
-          gap: 5px;
+          gap: 8px;
         }
         .store {
           box-shadow: var(--box) var(--softgrey);
@@ -238,7 +238,7 @@ export const StoresHome = () => {
           }
 
           .store {
-            width: 550px;
+            width: 600px;
           }
         }
 
