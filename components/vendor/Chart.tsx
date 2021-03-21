@@ -128,7 +128,7 @@ export const Chart: React.FC<Iprops> = ({ orders }) => {
     labels,
     datasets: [
       {
-        label: `Sales by Month for ${selectedYear}`,
+        label: `Sales`,
         fill: false,
         lineTension: 0.5,
         backgroundColor: "rgba(75,192,192,0.4)",
