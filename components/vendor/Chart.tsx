@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import { Line, defaults } from "react-chartjs-2";
 import { Orders } from "@/Typescript/types";
 import { useUser } from "@/Context/UserProvider";
 import { screenWidth } from "@/utils/helpers";
@@ -8,6 +8,9 @@ interface Iprops {
   orders: Orders[];
 }
 export const Chart: React.FC<Iprops> = ({ orders }) => {
+  //disable chart legend
+  defaults.global.legend = false;
+
   const { User } = useUser();
   //year user joined , coming from database
   const [yearJoined, setYearJoined] = useState("");
@@ -162,7 +165,7 @@ export const Chart: React.FC<Iprops> = ({ orders }) => {
     },
   };
   return (
-    <div className="chart-comp">
+    <div className="chart-comp pt-2">
       <h1>Sales Metrics</h1>
       {/* toggle between years  */}
       <div style={{ display: "flex" }}>
@@ -170,6 +173,7 @@ export const Chart: React.FC<Iprops> = ({ orders }) => {
           <div key={i}>
             <button
               aria-label="toggle chart data by year"
+              title="view data by year"
               onClick={() => setSelectedYear(y)}
               style={{
                 padding: "0 4px",
@@ -187,6 +191,18 @@ export const Chart: React.FC<Iprops> = ({ orders }) => {
 
       {/* the chart  */}
       <Line data={data} options={options} />
+
+      {yearsArr.length > 1 && (
+        <div
+          className="text-center mt-2"
+          style={{
+            color: "#4BC0C0",
+            fontWeight: "bold",
+          }}
+        >
+          {selectedYear}
+        </div>
+      )}
     </div>
   );
 };
