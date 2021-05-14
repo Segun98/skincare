@@ -162,9 +162,7 @@ export const Register = () => {
               </small>
               {watch("business_name") && (
                 <small>
-                  {`store link: tadlace.com/store/${slug(
-                    watch("business_name")
-                  )}`}
+                  {`store link: tadlace.com/${slug(watch("business_name"))}`}
                 </small>
               )}
             </div>

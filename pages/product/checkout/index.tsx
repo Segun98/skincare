@@ -94,9 +94,7 @@ const Checkout = () => {
               )}
 
               <BreadcrumbItem>
-                <Link
-                  href={`/store/${cart[0]?.product.creator.business_name_slug}`}
-                >
+                <Link href={`/${cart[0]?.product.creator.business_name_slug}`}>
                   <a>Store</a>
                 </Link>
               </BreadcrumbItem>

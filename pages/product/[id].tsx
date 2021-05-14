@@ -250,9 +250,7 @@ const Product = ({ product, error }: response) => {
                         </div>
                         <hr />
                         <p>
-                          <Link
-                            href={`/store/${product.creator.business_name_slug}`}
-                          >
+                          <Link href={`/${product.creator.business_name_slug}`}>
                             <a>
                               Click here to visit Vendor Store{" "}
                               <Icon name="external-link" />

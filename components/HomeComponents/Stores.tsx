@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { UsersRes } from "@/Typescript/types";
 import { Commas, nairaSign, screenWidth, truncate } from "@/utils/helpers";
 import { gql } from "graphql-request";
@@ -29,9 +29,16 @@ export const StoresHome = () => {
 
   const [data, loading, error] = useQuery(homeStores, {}, null, checkError);
 
-  // useEffect(() => {
-  //   setCheckError(!checkError);
-  // }, [error]);
+  //refetch if there's an error
+  const retryRef = useRef(0);
+  useEffect(() => {
+    //refetch only five times
+    if (retryRef.current > 5) {
+      return;
+    }
+    retryRef.current++;
+    setCheckError(!checkError);
+  }, [error]);
 
   const stores: UsersRes[] = data ? data.homeStores : null;
 
@@ -45,7 +52,7 @@ export const StoresHome = () => {
           <div className="stores-wrap">
             {stores.map((s, i) => (
               <div className="store" key={i}>
-                <Link href={`/store/${s.business_name_slug}`}>
+                <Link href={`/${s.business_name_slug}`}>
                   <a
                     className="head"
                     aria-label={`visit ${s.business_name} store`}

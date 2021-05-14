@@ -164,7 +164,7 @@ const Stores = () => {
           {stores &&
             stores.map((s, i) => (
               <div className="store-item" key={s.business_name_slug}>
-                <Link href={`/store/${s.business_name_slug}`}>
+                <Link href={`/${s.business_name_slug}`}>
                   <a>
                     <div
                       className="store-img"

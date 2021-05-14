@@ -78,10 +78,7 @@ export const Navigation = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  href={`/store/${User && User.business_name_slug}`}
-                  as={`/store/${User && User.business_name_slug}`}
-                >
+                <Link href={`/${User && User.business_name_slug}`}>
                   <a>Store</a>
                 </Link>
               </li>

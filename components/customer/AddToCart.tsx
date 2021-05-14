@@ -60,7 +60,7 @@ export const AddToCart: React.FC<Iprops> = ({
     const { data, error } = await useMutation(addToCart, variables, Token);
     if (data) {
       router
-        .push(`/store/${product.creator.business_name_slug}`)
+        .push(`/${product.creator.business_name_slug}`)
         .then(() =>
           toast({
             title: `Item Added to Cart!`,
@@ -78,7 +78,7 @@ export const AddToCart: React.FC<Iprops> = ({
       //handled this error cos chakra ui "status" should be "info"
       if (error.response?.errors[0].message === "Item is already in Cart") {
         router
-          .push(`/store/${product.creator.business_name_slug}`)
+          .push(`/${product.creator.business_name_slug}`)
           .then(() =>
             toast({
               title: "Item Is Already In Cart",

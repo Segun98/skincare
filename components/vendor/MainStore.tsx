@@ -114,7 +114,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
             <div className="share-btns">
               <div className="twitter">
                 <a
-                  href={`https://twitter.com/intent/tweet?url=https://tadlace.com/store/${user.business_name_slug}&text=${user.business_name} %7C ${user.business_bio}&via=tadlacestore`}
+                  href={`https://twitter.com/intent/tweet?url=https://tadlace.com/${user.business_name_slug}&text=${user.business_name} %7C ${user.business_bio}&via=tadlacestore`}
                   target="_blank"
                 >
                   <img src="/twitter.svg" alt="Twitter Icon" />
@@ -123,7 +123,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
 
               <div>
                 <a
-                  href={`https://web.facebook.com/sharer.php?u=https://tadlace.com/store/${user.business_name_slug}`}
+                  href={`https://web.facebook.com/sharer.php?u=https://tadlace.com/${user.business_name_slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -131,7 +131,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
                 </a>
               </div>
               <CopyToClipboard
-                text={`https://tadlace.com/store/${user.business_name_slug}`}
+                text={`https://tadlace.com/${user.business_name_slug}`}
                 onCopy={() => {
                   toast({
                     title: "Store Link Copied to clipboard!",
