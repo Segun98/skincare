@@ -9,16 +9,16 @@ export const GlobalLayout = ({ children }) => {
       {/* GLOBAL HEAD TAGS  */}
       <Head>
         <title>
-          {companyName} | The number one #1 market place for Skin and body care
+          {companyName} | The number one #1 market place for Skin and Hair care
           products
         </title>
         <meta
           name="description"
-          content="The number one #1 market place for Skin and Body care products, Male and Female, in Lagos, Nigeria"
+          content="The number one #1 market place for Skin and Hair care products, Male and Female, in Lagos, Nigeria"
         />
         <meta
           name="keywords"
-          content="Skin Care,Beauty, E-Commerce, Online Store, Market, Lagos"
+          content="Skin Care, Beauty, Face, E-Commerce, Online Store, Market, Lagos"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#2D2D2D" />
@@ -26,7 +26,7 @@ export const GlobalLayout = ({ children }) => {
         <link rel="apple-touch-icon" href="/home-alt.svg" />
       </Head>
       {children}
-        <ToTop />
+      <ToTop />
       {/* GLOBAL STYLES  */}
       <style jsx global>{`
         :root {
