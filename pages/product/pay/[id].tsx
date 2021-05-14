@@ -8,8 +8,8 @@ import { Orders } from "@/Typescript/types";
 import { Commas, nairaSign } from "@/utils/helpers";
 import { Spinner, useToast } from "@chakra-ui/core";
 import Head from "next/head";
-import { ProtectRouteC } from "@/utils/ProtectedRouteC";
 import { Flutterwave } from "@/components/customer/Flutterwave";
+import Cookies from "js-cookie";
 
 export async function getServerSideProps({ params }) {
   const variables = {
@@ -24,6 +24,10 @@ export async function getServerSideProps({ params }) {
 }
 
 const Pay = ({ variables }) => {
+  if (typeof window === "object" && !Cookies.get("role")) {
+    return <div>unauthorised</div>;
+  }
+
   const toast = useToast();
   const { Token } = useToken();
   const [Loader, setLoader] = useState(false);
@@ -69,8 +73,8 @@ const Pay = ({ variables }) => {
           <div className="summary-body">
             <section className="delivery pt-3 pb-3">
               <h2 className="pb-1">Delivery Address</h2>
-              <p>&#8226; {order[0].customer_address}</p>
-              <p>&#8226; {order[0].customer_phone}</p>
+              <p>&#8226; {order[0]?.customer_address}</p>
+              <p>&#8226; {order[0]?.customer_phone}</p>
             </section>
 
             <h2 className="pb-1">Order Details</h2>
@@ -190,4 +194,4 @@ const Pay = ({ variables }) => {
   );
 };
 
-export default ProtectRouteC(Pay);
+export default Pay;
