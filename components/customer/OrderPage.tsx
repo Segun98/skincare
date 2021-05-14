@@ -1,4 +1,3 @@
-import React from "react";
 import { Orders } from "@/Typescript/types";
 import {
   Commas,

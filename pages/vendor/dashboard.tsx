@@ -14,6 +14,7 @@ import { DashboardOrders } from "@/components/vendor/DashboardOrders";
 import { Chart } from "@/components/vendor/Chart";
 import { Commas, paymentPercentage } from "@/utils/helpers";
 import { useUser } from "@/Context/UserProvider";
+import { getVendorOrders } from "@/graphql/vendor";
 
 interface DefaultOrderState {
   orders: IOrderInitialState;
@@ -35,12 +36,17 @@ export const Dashboard: React.FC = () => {
 
   useEffect(() => {
     if (Token) {
-      dispatch(ordersThunk(Token, { limit: null }));
+      dispatch(ordersThunk(Token, getVendorOrders, { limit: null }));
     }
   }, [Token]);
 
   //delivered orders
-  const delivered = orders.filter((o) => o.orderStatus.delivered === "true");
+  const delivered =
+    Object.keys(orders).length > 0
+      ? orders?.getVendorOrders.filter(
+          (o) => o.orderStatus.delivered === "true"
+        )
+      : [];
 
   //Getting Revenue
   const subtotal = delivered.map((d) => d.subtotal);
@@ -50,17 +56,23 @@ export const Dashboard: React.FC = () => {
 
   const revenue = sub - paymentPercentage * sub;
 
-  const pending = orders.filter(
-    (o) =>
-      o.orderStatus.canceled === "false" &&
-      o.orderStatus.delivered === "false" &&
-      o.orderStatus.in_transit === "false"
-  );
+  const pending =
+    Object.keys(orders).length > 0
+      ? orders.getVendorOrders.filter(
+          (o) =>
+            o.orderStatus.canceled === "false" &&
+            o.orderStatus.delivered === "false" &&
+            o.orderStatus.in_transit === "false"
+        )
+      : [];
 
-  const canceled = orders.filter((o) => o.orderStatus.canceled === "true");
+  const canceled =
+    Object.keys(orders).length > 0
+      ? orders.getVendorOrders.filter((o) => o.orderStatus.canceled === "true")
+      : [];
 
   useEffect(() => {
-    if (orders.length > 0 && pending.length > 0) {
+    if (Object.keys(orders).length > 0 && pending.length > 0) {
       toast({
         title: "You have New Orders",
         status: "info",
@@ -128,7 +140,10 @@ export const Dashboard: React.FC = () => {
                   <Icon name="repeat" color="#805AD5" size="30px" />
                 </div>
                 <hr />
-                <h2>{orders.length}</h2>
+                <h2>
+                  {Object.keys(orders).length > 0 &&
+                    orders.getVendorOrders.length}
+                </h2>
                 <p>Total Orders</p>
               </div>
 
@@ -187,7 +202,7 @@ export const Dashboard: React.FC = () => {
             {/* CHART  */}
 
             <div className="dashboard_chart">
-              <Chart orders={orders} />
+              <Chart orders={orders?.getVendorOrders || []} />
             </div>
           </div>
 

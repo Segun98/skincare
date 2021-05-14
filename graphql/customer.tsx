@@ -220,8 +220,8 @@ export const SEARCH = gql`
 `;
 
 export const getCustomerOrders = gql`
-  query getCustomerOrders {
-    getCustomerOrders {
+  query getCustomerOrders($limit: Int) {
+    getCustomerOrders(limit: $limit) {
       order_id
       name
       price

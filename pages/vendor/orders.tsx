@@ -1,12 +1,13 @@
 import { List, ListItem } from "@chakra-ui/core";
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import { Navigation } from "@/components/vendor/Navigation";
 import { OrdersComponent } from "@/components/vendor/OrdersComponent";
 import { ProtectRouteV } from "@/utils/ProtectedRouteV";
 import { screenWidth } from "@/utils/helpers";
 
 export const Orders = () => {
+  const [orderLimit, setOrderLimit] = useState(15);
   return (
     <div className="orders-page">
       <Head>
@@ -48,7 +49,7 @@ export const Orders = () => {
               <span className="scroll-right">scroll right for more info</span>
             )}
           </p>
-          <OrdersComponent limit={null} />
+          <OrdersComponent limit={orderLimit} setOrderLimit={setOrderLimit} />
         </main>
       </div>
 

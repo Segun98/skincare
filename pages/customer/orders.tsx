@@ -1,41 +1,53 @@
-import { List, ListItem, Skeleton, Text } from "@chakra-ui/core";
+import { Button, List, ListItem, Skeleton, Text } from "@chakra-ui/core";
 import Head from "next/head";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PurchaseSteps } from "@/components/customer/PurchaseSteps";
 import { Layout } from "@/components/Layout";
 import { useToken } from "@/Context/TokenProvider";
 import { getCustomerOrders } from "@/graphql/customer";
 import { ProtectRouteC } from "@/utils/ProtectedRouteC";
-import queryFunc from "@/utils/fetcher";
-import useSWR, { mutate } from "swr";
 import { OrderPage } from "@/components/customer/OrderPage";
+import {
+  IOrderInitialState,
+  ordersThunk,
+} from "@/redux/features/orders/fetchOrders";
+import { useDispatch, useSelector } from "react-redux";
+
+interface DefaultOrderState {
+  orders: IOrderInitialState;
+}
 
 export const CustomerOrders = () => {
   const { Token } = useToken();
+  const [orderLimit, setOrderLimit] = useState(15);
 
-  //using SWR to fetch data
-  const { data } = useSWR(`getCustomerOrders`, () =>
-    queryFunc(getCustomerOrders, {}, Token)
-  );
+  // Redux stuff
+  const dispatch = useDispatch();
+  const { loading, error, orders: data } = useSelector<
+    DefaultOrderState,
+    IOrderInitialState
+  >((state) => state.orders);
 
-  //refetch when token loads
   useEffect(() => {
-    mutate(`getCustomerOrders`);
-  }, [Token]);
+    if (Token) {
+      dispatch(ordersThunk(Token, getCustomerOrders, { limit: orderLimit }));
+    }
+  }, [Token, orderLimit]);
 
   //Lookup helper to map order_id to order(s). {8219681236: [{order}, {order}], 8219681236: [{another order}]}
 
   //makes it easy to handle multiple orders sharing the same order_id and easily look them up
 
-  const lookup = data
-    ? data.getCustomerOrders.reduce((acc, row) => {
-        if (!(row.order_id in acc)) {
-          acc[row.order_id] = [];
-        }
-        acc[row.order_id].push(row);
-        return acc;
-      }, {})
-    : {};
+  const lookup =
+    Object.keys(data).length > 0
+      ? data.getCustomerOrders.reduce((acc, row) => {
+          if (!(row.order_id in acc)) {
+            acc[row.order_id] = [];
+          }
+          acc[row.order_id].push(row);
+          return acc;
+        }, {})
+      : {};
 
   return (
     <Layout>
@@ -65,7 +77,7 @@ export const CustomerOrders = () => {
         </div>
 
         {/* Loading screen  */}
-        {!data && (
+        {loading && (
           <Text as="div" className="skeleton">
             <Skeleton height="40px" my="10px" />
             <Skeleton height="40px" my="10px" />
@@ -78,14 +90,27 @@ export const CustomerOrders = () => {
           </Text>
         )}
 
-        {data && data.getCustomerOrders.length === 0 ? (
+        {!loading && Object.keys(data).length === 0 ? (
           <Text as="div" textAlign="center">
             You Have No Orders...
           </Text>
         ) : null}
 
-        {data && data.getCustomerOrders.length > 0 && (
+        {!loading && Object.keys(data).length > 0 && (
           <OrderPage lookup={lookup} Token={Token} />
+        )}
+
+        {!loading && Object.keys(data).length > 0 && (
+          <div className="text-center m-4">
+            <Button
+              onClick={() => setOrderLimit(orderLimit + 10)}
+              background="var(--primary)"
+              color="white"
+              isLoading={loading}
+            >
+              Fetch More
+            </Button>
+          </div>
         )}
       </main>
       <PurchaseSteps />

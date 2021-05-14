@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToken } from "@/Context/TokenProvider";
 import { Commas, screenWidth } from "@/utils/helpers";
@@ -19,16 +19,19 @@ import {
   Skeleton,
   Text,
 } from "@chakra-ui/core";
+import { getVendorOrders } from "@/graphql/vendor";
+import { Orders } from "@/Typescript/types";
 
 interface Iprops {
   limit: number | null;
+  setOrderLimit: Dispatch<SetStateAction<number>>;
 }
 
 interface DefaultOrderState {
   orders: IOrderInitialState;
 }
 
-export const OrdersComponent: React.FC<Iprops> = ({ limit }) => {
+export const OrdersComponent: React.FC<Iprops> = ({ limit, setOrderLimit }) => {
   // Redux stuff
   const dispatch = useDispatch();
   const { loading, error, orders } = useSelector<
@@ -41,9 +44,9 @@ export const OrdersComponent: React.FC<Iprops> = ({ limit }) => {
 
   useEffect(() => {
     if (Token) {
-      dispatch(ordersThunk(Token, { limit }));
+      dispatch(ordersThunk(Token, getVendorOrders, { limit }));
     }
-  }, [Token]);
+  }, [Token, limit]);
 
   //Parse Date
   function toDate(d) {
@@ -76,13 +79,13 @@ export const OrdersComponent: React.FC<Iprops> = ({ limit }) => {
         error &&
         "Error fetching your orders, check your internet connection and refresh..."}
 
-      {!loading && !error && orders && orders.length === 0 ? (
+      {!loading && !error && Object.keys(orders).length === 0 ? (
         <Text as="div" textAlign="center">
           You Have No Orders...
         </Text>
       ) : null}
 
-      {!loading && !error && orders && (
+      {!loading && !error && Object.keys(orders).length > 0 && (
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%" }}>
             <thead>
@@ -101,7 +104,7 @@ export const OrdersComponent: React.FC<Iprops> = ({ limit }) => {
             </thead>
 
             <tbody>
-              {orders.map((o) => (
+              {orders?.getVendorOrders.map((o: Orders) => (
                 <tr className="order-item" key={o.order_id}>
                   {screenWidth() < 990 && (
                     <td>
@@ -279,6 +282,16 @@ export const OrdersComponent: React.FC<Iprops> = ({ limit }) => {
               ))}
             </tbody>
           </table>
+          <div className="text-center m-4">
+            <Button
+              onClick={() => setOrderLimit(limit + 10)}
+              background="var(--primary)"
+              color="white"
+              isLoading={loading}
+            >
+              Fetch More
+            </Button>
+          </div>
         </div>
       )}
       <style jsx>{`
