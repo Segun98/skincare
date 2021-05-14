@@ -184,6 +184,7 @@ export const MainStore: React.FC<StoreProps> = ({ user }) => {
             <div>
               <button
                 aria-label="open cart"
+                title="Cart"
                 onClick={onOpen}
                 className="cart-store-icon"
               >

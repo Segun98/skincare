@@ -122,6 +122,7 @@ export const StoreAddToCart: React.FC<Iprops> = ({
   return (
     <button
       aria-label="add to cart"
+      title="add to cart"
       onClick={() => {
         if (product.in_stock === "false") {
           addToLocalStorage();
