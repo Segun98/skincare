@@ -91,7 +91,7 @@ export const Flutterwave: React.FC<Iprops> = ({
         }
       }
 
-      router.push(`/customer/cart`).then(() => window.scrollTo(0, 0));
+      router.push(`/customer/orders`).then(() => window.scrollTo(0, 0));
     }
 
     if (error) {
