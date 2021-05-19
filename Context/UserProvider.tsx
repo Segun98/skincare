@@ -29,7 +29,9 @@ export const UserProvider = ({ children }) => {
   const { Token } = useToken();
 
   useEffect(() => {
-    fetchUser();
+    if (Token) {
+      fetchUser();
+    }
   }, [Token, userDependency]);
 
   const getUser = gql`
