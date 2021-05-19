@@ -24,9 +24,10 @@ export const Dashboard: React.FC = () => {
   // Redux stuff
   const dispatch = useDispatch();
 
-  const { orders, error } = useSelector<DefaultOrderState, IOrderInitialState>(
-    (state) => state.orders
-  );
+  const { orders, error, loading } = useSelector<
+    DefaultOrderState,
+    IOrderInitialState
+  >((state) => state.orders);
 
   const toast = useToast();
   const { User } = useUser();
@@ -232,7 +233,11 @@ export const Dashboard: React.FC = () => {
               </Button>
             </div>
             <section>
-              <DashboardOrders />
+              <DashboardOrders
+                orders={orders.getVendorOrders}
+                error={error}
+                loading={loading}
+              />
               <br />
               <br />
             </section>

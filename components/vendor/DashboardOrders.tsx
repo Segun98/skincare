@@ -11,27 +11,28 @@ import {
   PopoverCloseButton,
   Text,
 } from "@chakra-ui/core";
-import { useEffect } from "react";
-import { useToken } from "@/Context/TokenProvider";
+import { useEffect, useState } from "react";
 import { Commas, truncate } from "@/utils/helpers";
-import { getVendorOrders } from "@/graphql/vendor";
 import { Orders } from "@/Typescript/types";
-import useSWR, { mutate } from "swr";
-import queryFunc from "@/utils/fetcher";
 
+interface IDashboardOrders {
+  orders: Orders[];
+  error: string;
+  loading: boolean;
+}
 //Recent Orders displayed in /vendor/dashboard.
-export const DashboardOrders = () => {
-  const { Token } = useToken();
+export const DashboardOrders = ({
+  orders,
+  error,
+  loading,
+}: IDashboardOrders) => {
+  const [recentOrders, setRecentOrders] = useState<Orders[]>([]);
 
-  //using SWR to fetch data
-  const { data, error } = useSWR(`getVendorOrders`, () =>
-    queryFunc(getVendorOrders, { limit: 5 }, Token)
-  );
-
-  //refetch when token loads
   useEffect(() => {
-    mutate(`getVendorOrders`);
-  }, [Token]);
+    if (orders) {
+      setRecentOrders(orders.slice(0, 5));
+    }
+  }, [orders]);
 
   //Parse Date
   function toDate(d) {
@@ -47,7 +48,7 @@ export const DashboardOrders = () => {
 
   return (
     <div className="orders-table" style={{ overflowX: "auto" }}>
-      {!data && !error && (
+      {loading && (
         <Text as="div" className="skeleton">
           <Skeleton height="40px" my="10px" />
           <Skeleton height="40px" my="10px" />
@@ -63,13 +64,13 @@ export const DashboardOrders = () => {
       {error &&
         "Error fetching your orders, check your internet connection and refresh"}
 
-      {data && data.getVendorOrders.length === 0 ? (
+      {!error && !loading && recentOrders.length === 0 ? (
         <Text as="div" textAlign="center">
           You Have No Orders...
         </Text>
       ) : null}
 
-      {data && (
+      {recentOrders.length > 0 && (
         <table style={{ width: "100%" }}>
           <thead>
             <tr>
@@ -83,7 +84,7 @@ export const DashboardOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {data.getVendorOrders.map((o: Orders) => (
+            {recentOrders.map((o: Orders) => (
               <tr key={o.order_id}>
                 <td className="name">
                   {/* display "*" if order hasn't been delivered */}
