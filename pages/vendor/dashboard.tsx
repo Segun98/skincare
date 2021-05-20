@@ -37,6 +37,8 @@ export const Dashboard: React.FC = () => {
 
   useEffect(() => {
     if (Token) {
+      console.log("hello");
+
       dispatch(ordersThunk(Token, getVendorOrders, { limit: null }));
     }
   }, [Token]);
