@@ -18,7 +18,7 @@ const Home = () => {
       <Featured />
       <PurchaseSteps />
       <section className="home-vendor-onboarding">
-        <h1>Sell On Tadlace</h1>
+        <h1>Sell On skincare</h1>
         <div>
           <Link href="/sell">
             <a>

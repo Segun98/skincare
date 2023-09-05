@@ -48,7 +48,7 @@ const Pay = ({ variables }) => {
   return (
     <Layout>
       <Head>
-        <title>Payment | Secure | Tadlace</title>
+        <title>Payment | Secure | skincare</title>
         <script src="https://checkout.flutterwave.com/v3.js"></script>
       </Head>
       {error &&

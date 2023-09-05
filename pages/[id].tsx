@@ -64,9 +64,7 @@ const Store = ({ user, error }: Iprops) => {
     <div className="store-page">
       {!error && (
         <Head>
-          <title>
-            {user ? user.business_name + " store" : "Error"} | Tadlace
-          </title>
+          <title>{user ? user.business_name + " store" : "Error"}</title>
           <meta name="description" content={user ? user.business_bio : ""} />
           <meta name="author" content={user.business_name} />
           <meta
@@ -78,14 +76,14 @@ const Store = ({ user, error }: Iprops) => {
           <meta property="og:type" content="website" />
           <meta
             property="og:url"
-            content={`https://tadlace.com/${user.business_name_slug}`}
+            content={`https://skincare-project.vercel.app/${user.business_name_slug}`}
           />
           <meta property="og:title" content={user.business_name} />
           <meta property="og:image" content={user.business_image} />
           <meta property="og:site_name" content={user.business_name} />
           <link
             rel="canonical"
-            href={`https://tadlace.com/${user.business_name_slug}`}
+            href={`https://skincare-project.vercel.app/${user.business_name_slug}`}
           />
           <script
             async

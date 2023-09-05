@@ -97,7 +97,7 @@ export const Login = () => {
   return (
     <Layout>
       <Head>
-        <title>Vendor LogIn | Tadlace</title>
+        <title>Vendor LogIn | skincare</title>
       </Head>
       <div className="login-page-wrap">
         <img

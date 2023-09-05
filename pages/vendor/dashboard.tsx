@@ -103,7 +103,7 @@ export const Dashboard: React.FC = () => {
   return (
     <div className="dashboard">
       <Head>
-        <title>Dashboard | Vendor | Tadlace</title>
+        <title>Dashboard | Vendor | skincare</title>
       </Head>
       <>
         {error &&

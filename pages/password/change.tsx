@@ -47,7 +47,7 @@ export const Change = () => {
   return (
     <Layout>
       <Head>
-        <title>Password Reset | Tadlace</title>
+        <title>Password Reset | skincare</title>
       </Head>
       <div className="indicator">
         <div className="change-pass-wrap">

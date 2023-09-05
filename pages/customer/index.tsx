@@ -8,14 +8,14 @@ const Index = () => {
   return (
     <Layout>
       <Head>
-        <title>Customer | Tadlace</title>
+        <title>Customer | skincare</title>
       </Head>
       <div className="customer">
         <header>
           <div className="split">
             <div className="left">
               <h1>
-                Start shopping for your skin and body care items on Tadlace
+                Start shopping for your skin and body care items on skincare
                 today!
               </h1>
               <p>

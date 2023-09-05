@@ -177,7 +177,7 @@ export const Login = () => {
   return (
     <Layout>
       <Head>
-        <title>Customer LogIn | Tadlace</title>
+        <title>Customer LogIn | skincare</title>
       </Head>
 
       {Loader && (

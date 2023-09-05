@@ -23,10 +23,13 @@ export const CustomerOrders = () => {
 
   // Redux stuff
   const dispatch = useDispatch();
-  const { loading, error, orders: data } = useSelector<
-    DefaultOrderState,
-    IOrderInitialState
-  >((state) => state.orders);
+  const {
+    loading,
+    error,
+    orders: data,
+  } = useSelector<DefaultOrderState, IOrderInitialState>(
+    (state) => state.orders
+  );
 
   useEffect(() => {
     if (Token) {
@@ -52,7 +55,7 @@ export const CustomerOrders = () => {
   return (
     <Layout>
       <Head>
-        <title>Orders | Customer | Tadlace</title>
+        <title>Orders | Customer | skincare</title>
       </Head>
       <main className="customer-orders">
         <div className="order-status shadow">

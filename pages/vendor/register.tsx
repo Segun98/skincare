@@ -127,7 +127,7 @@ export const Register = () => {
   return (
     <Layout>
       <Head>
-        <title>Vendor Register | Tadlace</title>
+        <title>Vendor Register | skincare</title>
       </Head>
       <div className="register-page-wrap">
         <img
@@ -162,7 +162,7 @@ export const Register = () => {
               </small>
               {watch("business_name") && (
                 <small>
-                  {`Your store link will be: tadlace.com/${slug(
+                  {`Your store link will be: skincare-project.vercel.app/${slug(
                     watch("business_name")
                   )}`}
                 </small>

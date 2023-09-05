@@ -59,7 +59,7 @@ const Checkout = () => {
   return (
     <Layout>
       <Head>
-        <title>Checkout | Tadlace</title>
+        <title>Checkout | skincare</title>
       </Head>
       <div className="checkout-page">
         {!cart && (

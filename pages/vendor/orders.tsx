@@ -11,7 +11,7 @@ export const Orders = () => {
   return (
     <div className="orders-page">
       <Head>
-        <title>Orders | Vendor | Tadlace</title>
+        <title>Orders | Vendor | skincare</title>
       </Head>
       <div className="orders-layout">
         <Navigation />

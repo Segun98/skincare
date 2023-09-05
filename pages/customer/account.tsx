@@ -116,7 +116,7 @@ export const Account = () => {
   return (
     <Layout>
       <Head>
-        <title>Account | Tadlace</title>
+        <title>Account | skincare</title>
       </Head>
       {!Token && !role && (
         <div className="indicator">

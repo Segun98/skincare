@@ -174,7 +174,7 @@ export const Register = () => {
   return (
     <Layout>
       <Head>
-        <title>Customer Register | Tadlace</title>
+        <title>Customer Register | skincare</title>
       </Head>
       <div className="register-page-wrap">
         <img

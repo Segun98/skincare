@@ -63,7 +63,7 @@ export const Payment = () => {
   return (
     <div className="payment_layout">
       <head>
-        <title>Withdraw from wallet | vendor | Tadlace</title>
+        <title>Withdraw from wallet | vendor | skincare</title>
       </head>
       <section>
         <Navigation />

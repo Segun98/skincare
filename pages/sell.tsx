@@ -14,11 +14,11 @@ const Sell = () => {
         <title>Become a Vendor | {companyName}</title>
         <meta
           name="description"
-          content="Become a vendor on Tadlace, start selling and boost your sales. The number one #1 market place for Skin care products, Male and Female, in Lagos, Nigeria"
+          content="Become a vendor on skincare, start selling and boost your sales. The number one #1 market place for Skin care products, Male and Female, in Lagos, Nigeria"
         />
         <meta
           name="keywords"
-          content="Sell on Tadlace, become a vendor tadlace, Skin Care,Beauty, E-Commerce, Online Store, Market, Lagos"
+          content="Sell on skincare, become a vendor skincare, Skin Care,Beauty, E-Commerce, Online Store, Market, Lagos"
         />
       </Head>
       <div className="become-a-vendor">

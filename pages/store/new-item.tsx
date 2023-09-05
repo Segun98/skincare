@@ -146,7 +146,7 @@ export const Newitem = () => {
   return (
     <div>
       <Head>
-        <title>New Product | Vendor | Tadlace</title>
+        <title>New Product | Vendor | skincare</title>
       </Head>
       <div className="new-item-layout">
         <div>

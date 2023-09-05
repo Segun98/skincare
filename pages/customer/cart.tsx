@@ -46,7 +46,7 @@ export const CustomerCart = () => {
   return (
     <Layout>
       <Head>
-        <title>Cart | Tadlace</title>
+        <title>Cart | skincare</title>
       </Head>
       {/* <>
         {error &&

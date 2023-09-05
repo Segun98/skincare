@@ -92,7 +92,7 @@ const Stores = () => {
         <title>Stores | {companyName}</title>
         <meta
           name="description"
-          content="Find stores on Tadlace. Buy quality Face, Body and Hair Care products"
+          content="Find stores on skincare. Buy quality Face, Body and Hair Care products"
         />
       </Head>
       <>

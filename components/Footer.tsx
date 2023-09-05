@@ -107,21 +107,21 @@ export const Footer = () => {
         <section className="footer-item">
           <ul style={{ display: "flex", alignItems: "center" }}>
             <li>
-              <Link href="https://twitter.com/tadlaceStore">
+              <Link href="https://twitter.com/skincareStore">
                 <a target="_blank" rel="noopener noreferrer">
                   <img src="/twitter.svg" alt="twitter icon" />
                 </a>
               </Link>{" "}
             </li>
             <li>
-              <Link href="https://instagram.com/tadlacestore">
+              <Link href="https://instagram.com/skincarestore">
                 <a>
                   <img src="/icons8-instagram.svg" alt="instagram icon" />
                 </a>
               </Link>{" "}
             </li>
             <li>
-              <Link href="https://twitter.com/tadlaceStore">
+              <Link href="https://twitter.com/skincareStore">
                 <a>
                   <img src="/facebook.svg" alt="facebook icon" />
                 </a>
@@ -138,9 +138,7 @@ export const Footer = () => {
       <hr />
       <div className="attribution">
         <div className="attr-wrap">
-          <div>
-            Copyright {new Date().getFullYear()}, Tadlace. All Rights Reserved
-          </div>
+          <div>Copyright {new Date().getFullYear()}. All Rights Reserved</div>
         </div>
       </div>
       <style jsx>{`

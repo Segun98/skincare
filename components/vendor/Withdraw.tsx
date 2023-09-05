@@ -165,7 +165,7 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
           account_bank: bankCode,
           account_number: accountNo,
           amount,
-          narration: `Vendor ${User?.business_name} Withdrawal on Tadlace`,
+          narration: `Vendor ${User?.business_name} Withdrawal on skincare`,
           currency: "NGN",
           reference: Date.now(),
           // callback_url: "https://webhook.site/b3e505b0-fe02-430e-a538-22bbbce8ce0d",
@@ -191,7 +191,7 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
       // id: 6532628
       // is_approved: 1
       // meta: null
-      // narration: "Vendor Ace Concepts Withdrawal on Tadlace"
+      // narration: "Vendor Ace Concepts Withdrawal on skincare"
       // reference: 1611909085728
       // requires_approval: 0
       if (transfer.data.status === "error") {
@@ -254,7 +254,7 @@ export const Withdraw: React.FC<prop> = ({ balance }) => {
   //         source: "balance",
   //         amount,
   //         recipient: res.data.data.recipient_code,
-  //         reason: `${User.business_name} withdrawal on Tadlace`,
+  //         reason: `${User.business_name} withdrawal on skincare`,
   //       },
   //       {
   //         headers: {

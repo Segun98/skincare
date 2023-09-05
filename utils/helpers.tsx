@@ -1,6 +1,6 @@
 import { differenceInDays, formatDistance } from "date-fns";
 
-export const companyName = "Tadlace";
+export const companyName = "skincare";
 
 export const paymentPercentage = 5 / 100;
 

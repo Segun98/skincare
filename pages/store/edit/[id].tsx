@@ -159,7 +159,7 @@ const Edit = ({ product, error }: Iprops) => {
   return (
     <div>
       <Head>
-        <title>Edit Product | Vendor | Tadlace</title>
+        <title>Edit Product | Vendor | skincare</title>
       </Head>
       <>
         {error ||
